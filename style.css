@@ -20,11 +20,29 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
-/* Table styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
+form {
+    padding:25px 0;
+
+    border-bottom: 1px solid #ddd;
 }
+
+body {
+    padding-top:20px;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto; /* Add horizontal scrolling if needed */
+  }
+  
+  table {
+    margin-top:20px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 100%; /* Ensure table doesn't exceed container width */
+  }
+  
 
 th, td {
     padding: 8px;
@@ -61,9 +79,20 @@ a:hover {
     text-decoration: underline;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    
+
+/** Zebra striping **/
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+/** Hover effect **/
+tr:hover {
+    /** highlight row on hover pastel yellow color **/
+    background: lightgoldenrodyellow;
+}
+
+/** hide the netid, emplid, tt_ntt */
+
+.netid, .emplid, .tt-ntt {
+    display: none;
 }
