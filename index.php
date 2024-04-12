@@ -3,10 +3,46 @@ $db = new SQLite3('salaries.db');
 
 // prepare query string to also get netid by joining payroll_ids table on emplid, noting that it's Emplid in faculty_salaries_fy_2025
 
-$query = 'SELECT * FROM faculty_salaries_fy_2025 LEFT JOIN payroll_ids ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
+$query = 'SELECT * FROM faculty_salaries_fy_2025 
+LEFT JOIN payroll_ids 
+ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
+
+// prepare the statement, there might be department, rank, or school/college filters
+
+if (isset($_GET['department'])) {
+    $query .= ' WHERE Academic_Department = :department';
+}
+
+if (isset($_GET['rank'])) {
+    $query .= ' WHERE Rank_Description = :rank';
+}
+
+if (isset($_GET['school'])) {
+    $query .= ' WHERE Academic_School_College = :school';
+}
+
+$stmt = $db->prepare($query);
+
+// bind the parameters
+if (isset($_GET['department'])) {
+    $stmt->bindValue(':department', $_GET['department']);
+}
+
+if (isset($_GET['rank'])) {
+    $stmt->bindValue(':rank', $_GET['rank']);
+}
+
+if (isset($_GET['school'])) {
+    $stmt->bindValue(':school', $_GET['school']);
+}
+
+
+
+
+
 
 // execute the query
-$results = $db->query($query);
+$results = $stmt->execute();
 
 // create an array to hold the data
 $data = array();
@@ -25,31 +61,35 @@ while ($row = $results->fetchArray(
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Faculty Salaries FY 2025</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 5px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-    <h2>Faculty Salaries FY 2025 (<?php echo count($data); ?>)</h2>
+
+    <div class="container">
+        <h2>
+            <a href="/">Faculty Salaries FY 2025 </a>
+        </h2>
+        <?php
+        if (isset($_GET['department'])) {
+            echo '<h3>Department: ' . $_GET['department'] . '</h3>';
+        }
+
+        if (isset($_GET['rank'])) {
+            echo '<h3>Rank: ' . $_GET['rank'] . '</h3>';
+        }
+
+        if (isset($_GET['school'])) {
+            echo '<h3>School/College: ' . $_GET['school'] . '</h3>';
+        }
+        ?>
+
+
+        <h4>Number of records: <?php echo count($data); ?></h4>
+    </div>
     <table>
         <tr>
             <th>Academic School/College</th>
@@ -62,7 +102,6 @@ while ($row = $results->fetchArray(
             <th>Faculty Role</th>
             <th>Affiliated Department Name (Administrative Roles)</th>
             <th>Union Name</th>
-            <th>Empl Class Description - REMOVE FIELD FROM SCATTERPLOT DATA</th>
             <th>Payroll FTE</th>
             <th>Faculty Base Appointment Term</th>
             <th>Appointment Term</th>
@@ -80,19 +119,30 @@ while ($row = $results->fetchArray(
             <th>Professor Year</th>
             <th>Years In Rank</th>
         </tr>
-        <?php foreach ($data as $row): ?>
+        <?php foreach ($data as $row) : ?>
             <tr>
-                <td><?php echo $row['Academic_School_College']; ?></td>
-                <td><?php echo $row['Academic_Department']; ?></td>
+                <td>
+                    <a href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
+                        <?php echo $row['Academic_School_College']; ?>
+                    </a>
+                </td>
+                <td>
+                    <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
+                        <?php echo $row['Academic_Department']; ?>
+                    </a>
+                </td>
                 <td><?php echo $row['Emplid']; ?></td>
                 <td><?php echo $row['netid']; ?></td>
                 <td><?php echo $row['Full_Name']; ?></td>
                 <td><?php echo $row['TT_NTT']; ?></td>
-                <td><?php echo $row['Rank_Description']; ?></td>
+                <td>
+                    <a href="index.php?rank=<?php echo $row['Rank_Description']; ?>">
+                        <?php echo $row['Rank_Description']; ?>
+                    </a>
+                </td>
                 <td><?php echo $row['Faculty_Role']; ?></td>
                 <td><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
                 <td><?php echo $row['Union_Name']; ?></td>
-                <td><?php echo $row['Empl_Class_Description']; ?></td>
                 <td><?php echo $row['Payroll_FTE']; ?></td>
                 <td><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
                 <td><?php echo $row['Appointment_Term']; ?></td>
@@ -114,4 +164,5 @@ while ($row = $results->fetchArray(
     </table>
 
 </body>
+
 </html>
