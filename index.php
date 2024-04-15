@@ -57,10 +57,10 @@ $db = new SQLite3('salaries.db');
         </div>
     </div>
 
-    <div style="background-color:#000E2F;border-bottom:5px solid #ffc107;">
+    <div style="background-color:#000E2F;">
         <div class="container ps-3">
             <nav class="upper-nav">
-                <a class="parent-title" href="https://core.uconn.edu/">
+                <a class="parent-title" href="https://provost.uconn.edu/">
                     Office of the Provost
                 </a>
             </nav>
@@ -71,108 +71,114 @@ $db = new SQLite3('salaries.db');
                 </a>
             </nav>
         </div>
-    </div>
+        <div class="bg-provost-blue">
+            <div class="container mt-2">
+                <div class="filters d-flex py-3">
+                    <div class="dropdown mx-2">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="schoolDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php
+                            if (isset($_GET['school'])) {
+                                echo $_GET['school'];
+                            } else {
+                                echo 'Filter by School';
+                            }
+                            ?>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
+                            <li><a class="dropdown-item" href="index.php">All Schools</a></li>
+                            <?php
+                            $schools = $db->query('SELECT DISTINCT Academic_School_College FROM faculty_salaries_fy_2025');
+                            while ($school = $schools->fetchArray(SQLITE3_ASSOC)) {
+                                $selected = isset($_GET['school']) && $_GET['school'] == $school['Academic_School_College'] ? 'selected' : '';
+                                echo '<li><a class="dropdown-item" href="index.php?school=' . urlencode($school['Academic_School_College']) . '">' . $school['Academic_School_College'] . '</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <noscript><button type="submit">Filter</button></noscript>
 
-
-    <div class="container mt-4">
-        <h2>
-            <a href="/">Faculty Salaries FY 2025 </a>
-        </h2>
-        <?php
-        if (isset($_GET['department'])) {
-            echo '<h3>Department: ' . $_GET['department'] . '</h3>';
-        }
-
-        if (isset($_GET['rank'])) {
-            echo '<h3>Rank: ' . $_GET['rank'] . '</h3>';
-        }
-
-        if (isset($_GET['school'])) {
-            echo '<h3>School/College: ' . $_GET['school'] . '</h3>';
-        }
-        ?>
-        <div class="filters">
-            <form action="index.php" method="get">
-                <!-- school/college filter -->
-                <label for="school">Filter by School/College:</label>
-                <select name="school" id="school" onchange="this.form.submit()">
-                    <option value="">All</option>
                     <?php
-                    $schools = $db->query('SELECT DISTINCT Academic_School_College FROM faculty_salaries_fy_2025');
-                    while ($school = $schools->fetchArray(SQLITE3_ASSOC)) {
-                        $selected = isset($_GET['school']) && $_GET['school'] == $school['Academic_School_College'] ? 'selected' : '';
-                        echo '<option value="' . $school['Academic_School_College'] . '" ' . $selected . '>' . $school['Academic_School_College'] . '</option>';
+                    if (isset($_GET['school'])) {
+                        $school = $_GET['school'];
+                        $departments = $db->query('SELECT DISTINCT Academic_Department FROM faculty_salaries_fy_2025 WHERE Academic_School_College = "' . $school . '"');
+                        if ($departments->numColumns() > 0) {
+                            echo '<div class="dropdown">';
+                            echo '<button class="btn btn-secondary dropdown-toggle" type="button" id="departmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">';
+                            if (isset($_GET['department'])) {
+                                echo $_GET['department'];
+                            } else {
+                                echo 'Filter by Department';
+                            }
+                            echo '</button>';
+                            echo '<ul class="dropdown-menu" aria-labelledby="departmentDropdown">';
+                            while ($department = $departments->fetchArray(SQLITE3_ASSOC)) {
+                                echo '<li><a class="dropdown-item" 
+                                href="index.php?school=' . urlencode($school) . '&department=' . urlencode($department['Academic_Department']) . '">' . $department['Academic_Department'] . '</a></li>';
+                            }
+                            echo '</ul>';
+                            echo '</div>';
+                        } else {
+                            echo '<p>No departments found for ' . $school . '</p>';
+                        }
                     }
-                    ?>
-                </select>
-                <noscript><button type="submit">Filter</button></noscript>
-            </form>
 
-            <?php
-            if (isset($_GET['school'])) {
-                $school = $_GET['school'];
-                $departments = $db->query('SELECT DISTINCT Academic_Department FROM faculty_salaries_fy_2025 WHERE Academic_School_College = "' . $school . '"');
-                if ($departments->numColumns() > 0) {
-                    echo '<h3>Departments in ' . $school . '</h3>';
-                    echo '<ul>';
-                    while ($department = $departments->fetchArray(SQLITE3_ASSOC)) {
-                        echo '<li><a href="index.php?department=' . urlencode($department['Academic_Department']) . '">' . $department['Academic_Department'] . '</a></li>';
-                    }
-                    echo '</ul>';
-                } else {
-                    echo '<p>No departments found for ' . $school . '</p>';
-                }
-            }
-
-            $query = 'SELECT * FROM faculty_salaries_fy_2025 
+                    $query = 'SELECT * FROM faculty_salaries_fy_2025 
 LEFT JOIN payroll_ids 
 ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
 
-            if (isset($_GET['school'])) {
-                $query .= ' WHERE Academic_School_College = "' . $_GET['school'] . '"';
-            }
+                    if (isset($_GET['school']) && !isset($_GET['department'])) {
+                        $query .= ' WHERE Academic_School_College = "' . $_GET['school'] . '"';
+                    }
 
-            if (isset($_GET['department'])) {
-                $query .= ' WHERE Academic_Department = "' . $_GET['department'] . '"';
-            }
+                    if (isset($_GET['department'])) {
+                        $query .= ' WHERE Academic_Department = "' . $_GET['department'] . '"';
+                    }
 
-            $stmt = $db->prepare($query);
-            $result = $stmt->execute();
-            $data = [];
-            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-                $data[] = $row;
-            }
-            ?>
+                    $query .= ' ORDER BY Academic_School_College, Academic_Department, Full_Name';
+
+                    $stmt = $db->prepare($query);
+                    $result = $stmt->execute();
+                    $data = [];
+                    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                        $data[] = $row;
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
+
     </div>
+
+
+
     <table class="table table-striped">
         <thead>
             <tr>
                 <th class="academic-school">Academic School/College</th>
                 <th class="academic-department">Academic Department</th>
-                <th class="emplid">Emplid</th>
-                <th class="netid">NetID</th>
+                <th class="emplid hide">Emplid</th>
+                <th class="netid hide">NetID</th>
                 <th class="full-name">Full Name</th>
                 <th class="tt-ntt">TT/NTT</th>
                 <th class="rank-description">Rank Description</th>
-                <th class="faculty-role">Faculty Role</th>
-                <th class="affiliated-department">Affiliated Department Name (Administrative Roles)</th>
-                <th class="union-name">Union Name</th>
-                <th class="payroll-fte">Payroll FTE</th>
-                <th class="faculty-base-appointment">Faculty Base Appointment Term</th>
-                <th class="appointment-term">Appointment Term</th>
+                <th class="faculty-role hide">Faculty Role</th>
+                <th class="affiliated-department hide">Affiliated Department Name (Administrative Roles)</th>
+                <th class="union-name hide">Union Name</th>
+                <th class="payroll-fte hide">Payroll FTE</th>
+                <th class="faculty-base-appointment hide">Faculty Base Appointment Term</th>
+                <th class="appointment-term hide">Appointment Term</th>
                 <th class="faculty-base-ucannl">Faculty Base (UCANNL)</th>
-                <th class="additional-1-month">Additional 1 Month (UC1MTH)</th>
-                <th class="additional-2-months">Additional 2 Months (UC2MTH)</th>
-                <th class="admin-supplement">Admin Supplement (UCADM)</th>
+                <th class="additional-1-month hide">Additional 1 Month (UC1MTH)</th>
+                <th class="additional-2-months hide">Additional 2 Months (UC2MTH)</th>
+                <th class="admin-supplement hide">Admin Supplement (UCADM)</th>
                 <th class="full-time-annual-salary">Full Time Annual Salary</th>
-                <th class="nine-month-equivalent-annual-salary">Nine Month Equivalent of Annual Salary</th>
-                <th class="nine-month-equivalent-base-salary">Nine Month Equivalent of Base Salary</th>
-                <th class="gender">Gender</th>
+                <th class="nine-month-equivalent-annual-salary hide">Nine Month Equivalent of Annual Salary</th>
+                <th class="nine-month-equivalent-base-salary hide">Nine Month Equivalent of Base Salary</th>
+                <th class="gender hide">Gender</th>
                 <th class="years-of-service">Years of Service</th>
-                <th class="assistant-professor-year">Assistant Professor Year</th>
-                <th class="associate-professor-year">Associate Professor Year</th>
-                <th class="professor-year">Professor Year</th>
+                <th class="assistant-professor-year hide">Assistant Professor Year</th>
+                <th class="associate-professor-year hide">Associate Professor Year</th>
+                <th class="professor-year hide">Professor Year</th>
                 <th class="years-in-rank">Years In Rank</th>
             </tr>
         </thead>
@@ -189,8 +195,8 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
                         <?php echo $row['Academic_Department']; ?>
                     </a>
                 </td>
-                <td class="emplid"><?php echo $row['Emplid']; ?></td>
-                <td class="netid"><?php echo $row['netid']; ?></td>
+                <td class="emplid hide"><?php echo $row['Emplid']; ?></td>
+                <td class="netid hide"><?php echo $row['netid']; ?></td>
                 <td class="full-name"><?php echo $row['Full_Name']; ?></td>
                 <td class="tt-ntt"><?php echo $row['TT_NTT']; ?></td>
                 <td class="rank-description">
@@ -198,32 +204,35 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
                         <?php echo $row['Rank_Description']; ?>
                     </a>
                 </td>
-                <td class="faculty-role"><?php echo $row['Faculty_Role']; ?></td>
-                <td class="affiliated-department"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
-                <td class="union-name"><?php echo $row['Union_Name']; ?></td>
-                <td class="payroll-fte"><?php echo $row['Payroll_FTE']; ?></td>
-                <td class="faculty-base-appointment"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
-                <td class="appointment-term"><?php echo $row['Appointment_Term']; ?></td>
+                <td class="faculty-role hide"><?php echo $row['Faculty_Role']; ?></td>
+                <td class="affiliated-department hide"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
+                <td class="union-name hide"><?php echo $row['Union_Name']; ?></td>
+                <td class="payroll-fte hide"><?php echo $row['Payroll_FTE']; ?></td>
+                <td class="faculty-base-appointment hide"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
+                <td class="appointment-term hide"><?php echo $row['Appointment_Term']; ?></td>
                 <td class="faculty-base-ucannl">
                     <!-- format as currency -->
                     $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
                 </td>
-                <td class="additional-1-month"><?php echo $row['Additional_1_Month_UC1MTH']; ?></td>
-                <td class="additional-2-months"><?php echo $row['Additional_2_Months_UC2MTH']; ?></td>
-                <td class="admin-supplement"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
-                <td class="full-time-annual-salary"><?php echo $row['Full_Time_Annual_Salary']; ?></td>
-                <td class="nine-month-equivalent-annual-salary"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
-                <td class="nine-month-equivalent-base-salary"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
-                <td class="gender"><?php echo $row['gender']; ?></td>
+                <td class="additional-1-month hide"><?php echo $row['Additional_1_Month_UC1MTH']; ?></td>
+                <td class="additional-2-months hide"><?php echo $row['Additional_2_Months_UC2MTH']; ?></td>
+                <td class="admin-supplement hide"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
+                <td class="full-time-annual-salary">
+                    <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
+                    ?>
+                </td>
+                <td class="nine-month-equivalent-annual-salary hide"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
+                <td class="nine-month-equivalent-base-salary hide"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
+                <td class="gender hide"><?php echo $row['gender']; ?></td>
                 <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
-                <td class="assistant-professor-year"><?php echo $row['Assistant_Professor_Year']; ?></td>
-                <td class="associate-professor-year"><?php echo $row['Associate_Professor_Year']; ?></td>
-                <td class="professor-year"><?php echo $row['Professor_Year']; ?></td>
+                <td class="assistant-professor-year hide"><?php echo $row['Assistant_Professor_Year']; ?></td>
+                <td class="associate-professor-year hide"><?php echo $row['Associate_Professor_Year']; ?></td>
+                <td class="professor-year hide"><?php echo $row['Professor_Year']; ?></td>
                 <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
             </tr>
             </tr>
         <?php endforeach; ?>
-    </table>
+        </table>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
