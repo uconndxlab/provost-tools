@@ -15,38 +15,25 @@ time, mark, audio, video {
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
+}
+
+table {
+    width: 100%;
+}
+
+/** th needs to support full width **/
+th {
+    text-align: left;
+    padding: 8px;
+    font-weight: bold;
+    background-color: #00274c!important; /* Navy Blue */
+    color: white;
 }
 
 form {
     padding:25px 0;
 
-    border-bottom: 1px solid #ddd;
-}
-
-body {
-    padding-top:20px;
-}
-
-.container {
-    width: 1200px;
-    margin: 0 auto;
-    overflow-x: auto; /* Add horizontal scrolling if needed */
-  }
-  
-  table {
-    margin-top:20px;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 100%; /* Ensure table doesn't exceed container width */
-  }
-  
-
-th, td {
-    padding: 8px;
-    text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
@@ -71,7 +58,7 @@ h3 {
 
 /* Link styles */
 a {
-    color: #c8102e; /* Red */
+    color: #00274c; /* Red */
     text-decoration: none;
 }
 
@@ -93,6 +80,11 @@ tr:hover {
 
 /** hide the netid, emplid, tt_ntt */
 
-.netid, .emplid, .tt-ntt {
+.netid, .emplid, .tt-ntt, .gender, .years_of_service, .assistant-professor-year, .associate-professor-year {
     display: none;
+}
+
+/** the table should scroll horizontally **/
+table {
+    overflow-x: auto;
 }
