@@ -166,7 +166,7 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
     </div>
 
 
-    <div class="container-fluid bg-light">
+    <div class="container bg-light">
         <div class="row bg-light">
             <div class="col-12">
                 <table class="table table-striped">
