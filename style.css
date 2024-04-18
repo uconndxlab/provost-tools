@@ -18,6 +18,10 @@ time, mark, audio, video {
     vertical-align: baseline;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 table {
     width: 100%;
 }
@@ -29,6 +33,11 @@ th {
     font-weight: bold;
     background-color: #00274c!important; /* Navy Blue */
     color: white;
+}
+
+td {
+    color: #00274c; /* Navy Blue */
+    font-size:12px;
 }
 
 
@@ -70,6 +79,15 @@ tr:hover {
     /** highlight row on hover pastel yellow color **/
     background: lightgoldenrodyellow;
 }
+
+/** when the tr is hovered, underline the .faculty-base-ucannl, .additional-1-month, .additional-2-month2, .admin-supplement, and .full-time-annual-salary 
+    columns **/
+
+tr:hover .faculty-base-ucannl, tr:hover .additional-1-month, tr:hover .additional-2-months, tr:hover .admin-supplement, tr:hover .full-time-annual-salary { 
+    /** backgorund very pale green **/
+    background: hwb(128 42% 0% / 0.089);
+}
+
 
 th, td {
     padding: 8px;

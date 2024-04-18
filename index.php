@@ -1,6 +1,22 @@
 <?php
 $db = new SQLite3('salaries.db');
 
+// use a password on the app using basic auth
+
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="Provost Office"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Contact the Provost Office for access to this page.';
+    exit;
+} else {
+    if ($_SERVER['PHP_AUTH_USER'] == 'i3admin' && $_SERVER['PHP_AUTH_PW'] == 'FY2025MVP!') {
+    } else {
+        header('WWW-Authenticate: Basic realm="Provost Office"');
+        header('HTTP/1.0 401 Unauthorized');
+        echo 'Contact the Provost Office for access to this page.';
+        exit;
+    }
+}
 
 
 
@@ -21,7 +37,7 @@ $db = new SQLite3('salaries.db');
 
 </head>
 
-<body>
+<body class="bg-light">
     <div id="uconn-banner" style="background-color:#000E2F;">
         <div id="uconn-header-container" class="row-container row-fluid container">
             <div id="home-link-container">
@@ -150,89 +166,100 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
     </div>
 
 
+    <div class="container-fluid bg-light">
+        <div class="row bg-light">
+            <div class="col-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="academic-school">Academic School/College</th>
+                            <th class="academic-department">Academic Department</th>
+                            <th class="emplid hide">Emplid</th>
+                            <th class="netid hide">NetID</th>
+                            <th class="full-name">Full Name</th>
+                            <th class="tt-ntt hide">TT/NTT</th>
+                            <th class="rank-description">Rank Description</th>
+                            <th class="faculty-role hide">Faculty Role</th>
+                            <th class="affiliated-department hide">Affiliated Department Name (Administrative Roles)</th>
+                            <th class="union-name hide">Union Name</th>
+                            <th class="payroll-fte hide">Payroll FTE</th>
+                            <th class="faculty-base-appointment hide">Faculty Base Appointment Term</th>
+                            <th class="appointment-term hide">Appointment Term</th>
+                            <th class="faculty-base-ucannl">Faculty Base (UCANNL)</th>
+                            <th class="additional-1-month">Additional 1 Month (UC1MTH)</th>
+                            <th class="additional-2-months">Additional 2 Months (UC2MTH)</th>
+                            <th class="admin-supplement">Admin Supplement (UCADM)</th>
+                            <th class="full-time-annual-salary">Full Time Annual Salary</th>
+                            <th class="nine-month-equivalent-annual-salary hide">Nine Month Equivalent of Annual Salary</th>
+                            <th class="nine-month-equivalent-base-salary hide">Nine Month Equivalent of Base Salary</th>
+                            <th class="gender hide">Gender</th>
+                            <th class="years-of-service">Years of Service</th>
+                            <th class="assistant-professor-year hide">Assistant Professor Year</th>
+                            <th class="associate-professor-year hide">Associate Professor Year</th>
+                            <th class="professor-year hide">Professor Year</th>
+                            <th class="years-in-rank">Years In Rank</th>
+                        </tr>
+                    </thead>
+                    </tr>
+                    <?php foreach ($data as $row) : ?>
+                        <tr>
+                            <td class="academic-school">
+                                <a href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
+                                    <?php echo $row['Academic_School_College']; ?>
+                                </a>
+                            </td>
+                            <td class="academic-department">
+                                <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
+                                    <?php echo $row['Academic_Department']; ?>
+                                </a>
+                            </td>
+                            <td class="emplid hide"><?php echo $row['Emplid']; ?></td>
+                            <td class="netid hide"><?php echo $row['netid']; ?></td>
+                            <td class="full-name"><?php echo $row['Full_Name']; ?></td>
+                            <td class="tt-ntt hide"><?php echo $row['TT_NTT']; ?></td>
+                            <td class="rank-description">
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th class="academic-school">Academic School/College</th>
-                <th class="academic-department">Academic Department</th>
-                <th class="emplid hide">Emplid</th>
-                <th class="netid hide">NetID</th>
-                <th class="full-name">Full Name</th>
-                <th class="tt-ntt">TT/NTT</th>
-                <th class="rank-description">Rank Description</th>
-                <th class="faculty-role hide">Faculty Role</th>
-                <th class="affiliated-department hide">Affiliated Department Name (Administrative Roles)</th>
-                <th class="union-name hide">Union Name</th>
-                <th class="payroll-fte hide">Payroll FTE</th>
-                <th class="faculty-base-appointment hide">Faculty Base Appointment Term</th>
-                <th class="appointment-term hide">Appointment Term</th>
-                <th class="faculty-base-ucannl">Faculty Base (UCANNL)</th>
-                <th class="additional-1-month hide">Additional 1 Month (UC1MTH)</th>
-                <th class="additional-2-months hide">Additional 2 Months (UC2MTH)</th>
-                <th class="admin-supplement hide">Admin Supplement (UCADM)</th>
-                <th class="full-time-annual-salary">Full Time Annual Salary</th>
-                <th class="nine-month-equivalent-annual-salary hide">Nine Month Equivalent of Annual Salary</th>
-                <th class="nine-month-equivalent-base-salary hide">Nine Month Equivalent of Base Salary</th>
-                <th class="gender hide">Gender</th>
-                <th class="years-of-service">Years of Service</th>
-                <th class="assistant-professor-year hide">Assistant Professor Year</th>
-                <th class="associate-professor-year hide">Associate Professor Year</th>
-                <th class="professor-year hide">Professor Year</th>
-                <th class="years-in-rank">Years In Rank</th>
-            </tr>
-        </thead>
-        </tr>
-        <?php foreach ($data as $row) : ?>
-            <tr>
-                <td class="academic-school">
-                    <a href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
-                        <?php echo $row['Academic_School_College']; ?>
-                    </a>
-                </td>
-                <td class="academic-department">
-                    <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
-                        <?php echo $row['Academic_Department']; ?>
-                    </a>
-                </td>
-                <td class="emplid hide"><?php echo $row['Emplid']; ?></td>
-                <td class="netid hide"><?php echo $row['netid']; ?></td>
-                <td class="full-name"><?php echo $row['Full_Name']; ?></td>
-                <td class="tt-ntt"><?php echo $row['TT_NTT']; ?></td>
-                <td class="rank-description">
-                    <a href="index.php?rank=<?php echo $row['Rank_Description']; ?>">
-                        <?php echo $row['Rank_Description']; ?>
-                    </a>
-                </td>
-                <td class="faculty-role hide"><?php echo $row['Faculty_Role']; ?></td>
-                <td class="affiliated-department hide"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
-                <td class="union-name hide"><?php echo $row['Union_Name']; ?></td>
-                <td class="payroll-fte hide"><?php echo $row['Payroll_FTE']; ?></td>
-                <td class="faculty-base-appointment hide"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
-                <td class="appointment-term hide"><?php echo $row['Appointment_Term']; ?></td>
-                <td class="faculty-base-ucannl">
-                    <!-- format as currency -->
-                    $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
-                </td>
-                <td class="additional-1-month hide"><?php echo $row['Additional_1_Month_UC1MTH']; ?></td>
-                <td class="additional-2-months hide"><?php echo $row['Additional_2_Months_UC2MTH']; ?></td>
-                <td class="admin-supplement hide"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
-                <td class="full-time-annual-salary">
-                    <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
-                    ?>
-                </td>
-                <td class="nine-month-equivalent-annual-salary hide"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
-                <td class="nine-month-equivalent-base-salary hide"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
-                <td class="gender hide"><?php echo $row['gender']; ?></td>
-                <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
-                <td class="assistant-professor-year hide"><?php echo $row['Assistant_Professor_Year']; ?></td>
-                <td class="associate-professor-year hide"><?php echo $row['Associate_Professor_Year']; ?></td>
-                <td class="professor-year hide"><?php echo $row['Professor_Year']; ?></td>
-                <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
-            </tr>
-            </tr>
-        <?php endforeach; ?>
-        </table>
+                                <?php echo $row['Rank_Description']; ?>
+
+                            </td>
+                            <td class="faculty-role hide"><?php echo $row['Faculty_Role']; ?></td>
+                            <td class="affiliated-department hide"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
+                            <td class="union-name hide"><?php echo $row['Union_Name']; ?></td>
+                            <td class="payroll-fte hide"><?php echo $row['Payroll_FTE']; ?></td>
+                            <td class="faculty-base-appointment hide"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
+                            <td class="appointment-term hide"><?php echo $row['Appointment_Term']; ?></td>
+                            <td class="faculty-base-ucannl">
+                                <!-- format as currency -->
+                                $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
+                            </td>
+                            <td class="additional-1-month">
+                                <?php echo number_format($row['Additional_1_Month_UC1MTH'], 2); ?>
+                            </td>
+                            <td class="additional-2-months">
+                                <?php
+                                echo number_format($row['Additional_2_Months_UC2MTH'], 2);
+                                ?>
+                            </td>
+                            <td class="admin-supplement"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
+                            <td class="full-time-annual-salary">
+                                <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
+                                ?>
+                            </td>
+                            <td class="nine-month-equivalent-annual-salary hide"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
+                            <td class="nine-month-equivalent-base-salary hide"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
+                            <td class="gender hide"><?php echo $row['gender']; ?></td>
+                            <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
+                            <td class="assistant-professor-year hide"><?php echo $row['Assistant_Professor_Year']; ?></td>
+                            <td class="associate-professor-year hide"><?php echo $row['Associate_Professor_Year']; ?></td>
+                            <td class="professor-year hide"><?php echo $row['Professor_Year']; ?></td>
+                            <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
+                        </tr>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
