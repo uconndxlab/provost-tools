@@ -22,18 +22,44 @@ html {
     overflow-y: scroll;
 }
 
+button {
+   font-family: 'Courier New', Courier, monospace!important;
+   border-radius: 0!important;
+}
+
 table {
     width: 100%;
 }
 
 /** th needs to support full width **/
 th {
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
     text-align: left;
     padding: 8px;
     font-weight: bold;
-    background-color: #00274c!important; /* Navy Blue */
+    background-color: hsl(209, 100%, 15%)!important; /* Navy Blue */
     color: white;
 }
+
+/** td needs to support full width **/
+td {
+    font-size: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    padding: 8px;
+
+}
+
+/** th single line of text, ellipsis overflow **/
+th.single-line {
+    vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 
 td {
     color: #00274c; /* Navy Blue */

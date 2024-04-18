@@ -103,7 +103,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
                         <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
                             <li><a class="dropdown-item" href="index.php">All Schools</a></li>
                             <?php
-                            $schools = $db->query('SELECT DISTINCT Academic_School_College FROM faculty_salaries_fy_2025');
+                            $schools = $db->query('SELECT DISTINCT Academic_School_College FROM faculty_salaries_fy_2025 ORDER BY Academic_School_College');
                             while ($school = $schools->fetchArray(SQLITE3_ASSOC)) {
                                 $selected = isset($_GET['school']) && $_GET['school'] == $school['Academic_School_College'] ? 'selected' : '';
                                 echo '<li><a class="dropdown-item" href="index.php?school=' . urlencode($school['Academic_School_College']) . '">' . $school['Academic_School_College'] . '</a></li>';
@@ -116,7 +116,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
                     <?php
                     if (isset($_GET['school'])) {
                         $school = $_GET['school'];
-                        $departments = $db->query('SELECT DISTINCT Academic_Department FROM faculty_salaries_fy_2025 WHERE Academic_School_College = "' . $school . '"');
+                        $departments = $db->query('SELECT DISTINCT Academic_Department FROM faculty_salaries_fy_2025 WHERE Academic_School_College = "' . $school . '" ORDER BY Academic_Department');
                         if ($departments->numColumns() > 0) {
                             echo '<div class="dropdown">';
                             echo '<button class="btn btn-secondary dropdown-toggle" type="button" id="departmentDropdown" data-bs-toggle="dropdown" aria-expanded="false">';
