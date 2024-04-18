@@ -88,6 +88,12 @@ tr:hover .faculty-base-ucannl, tr:hover .additional-1-month, tr:hover .additiona
     background: hwb(128 42% 0% / 0.089);
 }
 
+/** full-time-annual-salary column should be right aligned and little darker **/
+tr:hover .full-time-annual-salary {
+    background: hwb(128 42% 0% / 0.089);
+    font-weight: bold;
+}
+
 
 th, td {
     padding: 8px;
