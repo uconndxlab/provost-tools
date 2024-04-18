@@ -96,12 +96,12 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
                             if (isset($_GET['school'])) {
                                 echo $_GET['school'];
                             } else {
-                                echo 'Filter by School';
+                                echo 'Filter by School/College';
                             }
                             ?>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
-                            <li><a class="dropdown-item" href="index.php">All Schools</a></li>
+                            <li><a class="dropdown-item" href="index.php">All Schools/Colleges</a></li>
                             <?php
                             $schools = $db->query('SELECT DISTINCT Academic_School_College FROM faculty_salaries_fy_2025 ORDER BY Academic_School_College');
                             while ($school = $schools->fetchArray(SQLITE3_ASSOC)) {
@@ -172,8 +172,8 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th class="academic-school">Academic School/College</th>
-                            <th class="academic-department">Academic Department</th>
+                            <th class="academic-school">School/College</th>
+                            <th class="academic-department">Department</th>
                             <th class="emplid hide">Emplid</th>
                             <th class="netid hide">NetID</th>
                             <th class="full-name">Full Name</th>

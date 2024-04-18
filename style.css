@@ -22,7 +22,7 @@ html {
     overflow-y: scroll;
 }
 
-button {
+button, .dropdown a {
    font-family: 'Courier New', Courier, monospace!important;
    border-radius: 0!important;
 }
