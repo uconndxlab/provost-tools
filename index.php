@@ -83,7 +83,7 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
             <!--Level 1 Title-->
             <nav class="navbar navbar-expand-lg navbar-light shift">
                 <a class="navbar-brand" href="/">
-                    Faculty Salary Tables
+                    FY 2024 Faculty Salaries
                 </a>
             </nav>
         </div>
