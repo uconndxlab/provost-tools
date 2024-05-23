@@ -126,8 +126,8 @@ th, td {
 }
 
 td {
-    white-space: nowrap;
     vertical-align: middle;
+    width: 350px;
 }
 
 

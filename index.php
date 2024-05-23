@@ -206,7 +206,7 @@ if (isset($_GET['sort'])) {
                                     <a href="<?php echo $currentURL; ?>&sort=Academic_School_College">
                                         School
                                     </a>
-                                    
+
                                     <a href="<?php echo $currentURL; ?>&sort=Academic_Department">
                                         Department
                                     </a>
@@ -258,7 +258,7 @@ if (isset($_GET['sort'])) {
                                 </th>
                                 <th class="payroll-fte">
                                     <a href="<?php echo $currentURL; ?>&sort=Payroll_FTE">
-                                        Payroll FTE
+                                        FTE %
                                     </a>
                                 </th>
                                 <th class="faculty-base-appointment">
@@ -328,85 +328,87 @@ if (isset($_GET['sort'])) {
                                     </a>
                                 </th>
                             </tr>
-                            </tr>
+
                         </thead>
-                        </tr>
-                        <?php foreach ($data as $row) : ?>
-                            <tr>
-                                <td class="full-name position-sticky ">
-                                    <span class="badge bg-dark text-white">
-                                        <?php echo $row['Union_Name']; ?>
-                                    </span>
-                                    <div class="mt-2"><?php echo $row['Full_Name']; ?></div>
+                        <tbody>
 
-                                </td>
-                                <td class="academic-school">
-                                    <span class="badge bg-dark text-white">
-                                        <a class="text-white" href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
-                                            <?php echo $row['Academic_School_College']; ?>
+                            <?php foreach ($data as $row) : ?>
+                                <tr>
+                                    <td class="full-name position-sticky ">
+                                        <span class="badge bg-dark text-white">
+                                            <?php echo $row['Union_Name']; ?>
+                                        </span>
+                                        <div class="mt-2"><?php echo $row['Full_Name']; ?></div>
+
+                                    </td>
+                                    <td class="academic-school">
+                                        <span class="badge bg-dark text-white">
+                                            <a class="text-white" href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
+                                                <?php echo $row['Academic_School_College']; ?>
+                                            </a>
+                                        </span>
+
+                                        <a class="d-block mt-2" href="index.php?department=<?php echo $row['Academic_Department']; ?>">
+                                            <?php echo $row['Academic_Department']; ?>
+
+                                            <?php if ($row['Affiliated_Department_Name_Administrative_Roles']) : ?>
+                                                Affiliated:
+                                                <small>
+                                                    (<?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?>)
+                                                </small>
+                                            <?php endif; ?>
                                         </a>
-                                    </span>
-
-                                    <a class="d-block mt-2" href="index.php?department=<?php echo $row['Academic_Department']; ?>">
-                                        <?php echo $row['Academic_Department']; ?>
-
-                                        <?php if ($row['Affiliated_Department_Name_Administrative_Roles']) : ?>
-                                            Affiliated:
-                                            <small>
-                                                (<?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?>)
-                                            </small>
-                                        <?php endif; ?>
-                                    </a>
-                                </td>
+                                    </td>
 
 
-                                <td class="tt-ntt">
+                                    <td class="tt-ntt">
 
-                                    <small><?php echo $row['Faculty_Role']; ?> </small> --
-                                    <strong><?php echo $row['Rank_Description']; ?></strong>
+                                        <small><?php echo $row['Faculty_Role']; ?> </small> --
+                                        <strong><?php echo $row['Rank_Description']; ?></strong>
 
-                                    (<?php echo $row['TT_NTT']; ?>)
-                                </td>
+                                        (<?php echo $row['TT_NTT']; ?>)
+                                    </td>
 
-                                <td class="faculty-base-ucannl">
-                                    <!-- format as currency -->
-                                    $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
-                                </td>
-                                <td class="additional-1-month">
-                                    <?php echo number_format($row['Additional_1_Month_UC1MTH'], 2); ?>
-                                </td>
-                                <td class="additional-2-months">
-                                    <?php
-                                    echo number_format($row['Additional_2_Months_UC2MTH'], 2);
-                                    ?>
-                                </td>
-                                <td class="admin-supplement"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
-                                <td class="full-time-annual-salary">
-                                    <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
-                                    ?>
-                                </td>
+                                    <td class="faculty-base-ucannl">
+                                        <!-- format as currency -->
+                                        $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
+                                    </td>
+                                    <td class="additional-1-month">
+                                        <?php echo number_format($row['Additional_1_Month_UC1MTH'], 2); ?>
+                                    </td>
+                                    <td class="additional-2-months">
+                                        <?php
+                                        echo number_format($row['Additional_2_Months_UC2MTH'], 2);
+                                        ?>
+                                    </td>
+                                    <td class="admin-supplement"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
+                                    <td class="full-time-annual-salary">
+                                        <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
+                                        ?>
+                                    </td>
 
-                                <td class="payroll-fte"><?php echo $row['Payroll_FTE']; ?></td>
-                                <td class="faculty-base-appointment"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
-                                <td class="appointment-term"><?php echo $row['Appointment_Term']; ?></td>
+                                    <td class="payroll-fte"><?php echo $row['Payroll_FTE'] * 100; ?></td>
+                                    <td class="faculty-base-appointment"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
+                                    <td class="appointment-term"><?php echo $row['Appointment_Term']; ?></td>
 
-                                <td class="nine-month-equivalent-annual-salary">
-                                    <?php echo '$' .  number_format($row['Nine_mo_equivalent_of_annual_salary'], 2); ?>
-                                </td>
-                                <td class="nine-month-equivalent-base-salary">
-                                    <?php echo '$' . number_format($row['Nine_mo_equivalent_of_base_salary'], 2); ?>
-                                </td>
-                                <td class="emplid"><?php echo $row['Emplid']; ?></td>
-                                <td class="netid"><?php echo $row['netid']; ?></td>
-                                <td class="gender"><?php echo $row['gender']; ?></td>
-                                <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
-                                <td class="assistant-professor-year"><?php echo $row['Assistant_Professor_Year']; ?></td>
-                                <td class="associate-professor-year"><?php echo $row['Associate_Professor_Year']; ?></td>
-                                <td class="professor-year"><?php echo $row['Professor_Year']; ?></td>
-                                <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
-                            </tr>
-                            </tr>
-                        <?php endforeach; ?>
+                                    <td class="nine-month-equivalent-annual-salary">
+                                        <?php echo '$' .  number_format($row['Nine_mo_equivalent_of_annual_salary'], 2); ?>
+                                    </td>
+                                    <td class="nine-month-equivalent-base-salary">
+                                        <?php echo '$' . number_format($row['Nine_mo_equivalent_of_base_salary'], 2); ?>
+                                    </td>
+                                    <td class="emplid"><?php echo $row['Emplid']; ?></td>
+                                    <td class="netid"><?php echo $row['netid']; ?></td>
+                                    <td class="gender"><?php echo $row['gender']; ?></td>
+                                    <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
+                                    <td class="assistant-professor-year"><?php echo $row['Assistant_Professor_Year']; ?></td>
+                                    <td class="associate-professor-year"><?php echo $row['Associate_Professor_Year']; ?></td>
+                                    <td class="professor-year"><?php echo $row['Professor_Year']; ?></td>
+                                    <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
+                                </tr>
+
+                            <?php endforeach; ?>
+                        </tbody>
                     </table>
                 </div>
             </div>
