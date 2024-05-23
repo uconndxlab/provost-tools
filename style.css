@@ -27,9 +27,6 @@ button, .dropdown a {
    border-radius: 0!important;
 }
 
-table {
-    width: 100%;
-}
 
 /** th needs to support full width **/
 th {

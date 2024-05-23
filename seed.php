@@ -40,19 +40,19 @@ $db->exec('CREATE TABLE IF NOT EXISTS faculty_salaries_fy_2025 (
     Payroll_FTE TEXT,
     Faculty_Base_Appointment_Term TEXT,
     Appointment_Term TEXT,
-    Faculty_Base_UCANNL TEXT,
-    Additional_1_Month_UC1MTH TEXT,
-    Additional_2_Months_UC2MTH TEXT,
-    Admin_Supplement_UCADM TEXT,
-    Full_Time_Annual_Salary TEXT,
-    Nine_mo_equivalent_of_annual_salary TEXT,
-    Nine_mo_equivalent_of_base_salary,
+    Faculty_Base_UCANNL INTEGER,
+    Additional_1_Month_UC1MTH INTEGER,
+    Additional_2_Months_UC2MTH INTEGER,
+    Admin_Supplement_UCADM INTEGER,
+    Full_Time_Annual_Salary INTEGER,
+    Nine_mo_equivalent_of_annual_salary INTEGER,
+    Nine_mo_equivalent_of_base_salary INTEGER,
     gender TEXT,
-    years_of_service TEXT,
+    years_of_service INTEGER,
     Assistant_Professor_Year TEXT,
     Associate_Professor_Year TEXT,
     Professor_Year TEXT,
-    Years_In_Rank TEXT
+    Years_In_Rank INTEGER
 )');
 
 

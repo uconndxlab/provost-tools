@@ -18,6 +18,26 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
     }
 }
 
+// construct current URL by getting the current host and path and query string
+$currentURL = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+// if there is no query string, add a ? to the end of the URL
+if (strpos($currentURL, '?') === false) {
+    $currentURL .= '?';
+}
+
+// remove the sort query string from the current URL
+$currentURL = preg_replace('/&?sort=[^&]*/', '', $currentURL);
+
+
+// check for sort query string
+if (isset($_GET['sort'])) {
+    $sort = $_GET['sort'];
+} else {
+    $sort = 'Academic_School_College, Academic_Department, Full_Name';
+}
+
+
 
 
 ?>
@@ -139,8 +159,8 @@ if (!isset($_SERVER['PHP_AUTH_USER'])) {
                     }
 
                     $query = 'SELECT * FROM faculty_salaries_fy_2025 
-LEFT JOIN payroll_ids 
-ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
+                    LEFT JOIN payroll_ids 
+                    ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
 
                     if (isset($_GET['school']) && !isset($_GET['department'])) {
                         $query .= ' WHERE Academic_School_College = "' . $_GET['school'] . '"';
@@ -150,7 +170,8 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
                         $query .= ' WHERE Academic_Department = "' . $_GET['department'] . '"';
                     }
 
-                    $query .= ' ORDER BY Academic_School_College, Academic_Department, Full_Name';
+                    $query .= ' ORDER BY ' . $sort;
+
 
                     $stmt = $db->prepare($query);
                     $result = $stmt->execute();
@@ -165,98 +186,206 @@ ON faculty_salaries_fy_2025.Emplid = payroll_ids.payroll_id';
 
     </div>
 
-
     <div class="container bg-light">
         <div class="row bg-light">
-            <div class="col-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class="academic-school">School/College</th>
-                            <th class="academic-department">Department</th>
-                            <th class="emplid hide">Emplid</th>
-                            <th class="netid hide">NetID</th>
-                            <th class="full-name">Full Name</th>
-                            <th class="tt-ntt hide">TT/NTT</th>
-                            <th class="rank-description">Rank Description</th>
-                            <th class="faculty-role hide">Faculty Role</th>
-                            <th class="affiliated-department hide">Affiliated Department Name (Administrative Roles)</th>
-                            <th class="union-name hide">Union Name</th>
-                            <th class="payroll-fte hide">Payroll FTE</th>
-                            <th class="faculty-base-appointment hide">Faculty Base Appointment Term</th>
-                            <th class="appointment-term hide">Appointment Term</th>
-                            <th class="faculty-base-ucannl">Faculty Base</th>
-                            <th class="additional-1-month">Additional 1 Month</th>
-                            <th class="additional-2-months">Additional 2 Months</th>
-                            <th class="admin-supplement">Admin Supplement</th>
-                            <th class="full-time-annual-salary">Full Time Annual Salary</th>
-                            <th class="nine-month-equivalent-annual-salary hide">Nine Month Equivalent of Annual Salary</th>
-                            <th class="nine-month-equivalent-base-salary hide">Nine Month Equivalent of Base Salary</th>
-                            <th class="gender hide">Gender</th>
-                            <th class="years-of-service">Years of Service</th>
-                            <th class="assistant-professor-year hide">Assistant Professor Year</th>
-                            <th class="associate-professor-year hide">Associate Professor Year</th>
-                            <th class="professor-year hide">Professor Year</th>
-                            <th class="years-in-rank">Years In Rank</th>
-                        </tr>
-                    </thead>
-                    </tr>
-                    <?php foreach ($data as $row) : ?>
-                        <tr>
-                            <td class="academic-school">
-                                <a href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
-                                    <?php echo $row['Academic_School_College']; ?>
-                                </a>
-                            </td>
-                            <td class="academic-department">
-                                <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
-                                    <?php echo $row['Academic_Department']; ?>
-                                </a>
-                            </td>
-                            <td class="emplid hide"><?php echo $row['Emplid']; ?></td>
-                            <td class="netid hide"><?php echo $row['netid']; ?></td>
-                            <td class="full-name"><?php echo $row['Full_Name']; ?></td>
-                            <td class="tt-ntt hide"><?php echo $row['TT_NTT']; ?></td>
-                            <td class="rank-description">
+            <div class="col-12 g-0">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <!-- if the school or dept are not set, show those columns -->
+                               <th class="academic-school">
+                                    <a href="<?php echo $currentURL; ?>&sort=Academic_School_College">
+                                        Academic School/College
+                                    </a>
+                                </th>
+                                <th class="academic-department">
+                                    <a href="<?php echo $currentURL; ?>&sort=Academic_Department">
+                                        Academic Department
+                                    </a>
+                                </th> 
 
-                                <?php echo $row['Rank_Description']; ?>
+                                <th class="emplid">
+                                    <a href="<?php echo $currentURL; ?>&sort=Emplid">
+                                        Emplid
+                                    </a>
+                                </th>
+                                <th class="netid">
+                                    <a href="<?php echo $currentURL; ?>&sort=netid">
+                                        NetID
+                                    </a>
+                                </th>
+                                <th class="full-name">
+                                    <a href="<?php echo $currentURL; ?>&sort=Full_Name">
+                                        Full Name
+                                    </a>
+                                </th>
+                                <th class="tt-ntt">
+                                    <a href="<?php echo $currentURL; ?>&sort=TT_NTT">
+                                        TT/NTT
+                                    </a>
+                                </th>
+                                <th class="rank-description">
+                                    <a href="<?php echo $currentURL; ?>&sort=Rank_Description">
+                                        Rank Description
+                                    </a>
+                                </th>
+                                <th class="faculty-role">
+                                    <a href="<?php echo $currentURL; ?>&sort=Faculty_Role">
+                                        Faculty Role
+                                    </a>
+                                </th>
+                                <th class="affiliated-department">
+                                    <a href="<?php echo $currentURL; ?>&sort=Affiliated_Department_Name_Administrative_Roles">
+                                        Affiliated Department Name (Administrative Roles)
+                                    </a>
+                                </th>
+                                <th class="union-name">
+                                    <a href="<?php echo $currentURL; ?>&sort=Union_Name">
+                                        Union Name
+                                    </a>
+                                </th>
+                                <th class="payroll-fte">
+                                    <a href="<?php echo $currentURL; ?>&sort=Payroll_FTE">
+                                        Payroll FTE
+                                    </a>
+                                </th>
+                                <th class="faculty-base-appointment">
+                                    <a href="<?php echo $currentURL; ?>&sort=Faculty_Base_Appointment_Term">
+                                        Faculty Base Appointment Term
+                                    </a>
+                                </th>
+                                <th class="appointment-term">
+                                    <a href="<?php echo $currentURL; ?>&sort=Appointment_Term">
+                                        Appointment Term
+                                    </a>
+                                </th>
+                                <th class="faculty-base-ucannl">
+                                    <a href="<?php echo $currentURL; ?>&sort=Faculty_Base_UCANNL">
+                                        Faculty Base
+                                    </a>
+                                </th>
+                                <th class="additional-1-month">
+                                    <a href="<?php echo $currentURL; ?>&sort=Additional_1_Month_UC1MTH">
+                                        Additional 1 Month
+                                    </a>
+                                </th>
+                                <th class="additional-2-months">
+                                    <a href="<?php echo $currentURL; ?>&sort=Additional_2_Months_UC2MTH">
+                                        Additional 2 Months
+                                    </a>
+                                </th>
+                                <th class="admin-supplement">
+                                    <a href="<?php echo $currentURL; ?>&sort=Admin_Supplement_UCADM">
+                                        Admin Supplement
+                                    </a>
+                                </th>
+                                <th class="full-time-annual-salary">
+                                    <a href="<?php echo $currentURL; ?>&sort=Full_Time_Annual_Salary">
+                                        Full Time Annual Salary
+                                    </a>
+                                </th>
+                                <th class="nine-month-equivalent-annual-salary">
+                                    <a href="<?php echo $currentURL; ?>&sort=Nine_mo_equivalent_of_annual_salary">
+                                        Nine Month Equivalent of Annual Salary
+                                    </a>
+                                </th>
+                                <th class="nine-month-equivalent-base-salary">
+                                    <a href="<?php echo $currentURL; ?>&sort=Nine_mo_equivalent_of_base_salary">
+                                        Nine Month Equivalent of Base Salary
+                                    </a>
+                                </th>
+                                <th class="gender">
+                                    <a href="<?php echo $currentURL; ?>&sort=gender">
+                                        Gender
+                                    </a>
+                                </th>
+                                <th class="years-of-service">
+                                    <a href="<?php echo $currentURL; ?>&sort=years_of_service">
+                                        Years of Service
+                                    </a>
+                                </th>
+                                <th class="assistant-professor-year">
+                                    <a href="<?php echo $currentURL; ?>&sort=Assistant_Professor_Year">
+                                        Assistant Professor Year
+                                    </a>
+                                </th>
+                                <th class="associate-professor-year">
+                                    <a href="<?php echo $currentURL; ?>&sort=Associate_Professor_Year">
+                                        Associate Professor Year
+                                    </a>
+                                </th>
+                                <th class="professor-year">
+                                    <a href="<?php echo $currentURL; ?>&sort=Professor_Year">
+                                        Professor Year
+                                    </a>
+                                </th>
+                                <th class="years-in-rank">
+                                    <a href="<?php echo $currentURL; ?>&sort=Years_In_Rank">
+                                        Years In Rank
+                                    </a>
+                                </th>
+                            </tr>
+                            </tr>
+                        </thead>
+                        </tr>
+                        <?php foreach ($data as $row) : ?>
+                            <tr>
+                                <td class="academic-school">
+                                    <a href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
+                                        <?php echo $row['Academic_School_College']; ?>
+                                    </a>
+                                </td>
+                                <td class="academic-department">
+                                    <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
+                                        <?php echo $row['Academic_Department']; ?>
+                                    </a>
+                                </td>
+                                <td class="emplid"><?php echo $row['Emplid']; ?></td>
+                                <td class="netid"><?php echo $row['netid']; ?></td>
+                                <td class="full-name"><?php echo $row['Full_Name']; ?></td>
+                                <td class="tt-ntt"><?php echo $row['TT_NTT']; ?></td>
+                                <td class="rank-description">
 
-                            </td>
-                            <td class="faculty-role hide"><?php echo $row['Faculty_Role']; ?></td>
-                            <td class="affiliated-department hide"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
-                            <td class="union-name hide"><?php echo $row['Union_Name']; ?></td>
-                            <td class="payroll-fte hide"><?php echo $row['Payroll_FTE']; ?></td>
-                            <td class="faculty-base-appointment hide"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
-                            <td class="appointment-term hide"><?php echo $row['Appointment_Term']; ?></td>
-                            <td class="faculty-base-ucannl">
-                                <!-- format as currency -->
-                                $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
-                            </td>
-                            <td class="additional-1-month">
-                                <?php echo number_format($row['Additional_1_Month_UC1MTH'], 2); ?>
-                            </td>
-                            <td class="additional-2-months">
-                                <?php
-                                echo number_format($row['Additional_2_Months_UC2MTH'], 2);
-                                ?>
-                            </td>
-                            <td class="admin-supplement"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
-                            <td class="full-time-annual-salary">
-                                <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
-                                ?>
-                            </td>
-                            <td class="nine-month-equivalent-annual-salary hide"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
-                            <td class="nine-month-equivalent-base-salary hide"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
-                            <td class="gender hide"><?php echo $row['gender']; ?></td>
-                            <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
-                            <td class="assistant-professor-year hide"><?php echo $row['Assistant_Professor_Year']; ?></td>
-                            <td class="associate-professor-year hide"><?php echo $row['Associate_Professor_Year']; ?></td>
-                            <td class="professor-year hide"><?php echo $row['Professor_Year']; ?></td>
-                            <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
-                        </tr>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
+                                    <?php echo $row['Rank_Description']; ?>
+
+                                </td>
+                                <td class="faculty-role"><?php echo $row['Faculty_Role']; ?></td>
+                                <td class="affiliated-department"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
+                                <td class="union-name"><?php echo $row['Union_Name']; ?></td>
+                                <td class="payroll-fte"><?php echo $row['Payroll_FTE']; ?></td>
+                                <td class="faculty-base-appointment"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
+                                <td class="appointment-term"><?php echo $row['Appointment_Term']; ?></td>
+                                <td class="faculty-base-ucannl">
+                                    <!-- format as currency -->
+                                    $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
+                                </td>
+                                <td class="additional-1-month">
+                                    <?php echo number_format($row['Additional_1_Month_UC1MTH'], 2); ?>
+                                </td>
+                                <td class="additional-2-months">
+                                    <?php
+                                    echo number_format($row['Additional_2_Months_UC2MTH'], 2);
+                                    ?>
+                                </td>
+                                <td class="admin-supplement"><?php echo $row['Admin_Supplement_UCADM']; ?></td>
+                                <td class="full-time-annual-salary">
+                                    <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
+                                    ?>
+                                </td>
+                                <td class="nine-month-equivalent-annual-salary"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
+                                <td class="nine-month-equivalent-base-salary"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
+                                <td class="gender"><?php echo $row['gender']; ?></td>
+                                <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
+                                <td class="assistant-professor-year"><?php echo $row['Assistant_Professor_Year']; ?></td>
+                                <td class="associate-professor-year"><?php echo $row['Associate_Professor_Year']; ?></td>
+                                <td class="professor-year"><?php echo $row['Professor_Year']; ?></td>
+                                <td class="years-in-rank"><?php echo $row['Years_In_Rank']; ?></td>
+                            </tr>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
