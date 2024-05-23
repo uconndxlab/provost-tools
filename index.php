@@ -197,13 +197,16 @@ if (isset($_GET['sort'])) {
                                     <a href="<?php echo $currentURL; ?>&sort=Full_Name">
                                         Full Name
                                     </a>
+                                    <a href="<?php echo $currentURL; ?>&sort=Union_Name">
+                                        (Union)
+                                    </a>
                                 </th>
                                 <!-- if the school or dept are not set, show those columns -->
                                 <th class="academic-school">
                                     <a href="<?php echo $currentURL; ?>&sort=Academic_School_College">
                                         School
                                     </a>
-                                    |
+                                    
                                     <a href="<?php echo $currentURL; ?>&sort=Academic_Department">
                                         Department
                                     </a>
@@ -211,10 +214,10 @@ if (isset($_GET['sort'])) {
 
 
 
-                                <th colspan="3" class="tt-ntt">
+                                <th class="tt-ntt">
 
                                     <a href="<?php echo $currentURL; ?>&sort=Faculty_Role">
-                                        Role |
+                                        Role
                                     </a>
 
                                     <a href="<?php echo $currentURL; ?>&sort=Rank_Description">
@@ -226,14 +229,31 @@ if (isset($_GET['sort'])) {
                                     </a>
 
                                 </th>
-                                <th class="affiliated-department">
-                                    <a href="<?php echo $currentURL; ?>&sort=Affiliated_Department_Name_Administrative_Roles">
-                                        Affiliated Department Name (Administrative Roles)
+
+
+                                <th class="faculty-base-ucannl">
+                                    <a href="<?php echo $currentURL; ?>&sort=Faculty_Base_UCANNL">
+                                        Faculty Base
                                     </a>
                                 </th>
-                                <th class="union-name">
-                                    <a href="<?php echo $currentURL; ?>&sort=Union_Name">
-                                        Union Name
+                                <th class="additional-1-month">
+                                    <a href="<?php echo $currentURL; ?>&sort=Additional_1_Month_UC1MTH">
+                                        Addt'l 1 Mon
+                                    </a>
+                                </th>
+                                <th class="additional-2-months">
+                                    <a href="<?php echo $currentURL; ?>&sort=Additional_2_Months_UC2MTH">
+                                        Addt'l 2 Mon
+                                    </a>
+                                </th>
+                                <th class="admin-supplement">
+                                    <a href="<?php echo $currentURL; ?>&sort=Admin_Supplement_UCADM">
+                                        Admin Supplement
+                                    </a>
+                                </th>
+                                <th class="full-time-annual-salary">
+                                    <a href="<?php echo $currentURL; ?>&sort=Full_Time_Annual_Salary">
+                                        Full Time Annual Salary
                                     </a>
                                 </th>
                                 <th class="payroll-fte">
@@ -251,31 +271,9 @@ if (isset($_GET['sort'])) {
                                         Appointment Term
                                     </a>
                                 </th>
-                                <th class="faculty-base-ucannl">
-                                    <a href="<?php echo $currentURL; ?>&sort=Faculty_Base_UCANNL">
-                                        Faculty Base
-                                    </a>
-                                </th>
-                                <th class="additional-1-month">
-                                    <a href="<?php echo $currentURL; ?>&sort=Additional_1_Month_UC1MTH">
-                                        Additional 1 Month
-                                    </a>
-                                </th>
-                                <th class="additional-2-months">
-                                    <a href="<?php echo $currentURL; ?>&sort=Additional_2_Months_UC2MTH">
-                                        Additional 2 Months
-                                    </a>
-                                </th>
-                                <th class="admin-supplement">
-                                    <a href="<?php echo $currentURL; ?>&sort=Admin_Supplement_UCADM">
-                                        Admin Supplement
-                                    </a>
-                                </th>
-                                <th class="full-time-annual-salary">
-                                    <a href="<?php echo $currentURL; ?>&sort=Full_Time_Annual_Salary">
-                                        Full Time Annual Salary
-                                    </a>
-                                </th>
+
+
+
                                 <th class="nine-month-equivalent-annual-salary">
                                     <a href="<?php echo $currentURL; ?>&sort=Nine_mo_equivalent_of_annual_salary">
                                         Nine Month Equivalent of Annual Salary
@@ -335,7 +333,13 @@ if (isset($_GET['sort'])) {
                         </tr>
                         <?php foreach ($data as $row) : ?>
                             <tr>
-                                <td class="full-name position-sticky "><?php echo $row['Full_Name']; ?></td>
+                                <td class="full-name position-sticky ">
+                                    <span class="badge bg-dark text-white">
+                                        <?php echo $row['Union_Name']; ?>
+                                    </span>
+                                    <div class="mt-2"><?php echo $row['Full_Name']; ?></div>
+
+                                </td>
                                 <td class="academic-school">
                                     <span class="badge bg-dark text-white">
                                         <a class="text-white" href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
@@ -343,24 +347,27 @@ if (isset($_GET['sort'])) {
                                         </a>
                                     </span>
 
-                                    <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
+                                    <a class="d-block mt-2" href="index.php?department=<?php echo $row['Academic_Department']; ?>">
                                         <?php echo $row['Academic_Department']; ?>
+
+                                        <?php if ($row['Affiliated_Department_Name_Administrative_Roles']) : ?>
+                                            Affiliated:
+                                            <small>
+                                                (<?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?>)
+                                            </small>
+                                        <?php endif; ?>
                                     </a>
                                 </td>
 
 
-                                <td colspan="3" class="tt-ntt">
+                                <td class="tt-ntt">
 
                                     <small><?php echo $row['Faculty_Role']; ?> </small> --
                                     <strong><?php echo $row['Rank_Description']; ?></strong>
 
                                     (<?php echo $row['TT_NTT']; ?>)
                                 </td>
-                                <td class="affiliated-department"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
-                                <td class="union-name"><?php echo $row['Union_Name']; ?></td>
-                                <td class="payroll-fte"><?php echo $row['Payroll_FTE']; ?></td>
-                                <td class="faculty-base-appointment"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
-                                <td class="appointment-term"><?php echo $row['Appointment_Term']; ?></td>
+
                                 <td class="faculty-base-ucannl">
                                     <!-- format as currency -->
                                     $<?php echo number_format($row['Faculty_Base_UCANNL'], 2); ?>
@@ -378,8 +385,17 @@ if (isset($_GET['sort'])) {
                                     <?php echo '$' . number_format($row['Full_Time_Annual_Salary'], 2);
                                     ?>
                                 </td>
-                                <td class="nine-month-equivalent-annual-salary"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
-                                <td class="nine-month-equivalent-base-salary"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
+
+                                <td class="payroll-fte"><?php echo $row['Payroll_FTE']; ?></td>
+                                <td class="faculty-base-appointment"><?php echo $row['Faculty_Base_Appointment_Term']; ?></td>
+                                <td class="appointment-term"><?php echo $row['Appointment_Term']; ?></td>
+
+                                <td class="nine-month-equivalent-annual-salary">
+                                    <?php echo '$' .  number_format($row['Nine_mo_equivalent_of_annual_salary'], 2); ?>
+                                </td>
+                                <td class="nine-month-equivalent-base-salary">
+                                    <?php echo '$' . number_format($row['Nine_mo_equivalent_of_base_salary'], 2); ?>
+                                </td>
                                 <td class="emplid"><?php echo $row['Emplid']; ?></td>
                                 <td class="netid"><?php echo $row['netid']; ?></td>
                                 <td class="gender"><?php echo $row['gender']; ?></td>

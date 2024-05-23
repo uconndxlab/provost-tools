@@ -30,7 +30,6 @@ button, .dropdown a {
 
 /** th needs to support full width **/
 th {
-    font-size: 12px;
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     padding: 8px;
@@ -41,7 +40,6 @@ th {
 
 /** td needs to support full width **/
 td {
-    font-size: 12px;
     font-family: 'Courier New', Courier, monospace;
     text-align: left;
     padding: 8px;
@@ -125,22 +123,13 @@ tr:hover .full-time-annual-salary {
 th, td {
     padding: 8px;
     border: 1px solid #ddd;
-    display:none;
-}
-td:not(.hide), th:not(.hide) {
-    display: table-cell;
 }
 
-/** the table should scroll horizontally **/
-table {
-    overflow-x: auto;
-    width: 100%;
+td {
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
-thead {
-    position: sticky;
-    top:0px;
-}
 
 th a {
     color: #eee;
