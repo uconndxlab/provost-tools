@@ -193,47 +193,38 @@ if (isset($_GET['sort'])) {
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <!-- if the school or dept are not set, show those columns -->
-                               <th class="academic-school">
-                                    <a href="<?php echo $currentURL; ?>&sort=Academic_School_College">
-                                        Academic School/College
-                                    </a>
-                                </th>
-                                <th class="academic-department">
-                                    <a href="<?php echo $currentURL; ?>&sort=Academic_Department">
-                                        Academic Department
-                                    </a>
-                                </th> 
-
-                                <th class="emplid">
-                                    <a href="<?php echo $currentURL; ?>&sort=Emplid">
-                                        Emplid
-                                    </a>
-                                </th>
-                                <th class="netid">
-                                    <a href="<?php echo $currentURL; ?>&sort=netid">
-                                        NetID
-                                    </a>
-                                </th>
                                 <th class="full-name">
                                     <a href="<?php echo $currentURL; ?>&sort=Full_Name">
                                         Full Name
                                     </a>
                                 </th>
-                                <th class="tt-ntt">
-                                    <a href="<?php echo $currentURL; ?>&sort=TT_NTT">
-                                        TT/NTT
+                                <!-- if the school or dept are not set, show those columns -->
+                                <th class="academic-school">
+                                    <a href="<?php echo $currentURL; ?>&sort=Academic_School_College">
+                                        School
+                                    </a>
+                                    |
+                                    <a href="<?php echo $currentURL; ?>&sort=Academic_Department">
+                                        Department
                                     </a>
                                 </th>
-                                <th class="rank-description">
-                                    <a href="<?php echo $currentURL; ?>&sort=Rank_Description">
-                                        Rank Description
-                                    </a>
-                                </th>
-                                <th class="faculty-role">
+
+
+
+                                <th colspan="3" class="tt-ntt">
+
                                     <a href="<?php echo $currentURL; ?>&sort=Faculty_Role">
-                                        Faculty Role
+                                        Role |
                                     </a>
+
+                                    <a href="<?php echo $currentURL; ?>&sort=Rank_Description">
+                                        Rank
+                                    </a>
+
+                                    <a href="<?php echo $currentURL; ?>&sort=TT_NTT">
+                                        (Career)
+                                    </a>
+
                                 </th>
                                 <th class="affiliated-department">
                                     <a href="<?php echo $currentURL; ?>&sort=Affiliated_Department_Name_Administrative_Roles">
@@ -295,6 +286,19 @@ if (isset($_GET['sort'])) {
                                         Nine Month Equivalent of Base Salary
                                     </a>
                                 </th>
+
+                                <th class="emplid">
+                                    <a href="<?php echo $currentURL; ?>&sort=Emplid">
+                                        Emplid
+                                    </a>
+                                </th>
+                                <th class="netid">
+                                    <a href="<?php echo $currentURL; ?>&sort=netid">
+                                        NetID
+                                    </a>
+                                </th>
+
+
                                 <th class="gender">
                                     <a href="<?php echo $currentURL; ?>&sort=gender">
                                         Gender
@@ -331,26 +335,27 @@ if (isset($_GET['sort'])) {
                         </tr>
                         <?php foreach ($data as $row) : ?>
                             <tr>
+                                <td class="full-name position-sticky "><?php echo $row['Full_Name']; ?></td>
                                 <td class="academic-school">
-                                    <a href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
-                                        <?php echo $row['Academic_School_College']; ?>
-                                    </a>
-                                </td>
-                                <td class="academic-department">
+                                    <span class="badge bg-dark text-white">
+                                        <a class="text-white" href="index.php?school=<?php echo $row['Academic_School_College']; ?>">
+                                            <?php echo $row['Academic_School_College']; ?>
+                                        </a>
+                                    </span>
+
                                     <a href="index.php?department=<?php echo $row['Academic_Department']; ?>">
                                         <?php echo $row['Academic_Department']; ?>
                                     </a>
                                 </td>
-                                <td class="emplid"><?php echo $row['Emplid']; ?></td>
-                                <td class="netid"><?php echo $row['netid']; ?></td>
-                                <td class="full-name"><?php echo $row['Full_Name']; ?></td>
-                                <td class="tt-ntt"><?php echo $row['TT_NTT']; ?></td>
-                                <td class="rank-description">
 
-                                    <?php echo $row['Rank_Description']; ?>
 
+                                <td colspan="3" class="tt-ntt">
+
+                                    <small><?php echo $row['Faculty_Role']; ?> </small> --
+                                    <strong><?php echo $row['Rank_Description']; ?></strong>
+
+                                    (<?php echo $row['TT_NTT']; ?>)
                                 </td>
-                                <td class="faculty-role"><?php echo $row['Faculty_Role']; ?></td>
                                 <td class="affiliated-department"><?php echo $row['Affiliated_Department_Name_Administrative_Roles']; ?></td>
                                 <td class="union-name"><?php echo $row['Union_Name']; ?></td>
                                 <td class="payroll-fte"><?php echo $row['Payroll_FTE']; ?></td>
@@ -375,6 +380,8 @@ if (isset($_GET['sort'])) {
                                 </td>
                                 <td class="nine-month-equivalent-annual-salary"><?php echo $row['Nine_mo_equivalent_of_annual_salary']; ?></td>
                                 <td class="nine-month-equivalent-base-salary"><?php echo $row['Nine_mo_equivalent_of_base_salary']; ?></td>
+                                <td class="emplid"><?php echo $row['Emplid']; ?></td>
+                                <td class="netid"><?php echo $row['netid']; ?></td>
                                 <td class="gender"><?php echo $row['gender']; ?></td>
                                 <td class="years-of-service"><?php echo $row['years_of_service']; ?></td>
                                 <td class="assistant-professor-year"><?php echo $row['Assistant_Professor_Year']; ?></td>

@@ -39,7 +39,7 @@ $db->exec('CREATE TABLE IF NOT EXISTS faculty_salaries_fy_2025 (
     Empl_Class_Description,
     Payroll_FTE TEXT,
     Faculty_Base_Appointment_Term TEXT,
-    Appointment_Term TEXT,
+    Appointment_Term INTEGER,
     Faculty_Base_UCANNL INTEGER,
     Additional_1_Month_UC1MTH INTEGER,
     Additional_2_Months_UC2MTH INTEGER,
