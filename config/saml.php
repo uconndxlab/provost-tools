@@ -63,8 +63,8 @@ return [
 
         // Usually x509cert and privateKey of the SP are provided by files placed at
         // the certs folder. But we can also provide them with the following parameters
-        // 'x509cert' => '',
-        // 'privateKey' => '',
+        'x509cert' => env('SAML_CERT', ''),
+        'privateKey' => env('SAML_KEY', ''),
 
         /*
          * Key rollover
