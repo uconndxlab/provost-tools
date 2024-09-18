@@ -50,11 +50,33 @@
     </div>
 
 
-    <div class="overflow-x-auto" id="fstTableContain">
-        <table class="table table-striped table-sm overflow-x-scroll w-100 mx-auto position-relative" style="white-space:nowrap;" >
+    <div class="overflow-x-auto font-monospace" id="fstTableContain">
+        <table class="table table-striped table-sm table-hover overflow-x-scroll w-100 mx-auto position-relative table-bordered" style="table-layout:fixed; font-size: 12px;" >
+            <colgroup>
+                <col width="230"> <!-- Name/Union -->
+                <col width="200"> <!-- Academic School/College -->
+                <col width="300"> <!-- Role/Rank/Career -->
+                <col width="100"> <!-- Base -->
+                <col width="100"> <!-- Addt'l 1 Mon -->
+                <col width="100"> <!-- Addt'l 2 Mon -->
+                <col width="130"> <!-- Full Time Annual Salary -->
+                <col width="100"> <!-- FTE % -->
+                <col width="200"> <!-- Faculty Base Appointment Term -->
+                <col width="200"> <!-- Appointment Term -->
+                <col width="200"> <!-- 9 Mo Equivalent Annual Salary -->
+                <col width="200"> <!-- 9 Mo Equivalent Base Salary -->
+                <col width="100"> <!-- Emplid -->
+                <col width="100"> <!-- Netid -->
+                <col width="100"> <!-- Gender -->
+                <col width="100"> <!-- Years of Service -->
+                <col width="100"> <!-- Assistant Professor Year -->
+                <col width="100"> <!-- Associate Professor Year -->
+                <col width="100"> <!-- Professor Year -->
+                <col width="100"> <!-- Years in Rank -->
+            </colgroup>
             <thead>
                 <tr>
-                    <th class="position-sticky pe-3" style="left: 0;">
+                    <th class="position-sticky" style="left: 0;">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('full_name')">
                             Name
                         </a>
@@ -63,7 +85,7 @@
                             Union
                         </a>
                     </th>
-                    <th class="pe-3">
+                    <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('academic_school_college')">
                             School
                         </a>
@@ -72,7 +94,7 @@
                             Department
                         </a>
                     </th>
-                    <th class="pe-3">
+                    <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('academic_school_college')">
                             Role
                         </a>
@@ -85,87 +107,87 @@
                             (Career)
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_ucannl')">
                             Base
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('additional_1_month_uc1mth')">
                             Addt'l 1 Mon
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('additional_2_month_uc2mth')">
                             Addt'l 2 Mon
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('full_time_annual_salary')">
                             Full Time Annual Salary
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('payroll_fte')">
                             FTE %
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_appointment_term')">
                             Faculty Base Appointment Term
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('appointment_term')">
                             Appointment Term
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('nine_mo_equivalent_of_annual_salary')">
                             9 Mo Equivalent Annual Salary
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('nine_mo_equivalent_of_base_salary')">
                             9 Mo Equivalent Base Salary
                         </a>
                     </th>
-                    <th class="pe-3">
+                    <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('emplid')">
                             Emplid
                         </a>
                     </th>
-                    <th class="pe-3">
+                    <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('netid')">
                             Netid
                         </a>
                     </th>
-                    <th class="pe-3">
+                    <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('gender')">
                             Gender
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('years_of_service')">
                             Years of Service
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('assistant_professor_year')">
                             Assistant Professor Year
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('associate_professor_year')">
                             Associate Professor Year
                         </a>
                     </th>
-                    <th class="text-en pe-3d">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('professor_year')">
                             Professor Year
                         </a>
                     </th>
-                    <th class="text-end pe-3">
+                    <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('years_in_rank')">
                             Years in Rank
                         </a>
@@ -175,11 +197,11 @@
             <tbody>
                 @foreach($faculty_salary_tables as $facultySalaryTable)
                 <tr>
-                    <td class="position-sticky pe-3" style="left: 0;">
+                    <td class="position-sticky border-left" style="left: 0;">
                         <span class="badge text-bg-dark">{{ $facultySalaryTable->union_name }}</span>
                         <span class="mt-2 d-block">{{ $facultySalaryTable->full_name }}</span>
                     </td>
-                    <td class="pe-3" >
+                    <td >
                         <span class="badge text-bg-dark">{{ $facultySalaryTable->academic_school_college }}</span>
                         <span class="d-block mt-2">
                             {{ $facultySalaryTable->academic_department }}
@@ -188,60 +210,60 @@
                             @endif
                         </span>
                     </td>
-                    <td class="pe-3">
-                        <small>{{ $facultySalaryTable->faculty_role }}</small> -- 
+                    <td>
+                        <small class="d-block">{{ $facultySalaryTable->faculty_role }}</small> -- 
                         <strong>{{ $facultySalaryTable->rank_description }}</strong>
                         ({{ $facultySalaryTable->tt_ntt }})
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end bg-hover-green">
                         ${{ Number::format($facultySalaryTable->faculty_base_ucannl) }}
                     </td>
-                    <td class="text-end pe-3">
-                        ${{ Number::format($facultySalaryTable->additional_1_month_uc1mth) }}
+                    <td class="text-end bg-hover-green">
+                        {{ Number::format($facultySalaryTable->additional_1_month_uc1mth) }}
                     </td>
-                    <td class="text-end pe-3">
-                        ${{ Number::format($facultySalaryTable->additional_2_month_uc2mth) }}
+                    <td class="text-end bg-hover-green">
+                        {{ Number::format($facultySalaryTable->additional_2_month_uc2mth) }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end bg-hover-green">
                         ${{ Number::format($facultySalaryTable->full_time_annual_salary) }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->payroll_fte * 100 }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->faculty_base_appointment_term }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->appointment_term }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         ${{ Number::format($facultySalaryTable->nine_mo_equivalent_of_annual_salary) }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         ${{ Number::format($facultySalaryTable->nine_mo_equivalent_of_base_salary) }}
                     </td>
-                    <td class="pe-3">
+                    <td>
                         {{ $facultySalaryTable->emplid }}
                     </td>
-                    <td class="pe-3">
+                    <td>
                         {{ $facultySalaryTable->user->netid ?? '' }}
                     </td>
-                    <td class="pe-3">
+                    <td>
                         {{ $facultySalaryTable->gender }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->years_of_service }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->assistant_professor_year }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->associate_professor_year }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->professor_year }}
                     </td>
-                    <td class="text-end pe-3">
+                    <td class="text-end">
                         {{ $facultySalaryTable->years_in_rank }}    
                     </td>
                 </tr>

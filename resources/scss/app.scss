@@ -4,4 +4,15 @@
 $uconn-blue: #000e2f;
 $primary: $uconn-blue;
 
+$table-hover-bg: #fafad2;
+$table-cell-padding-x-sm: 0.75rem;
+$table-cell-padding-y-sm: 0.5rem;
+$table-cell-vertical-align: middle;
+
 @import "bootstrap/scss/bootstrap";
+
+tr:hover {
+    .bg-hover-green {
+        --bs-table-bg-state: hwb(128 42% 0% / 0.171)!important;
+    }
+}
