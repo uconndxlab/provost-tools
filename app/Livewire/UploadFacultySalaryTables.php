@@ -17,6 +17,7 @@ class UploadFacultySalaryTables extends Component
     public $progress = 0;
     public $file_upload_id = null;
     public $job_error = false;
+    public $remove = false;
 
     #[Validate('mimes:csv')]
     public $uploading_file;
@@ -36,7 +37,7 @@ class UploadFacultySalaryTables extends Component
             'user_id' => auth()->id(),
         ]);
         $this->file_upload_id = $file_upload->id;
-        UploadFacultySalaryTablesJob::dispatch($file_upload);
+        UploadFacultySalaryTablesJob::dispatch($file_upload, $this->remove);
     }
 
     public function pollJob() {

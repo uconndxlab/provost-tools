@@ -19,7 +19,7 @@ class UploadFacultySalaryTablesJob implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public FileUpload $fileupload)
+    public function __construct(public FileUpload $fileupload, public bool $remove = false)
     {
         //
     }
@@ -61,6 +61,11 @@ class UploadFacultySalaryTablesJob implements ShouldQueue
                 'message' => 'File format is incorrect.',
             ]);
             return;
+        }
+
+
+        if ( $this->remove ) {
+            FacultySalaryTable::truncate();
         }
         
         $num_tabs = count($salary_csv) - 1;

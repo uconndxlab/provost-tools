@@ -19,6 +19,11 @@
             </div>
         </div>
 
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" wire:model="remove" id="removeFstRowsCheck">
+            <label class="form-check-label" for="removeFstRowsCheck">Delete Existing Entries</label>
+        </div>
+
         <div class="row g-3 align-items-center">
             <div class="col-auto">
                 <button type="submit" class="btn btn-primary" @disabled($progress > 0)>Initiate Upload</button>
