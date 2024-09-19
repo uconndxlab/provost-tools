@@ -79,117 +79,184 @@
                     <th class="position-sticky" style="left: 0;">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('full_name')">
                             Name
+                            @if ( $sort === 'full_name' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                         /
                         <a href="#" class="ms-2" wire:click.prevent="sortBy('union_name')">
                             Union
+                            @if ( $sort === 'union_name' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('academic_school_college')">
                             School
+                            @if ( $sort === 'academic_school_college' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                         /
                         <a href="#" class="ms-2" wire:click.prevent="sortBy('academic_department')">
                             Department
+                            @if ( $sort === 'academic_department' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('academic_school_college')">
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_role')">
                             Role
+                            @if ( $sort === 'faculty_role' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                         /
-                        <a href="#" class="mx-2" wire:click.prevent="sortBy('academic_school_college')">
+                        <a href="#" class="mx-2" wire:click.prevent="sortBy('rank_description')">
                             Rank
+                            @if ( $sort === 'rank_description' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                         /
-                        <a href="#" class="ms-2" wire:click.prevent="sortBy('academic_school_college')">
+                        <a href="#" class="ms-2" wire:click.prevent="sortBy('tt_ntt')">
                             (Career)
+                            @if ( $sort === 'tt_ntt' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_ucannl')">
                             Base
+                            @if ( $sort === 'faculty_base_ucannl' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('additional_1_month_uc1mth')">
                             Addt'l 1 Mon
+                            @if ( $sort === 'additional_1_month_uc1mth' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('additional_2_month_uc2mth')">
                             Addt'l 2 Mon
+                            @if ( $sort === 'additional_2_month_uc2mth' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('full_time_annual_salary')">
                             Full Time Annual Salary
+                            @if ( $sort === 'full_time_annual_salary' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('payroll_fte')">
                             FTE %
+                            @if ( $sort === 'payroll_fte' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_appointment_term')">
                             Faculty Base Appointment Term
+                            @if ( $sort === 'faculty_base_appointment_term' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('appointment_term')">
                             Appointment Term
+                            @if ( $sort === 'appointment_term' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('nine_mo_equivalent_of_annual_salary')">
                             9 Mo Equivalent Annual Salary
+                            @if ( $sort === 'nine_mo_equivalent_of_annual_salary' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('nine_mo_equivalent_of_base_salary')">
                             9 Mo Equivalent Base Salary
+                            @if ( $sort === 'nine_mo_equivalent_of_base_salary' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('emplid')">
                             Emplid
+                            @if ( $sort === 'emplid' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('netid')">
-                            Netid
-                        </a>
+                        NetID
                     </th>
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('gender')">
                             Gender
+                            @if ( $sort === 'gender' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('years_of_service')">
                             Years of Service
+                            @if ( $sort === 'years_of_service' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('assistant_professor_year')">
                             Assistant Professor Year
+                            @if ( $sort === 'assistant_professor_year' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('associate_professor_year')">
                             Associate Professor Year
+                            @if ( $sort === 'associate_professor_year' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('professor_year')">
                             Professor Year
+                            @if ( $sort === 'professor_year' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('years_in_rank')">
                             Years in Rank
+                            @if ( $sort === 'years_in_rank' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
                         </a>
                     </th>
                 </tr>

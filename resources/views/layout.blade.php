@@ -8,7 +8,7 @@
     @vite('resources/scss/app.scss')
     {{-- <link rel="stylesheet" href="style.css"> --}}
     <link rel="stylesheet" href="/banner.css">
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 </head>
 <body class="bg-light">
 <x-uconn-banner />

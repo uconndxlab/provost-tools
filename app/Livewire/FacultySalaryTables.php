@@ -22,12 +22,31 @@ class FacultySalaryTables extends Component
     #[Url(except: '')]
     public $department;
 
+    public $sort = 'academic_school_college';
+    public $sortDirection = 'asc';
+
     public function updated($property)
     {
         // $property: The name of the current property that was updated
         if ($property !== 'page') {
             $this->resetPage();
         }
+    }
+
+    public function sortBy($field)
+    {
+        if ($this->sort === $field) {
+            if ( $this->sortDirection === 'desc' ) {
+                $this->sort = 'academic_school_college';
+                $this->sortDirection = 'asc';
+            } else {
+                $this->sortDirection = 'desc';
+            }
+        } else {
+            $this->sortDirection = 'asc';
+        }
+
+        $this->sort = $field;
     }
 
     public function render()
@@ -79,9 +98,7 @@ class FacultySalaryTables extends Component
             ->get()
             ->pluck('academic_department');
 
-        $faculty_salary_tables = $faculty_salary_tables->orderBy('academic_school_college')
-            ->orderBy('academic_department')
-            ->orderBy('full_name')
+        $faculty_salary_tables = $faculty_salary_tables->orderBy($this->sort, $this->sortDirection)
             ->paginate(100);
         return view('livewire.faculty-salary-tables', compact('faculty_salary_tables', 'schools', 'departments'));
     }
