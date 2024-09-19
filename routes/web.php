@@ -23,6 +23,8 @@ Route::middleware(['saml.required'])->group(function() {
     Route::middleware(['admin'])->group(function() {
         Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::get('/admin/users', [UserController::class, 'adminIndex'])->name('admin.users.index');
+
+        Route::get('/admin/faculty/salary', [FacultySalaryTablesController::class, 'adminIndex'])->name('admin.faculty_salary_tables.index');
     });
 });
 

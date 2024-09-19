@@ -61,10 +61,10 @@
                 <col width="100"> <!-- Addt'l 2 Mon -->
                 <col width="130"> <!-- Full Time Annual Salary -->
                 <col width="100"> <!-- FTE % -->
-                <col width="200"> <!-- Faculty Base Appointment Term -->
-                <col width="200"> <!-- Appointment Term -->
-                <col width="200"> <!-- 9 Mo Equivalent Annual Salary -->
-                <col width="200"> <!-- 9 Mo Equivalent Base Salary -->
+                <col width="100"> <!-- Faculty Base Appointment Term -->
+                <col width="100"> <!-- Appointment Term -->
+                <col width="100"> <!-- 9 Mo Equivalent Annual Salary -->
+                <col width="100"> <!-- 9 Mo Equivalent Base Salary -->
                 <col width="100"> <!-- Emplid -->
                 <col width="100"> <!-- Netid -->
                 <col width="100"> <!-- Gender -->
