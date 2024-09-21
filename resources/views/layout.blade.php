@@ -5,25 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Provost Tools')</title>
+    <link rel="stylesheet" href="https://use.typekit.net/nyu4feu.css">
     @vite('resources/scss/app.scss')
     {{-- <link rel="stylesheet" href="style.css"> --}}
     <link rel="stylesheet" href="/banner.css">
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 </head>
-<body class="bg-light">
+<body class="bg-light position-relative">
 <x-uconn-banner />
 <header>
     @php $is_admin = Route::is('admin*'); @endphp
     <div @class(["text-bg-primary py-4", "border-bottom border-danger border-5" => $is_admin])>
         <div class="container">
-            <nav class="d-flex flex-column">
-                <a class="parent-title text-light text-uppercase fw-bold nav-link small" href="https://provost.uconn.edu/">
-                    Office of the Provost
-                </a>
-                <a class="navbar-brand" class="text-light" href="/">
-                    Provost Tools
-                </a>
-            </nav>
+            <p class="header-level-two"><a href="https://provost.uconn.edu/" class="link-underline-opacity-0 link-underline-opacity-100-hover link-light link-offset-2">Office of the Provost</a></p>
+            <h1 class="header-level-one"><a href="/" class="link-underline-opacity-0 link-underline-opacity-100-hover link-light link-offset-1">Provost Tools</a></h1>
         </div>
     </div>
     <nav @class(["navbar navbar-expand-lg py-3",
@@ -31,11 +26,12 @@
         "bg-primary-subtle" => $is_admin
     ]) @if(!$is_admin) data-bs-theme="dark" @endif>
         <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#provostToolsMainNav" aria-controls="provostToolsMainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="provostToolsMainNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a @class(['nav-link', 'active' => Route::is('home') ]) href="{{ route('home') }}">{{ $is_admin ? 'Return to Website' : 'Home' }}</a>
-                    </li>
+                    
                     @if ( !$is_admin )
                         <li class="nav-item dropdown">
                             <a href="#" @class(["nav-link dropdown-toggle", "active" => Route::is('faculty*')]) role="button" data-bs-toggle="dropdown" aria-expanded="false">Faculty Tools</a>
@@ -43,7 +39,13 @@
                                 <li><a href="{{ route('faculty_salary_tables.index') }}" class="dropdown-item">Salary Tables</a></li>
                             </ul>
                         </li>
+                        {{-- <li class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle disabled" role="button" aria-expanded="false">University Tools</a>
+                        </li> --}}
                     @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">Return to Site</a>
+                        </li>
                         <li class="nav-item">
                             <a @class(['nav-link', 'active' => Route::is('admin.home') ]) href="{{ route('admin.home') }}">Admin</a>
                         </li>
@@ -88,6 +90,15 @@
 
     @yield('content')
 </main>
+<footer class="text-bg-dark d-block w-100 py-4">
+<div class="container">
+    <div class="d-flex w-100 flex-column flex-md-row justify-content-center align-items-center">
+        <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover" href="https://uconn.edu/">© {{ date('Y') }} University of Connecticut</a>
+        <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover"  href="http://uconn.edu/disclaimers-privacy-copyright/">Disclaimers, Privacy &amp; Copyright</a>
+        <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover"  href="https://accessibility.uconn.edu/">Accessibility</a>
+    </div>
+</div>
+</footer>
 @vite('resources/js/app.js')
 </body>
 </html>

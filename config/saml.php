@@ -48,14 +48,14 @@ return [
         // ),
         // Specifies info about where and how the <Logout Response> message MUST be
         // returned to the requester, in this case our SP.
-        // 'singleLogoutService' => array (
-        //     // URL Location where the <Response> from the IdP will be returned
-        //     'url' => '',
-        //     // SAML protocol binding to be used when returning the <Response>
-        //     // message.  SAML Toolkit supports for this endpoint the
-        //     // HTTP-Redirect binding only
-        //     'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-        // ),
+        'singleLogoutService' => array (
+            // URL Location where the <Response> from the IdP will be returned
+            'url' => env('SAML_LOGOUT_URL', 'http://i3.localhost/saml/logout'),
+            // SAML protocol binding to be used when returning the <Response>
+            // message.  SAML Toolkit supports for this endpoint the
+            // HTTP-Redirect binding only
+            'binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
+        ),
         // Specifies constraints on the name identifier to be used to
         // represent the requested subject.
         // Take a look on lib/Saml2/Constants.php to see the NameIdFormat supported
@@ -92,7 +92,7 @@ return [
         // SLO endpoint info of the IdP.
         'singleLogoutService' => array (
             // URL Location of the IdP where the SP will send the SLO Request
-            'url' => env('SAML_LOGOUT_URL', 'http://i3.localhost/saml/logout'),
+            'url' => env('SAML_LOGOUT_URL', 'https://login.uconn.edu/cas/logout'),
             // URL location of the IdP where the SP will send the SLO Response (ResponseLocation)
             // if not set, url for the SLO Request will be used
             'responseUrl' => '',
