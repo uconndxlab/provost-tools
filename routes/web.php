@@ -10,14 +10,11 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/login', function(Request $request) { return redirect()->route('saml.login'); })->name('login');
-Route::get('/saml/login', [LoginController::class, 'samlLogin'])->name('saml.login');
-Route::post('/saml', [LoginController::class, 'samlAcs'])->name('saml.acs')->withoutMiddleware([VerifyCsrfToken::class]);
-Route::get('/saml/logout', [LoginController::class, 'samlLogout'])->name('saml.logout');
-Route::get('/saml/processLogout', [LoginController::class, 'processSamlLogout'])->name('saml.processLogout');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::middleware(['saml.required'])->group(function() {
+Route::middleware(['cas.auth'])->group(function() {
     Route::get('/faculty/salary', [FacultySalaryTablesController::class, 'index'])->name('faculty_salary_tables.index');
 
     Route::middleware(['admin'])->group(function() {

@@ -11,9 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->append([
+            \App\Http\Middleware\CheckCasUser::class,
+        ]);
         $middleware->alias([
-            'saml.required' => \App\Http\Middleware\SamlRequired::class,
             'admin' => \App\Http\Middleware\Admin::class,
+            'cas.auth' => \Subfission\Cas\Middleware\CASAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

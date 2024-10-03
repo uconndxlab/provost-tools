@@ -64,16 +64,16 @@
             <div class="navbar-nav">
                 @if ( Auth::check() )
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->netid }}</a>
+                        <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             @if ( Auth::user()->can_admin )
                                 <li><a href="{{ route('admin.home') }}" class="dropdown-item">Admin</a></li>
                             @endif
-                            <li><a href="{{ route('saml.logout') }}" class="dropdown-item">Log Out</a></li>
+                            <li><a href="{{ route('logout') }}" class="dropdown-item">Log Out</a></li>
                         </ul>
                     </div>
                 @else
-                    <a href="{{ route('saml.login') }}" class="nav-link">UConn Log In</a>
+                    <a href="{{ route('login') }}" class="nav-link">UConn Log In</a>
                 @endif
             </div>
         </div>
