@@ -30,7 +30,9 @@ class CheckCasUser
             $ldapUser = LdapUser::where('uid', cas()->user())->first();
 
             if ( $ldapUser ) {
-                $user->name = $ldapUser->cn[0];
+                if ( !$user->name ) {
+                    $user->name = $ldapUser->cn[0];
+                }
                 $user->email = $ldapUser->mail[0];
                 $user->save();
             }
