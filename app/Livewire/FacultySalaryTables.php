@@ -87,10 +87,8 @@ class FacultySalaryTables extends Component
             $fst = Auth::user()->facultySalaryTables->first();
             $allowed_dept = $fst->academic_department ?? null;
             $allowed_school = $fst->academic_school_college ?? null;
-            $faculty_salary_tables->where(function($query) use ($allowed_dept, $allowed_school) {
-                $query->where('academic_department', $allowed_dept)
-                    ->orWhere('academic_school_college', $allowed_school);
-            });
+            $faculty_salary_tables->where('academic_department', $allowed_dept)
+                ->where('academic_school_college', $allowed_school);
         }
 
         $departments = $departments->distinct()
