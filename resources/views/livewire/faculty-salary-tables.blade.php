@@ -53,9 +53,13 @@
     <div class="overflow-x-auto font-monospace" id="fstTableContain">
         <table class="table table-striped table-sm table-hover overflow-x-scroll w-100 mx-auto position-relative table-bordered" style="table-layout:fixed; font-size: 12px;" >
             <colgroup>
-                <col width="230"> <!-- Name/Union -->
-                <col width="200"> <!-- Academic School/College -->
-                <col width="300"> <!-- Role/Rank/Career -->
+                <col width="200"> <!-- Name -->
+                <col width="115"> <!-- Union -->
+                <col width="220"> <!-- Academic School/College -->
+                <col width="200"> <!-- Academic Department -->
+                <col width="200"> <!-- Role -->
+                <col width="200"> <!-- Rank -->
+                <col width="100"> <!-- TT/NTT -->
                 <col width="100"> <!-- Base -->
                 <col width="100"> <!-- Addt'l 1 Mon -->
                 <col width="100"> <!-- Addt'l 2 Mon -->
@@ -83,14 +87,15 @@
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
-                        /
-                        <a href="#" class="ms-2" wire:click.prevent="sortBy('union_name')">
+                        
+                    </th>
+                    <th>
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('union_name')">
                             Union
                             @if ( $sort === 'union_name' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
-                    </th>
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('academic_school_college')">
                             School
@@ -98,8 +103,9 @@
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
-                        /
-                        <a href="#" class="ms-2" wire:click.prevent="sortBy('academic_department')">
+                    </th>
+                    <th>
+                        <a href="#" class="m3-2" wire:click.prevent="sortBy('academic_department')">
                             Department
                             @if ( $sort === 'academic_department' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
@@ -113,21 +119,27 @@
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
-                        /
-                        <a href="#" class="mx-2" wire:click.prevent="sortBy('rank_description')">
+                    </th>
+
+                    <th>
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('rank_description')">
                             Rank
                             @if ( $sort === 'rank_description' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
-                        /
-                        <a href="#" class="ms-2" wire:click.prevent="sortBy('tt_ntt')">
-                            (Career)
+
+                    </th>
+
+                    <th>
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('tt_ntt')">
+                            Career
                             @if ( $sort === 'tt_ntt' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
+
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_ucannl')">
                             Base
@@ -265,11 +277,15 @@
                 @foreach($faculty_salary_tables as $facultySalaryTable)
                 <tr>
                     <td class="position-sticky border-left" style="left: 0;">
-                        <span class="badge text-bg-dark">{{ $facultySalaryTable->union_name }}</span>
                         <span class="mt-2 d-block">{{ $facultySalaryTable->full_name }}</span>
                     </td>
+                    <td>
+                        {{ $facultySalaryTable->union_name }}
+                    </td>
                     <td >
-                        <span class="badge text-bg-dark">{{ $facultySalaryTable->academic_school_college }}</span>
+                        {{ $facultySalaryTable->academic_school_college }}
+                    </td>
+                    <td>
                         <span class="d-block mt-2">
                             {{ $facultySalaryTable->academic_department }}
                             @if ( $facultySalaryTable->affiliated_department_name_administrative_roles )
@@ -278,10 +294,16 @@
                         </span>
                     </td>
                     <td>
-                        <small class="d-block">{{ $facultySalaryTable->faculty_role }}</small> -- 
-                        <strong>{{ $facultySalaryTable->rank_description }}</strong>
-                        ({{ $facultySalaryTable->tt_ntt }})
+                        {{ $facultySalaryTable->faculty_role }}
                     </td>
+                    <td>
+                        {{ $facultySalaryTable->rank_description }}
+
+                    </td>
+                    <td>
+                        {{ $facultySalaryTable->tt_ntt }}
+                    </td>
+
                     <td class="text-end bg-hover-green">
                         ${{ Number::format($facultySalaryTable->faculty_base_ucannl) }}
                     </td>
