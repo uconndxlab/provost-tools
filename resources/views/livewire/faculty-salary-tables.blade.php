@@ -57,9 +57,11 @@
                 <col width="115"> <!-- Union -->
                 <col width="220"> <!-- Academic School/College -->
                 <col width="200"> <!-- Academic Department -->
+                <col width="100"> <!-- TT/NTT -->
+
                 <col width="200"> <!-- Role -->
                 <col width="200"> <!-- Rank -->
-                <col width="100"> <!-- TT/NTT -->
+                <col width="200"> <!-- Affiliated Dept -->
                 <col width="100"> <!-- Base -->
                 <col width="100"> <!-- Addt'l 1 Mon -->
                 <col width="100"> <!-- Addt'l 2 Mon -->
@@ -67,10 +69,7 @@
                 <col width="100"> <!-- FTE % -->
                 <col width="100"> <!-- Faculty Base Appointment Term -->
                 <col width="100"> <!-- Appointment Term -->
-                <col width="100"> <!-- 9 Mo Equivalent Annual Salary -->
-                <col width="100"> <!-- 9 Mo Equivalent Base Salary -->
-                <col width="100"> <!-- Emplid -->
-                <col width="100"> <!-- Netid -->
+                <col width="100"> <!-- admin_supplement_ucadm -->
                 <col width="100"> <!-- Gender -->
                 <col width="100"> <!-- Years of Service -->
                 <col width="100"> <!-- Assistant Professor Year -->
@@ -98,7 +97,7 @@
                         </a>
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('academic_school_college')">
-                            School
+                            Academic School/College
                             @if ( $sort === 'academic_school_college' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
@@ -112,15 +111,15 @@
                             @endif
                         </a>
                     </th>
+
                     <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_role')">
-                            Role
-                            @if ( $sort === 'faculty_role' )
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('tt_ntt')">
+                            TT/NTT
+                            @if ( $sort === 'tt_ntt' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
-
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('rank_description')">
                             Rank
@@ -132,49 +131,26 @@
                     </th>
 
                     <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('tt_ntt')">
-                            Career
-                            @if ( $sort === 'tt_ntt' )
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_role')">
+                            Role
+                            @if ( $sort === 'faculty_role' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
 
                     <th class="text-end">
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_ucannl')">
-                            Base
-                            @if ( $sort === 'faculty_base_ucannl' )
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('affiliated_department_name_administrative_roles')">
+                            Affiliated Department
+                            @if ( $sort === 'affiliated_department_name_administrative_roles' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
-                    <th class="text-end">
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('additional_1_month_uc1mth')">
-                            Addt'l 1 Mon
-                            @if ( $sort === 'additional_1_month_uc1mth' )
-                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
-                            @endif
-                        </a>
-                    </th>
-                    <th class="text-end">
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('additional_2_month_uc2mth')">
-                            Addt'l 2 Mon
-                            @if ( $sort === 'additional_2_month_uc2mth' )
-                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
-                            @endif
-                        </a>
-                    </th>
-                    <th class="text-end">
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('full_time_annual_salary')">
-                            Full Time Annual Salary
-                            @if ( $sort === 'full_time_annual_salary' )
-                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
-                            @endif
-                        </a>
-                    </th>
+
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('payroll_fte')">
-                            FTE %
+                            Payroll FTE
                             @if ( $sort === 'payroll_fte' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
@@ -188,6 +164,7 @@
                             @endif
                         </a>
                     </th>
+
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('appointment_term')">
                             Appointment Term
@@ -196,33 +173,57 @@
                             @endif
                         </a>
                     </th>
+
+
+
+
+
                     <th class="text-end">
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('nine_mo_equivalent_of_annual_salary')">
-                            9 Mo Equivalent Annual Salary
-                            @if ( $sort === 'nine_mo_equivalent_of_annual_salary' )
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('faculty_base_ucannl')">
+                            Faculty Base (UCANNL)
+                            @if ( $sort === 'faculty_base_ucannl' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
                     <th class="text-end">
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('nine_mo_equivalent_of_base_salary')">
-                            9 Mo Equivalent Base Salary
-                            @if ( $sort === 'nine_mo_equivalent_of_base_salary' )
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('additional_1_month_uc1mth')">
+                            Additional 1 Month (UC1MTH)
+                            @if ( $sort === 'additional_1_month_uc1mth' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
-                    <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('emplid')">
-                            Emplid
-                            @if ( $sort === 'emplid' )
+                    <th class="text-end">
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('additional_2_month_uc2mth')">
+                            Additional 2 Month (UC2MTH)
+                            @if ( $sort === 'additional_2_month_uc2mth' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
                         </a>
                     </th>
-                    <th>
-                        NetID
+
+
+                    <th class="text-end">
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('admin_supplement_ucadm')">
+                            Admin Supplement (UCADM)
+                            @if ( $sort === 'admin_supplement_ucadm' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
+                        </a>
                     </th>
+
+                    <th class="text-end">
+                        <a href="#" class="me-2" wire:click.prevent="sortBy('full_time_annual_salary')">
+                            Full Time Annual Salary
+                            @if ( $sort === 'full_time_annual_salary' )
+                            <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
+                            @endif
+                        </a>
+                    </th>
+
+
+
                     <th>
                         <a href="#" class="me-2" wire:click.prevent="sortBy('gender')">
                             Gender
@@ -293,16 +294,36 @@
                             @endif
                         </span>
                     </td>
+
                     <td>
-                        {{ $facultySalaryTable->faculty_role }}
+                        {{ $facultySalaryTable->tt_ntt }}
                     </td>
+
                     <td>
                         {{ $facultySalaryTable->rank_description }}
 
                     </td>
+
                     <td>
-                        {{ $facultySalaryTable->tt_ntt }}
+                        {{ $facultySalaryTable->faculty_role }}
                     </td>
+
+                    <td class="text-end">
+                        {{ $facultySalaryTable->affiliated_department_name_administrative_roles }}
+                    </td>
+
+                    <td class="text-end">
+                        {{ $facultySalaryTable->payroll_fte }}
+                    </td>
+                    <td class="text-end">
+                        {{ $facultySalaryTable->faculty_base_appointment_term }}
+                    </td>
+                    <td class="text-end">
+                        {{ $facultySalaryTable->appointment_term }}
+                    </td>
+
+
+
 
                     <td class="text-end bg-hover-green">
                         ${{ Number::format($facultySalaryTable->faculty_base_ucannl) }}
@@ -313,30 +334,18 @@
                     <td class="text-end bg-hover-green">
                         {{ Number::format($facultySalaryTable->additional_2_month_uc2mth) }}
                     </td>
+
+
+                    {{-- admin_supplement_ucadm --}}
+
+                    <td class="text-end">
+                        ${{ Number::format($facultySalaryTable->admin_supplement_ucadm) }}
+                    </td>
+
                     <td class="text-end bg-hover-green">
                         ${{ Number::format($facultySalaryTable->full_time_annual_salary) }}
                     </td>
-                    <td class="text-end">
-                        {{ $facultySalaryTable->payroll_fte * 100 }}
-                    </td>
-                    <td class="text-end">
-                        {{ $facultySalaryTable->faculty_base_appointment_term }}
-                    </td>
-                    <td class="text-end">
-                        {{ $facultySalaryTable->appointment_term }}
-                    </td>
-                    <td class="text-end">
-                        ${{ Number::format($facultySalaryTable->nine_mo_equivalent_of_annual_salary) }}
-                    </td>
-                    <td class="text-end">
-                        ${{ Number::format($facultySalaryTable->nine_mo_equivalent_of_base_salary) }}
-                    </td>
-                    <td>
-                        {{ $facultySalaryTable->emplid }}
-                    </td>
-                    <td>
-                        {{ $facultySalaryTable->user->netid ?? '' }}
-                    </td>
+
                     <td>
                         {{ $facultySalaryTable->gender }}
                     </td>
