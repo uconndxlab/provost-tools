@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('budget_hearing_questionnaires', function (Blueprint $table) {
             $table->id();
+            $table->text('deficit_mitigation')->nullable();
+            $table->text('faculty_hiring')->nullable();
+            $table->text('student_enrollment')->nullable();
+            $table->text('student_retention')->nullable();
+            $table->text('foundation_engagement')->nullable();
             $table->timestamps();
         });
     }

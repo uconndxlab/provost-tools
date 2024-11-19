@@ -28,7 +28,18 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'deficit_mitigation' => 'required',
+            'faculty_hiring' => 'required',
+            'student_enrollment' => 'required',
+            'student_retention' => 'required',
+            'foundation_engagement' => 'required',
+        ]);
+
+        BudgetHearingQuestionnaire::create($request->all());
+
+        return redirect()->route('budget-hearing-questionnaire.create')
+            ->with('success', 'Budget Hearing Questionnaire created successfully.');
     }
 
     /**

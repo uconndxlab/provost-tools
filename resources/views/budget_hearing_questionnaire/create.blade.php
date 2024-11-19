@@ -33,7 +33,7 @@
                         <div class="mb-3">
                             <p>Please explain how your unit will meet the FY25 – FY29 budget hearing guidance shared by the Provost and CFO, focusing on FY26 – FY27, including reducing positions, decreasing programming, or eliminating services. Additionally, include any plans for the one-time use of operating or Foundation fund balances.</p>
                             <label for="deficit_mitigation" class="form-label d-none">Deficit Mitigation</label>
-                            <textarea class="form-control d-none" id="deficit_mitigation" rows="3"></textarea>
+                            <textarea name="deficit_mitigation" class="form-control d-none" id="deficit_mitigation" rows="3"></textarea>
                             <trix-editor input="deficit_mitigation"></trix-editor>
                         </div>
                     </div>
@@ -42,7 +42,10 @@
                         <div class="mb-3">
                             <p>Are you actively recruiting any endowed chairs/professorships or targeted hires with a robust research portfolio? If not, where might you consider doing so to build on existing or emerging strengths in your unit?</p>
                             <label for="faculty_hiring" class="form-label d-none">Faculty Hiring</label>
-                            <textarea class="form-control d-none" id="faculty_hiring" rows="3"></textarea>
+                            <textarea
+                            id="faculty_hiring" 
+                            name="faculty_hiring"
+                            class="form-control d-none" id="faculty_hiring" rows="3"></textarea>
                             <trix-editor input="faculty_hiring"></trix-editor>
                         </div>
                     </div>              
@@ -52,7 +55,10 @@
                         <div class="mb-3">
                             <p>What programs have the demand to increase in net new enrollment based on your discussions with Student Life & Enrollment, what steps are being taken to attract new students, and what additional resources would be needed to support the increased enrollment?</p>
                             <label for="student_enrollment" class="form-label d-none">Student Enrollment</label>
-                            <textarea class="form-control d-none" id="student_enrollment" rows="3"></textarea>
+                            <textarea 
+                            id="student_enrollment"
+                            name="student_enrollment"
+                            class="form-control d-none" id="student_enrollment" rows="3"></textarea>
                             <trix-editor input="student_enrollment"></trix-editor>
                         </div>
                     </div>
@@ -62,7 +68,10 @@
                         <div class="mb-3">
                             <p>We are fundamentally here to serve our students, ensuring that they receive value in their education to achieve future success. What is your unit doing to improve student retention and graduation rates, and how do you track post-graduation outcomes?</p>
                             <label for="student_retention" class="form-label d-none">Student Retention, Graduation & Outcomes</label>
-                            <textarea class="form-control d-none" id="student_retention" rows="3"></textarea>
+                            <textarea 
+                            id="student_retention"
+                            name="student_retention"
+                            class="form-control d-none" id="student_retention" rows="3"></textarea>
                             <trix-editor input="student_retention"></trix-editor>
                         </div>
                     </div>
@@ -72,7 +81,10 @@
                         <div class="mb-3">
                             <p>To align with these budget plans and strategic investments in faculty, enrollment growth, and student success initiatives, what philanthropic contributions of $100,000 or more are currently in the pipeline?</p>
                             <label for="foundation_engagement" class="form-label d-none">Foundation Engagement</label>
-                            <textarea class="form-control d-none"  rows="3"></textarea>
+                            <textarea 
+                            id="foundation_engagement"
+                            name="foundation_engagement"
+                            class="form-control d-none"  rows="3"></textarea>
                             <trix-editor input="foundation_engagement"></trix-editor>
                         </div>
                     </div>
