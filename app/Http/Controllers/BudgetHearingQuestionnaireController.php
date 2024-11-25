@@ -53,7 +53,8 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function show(BudgetHearingQuestionnaire $budgetHearingQuestionnaire)
     {
-        //
+        $submission = $budgetHearingQuestionnaire;
+        return view('budget_hearing_questionnaire.show', compact('submission'));
     }
 
     /**
