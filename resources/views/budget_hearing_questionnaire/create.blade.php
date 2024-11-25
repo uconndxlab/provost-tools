@@ -9,8 +9,6 @@
                     <div>
                         <h1>Budget Hearing Questionnaire</h1>
                         {{-- current user var dump --}}
-
-
                         <p>Supporting our 10-year strategic plan requires a reallocation of institutional resources. The
                             previously communicated permanent 2-ledger budget reductions for the coming years will ensure
                             our finances move towards long-term financial sustainability, and our institutional priorities
@@ -36,7 +34,7 @@
                         <div class="col mt-3">
                             <h2>School/College</h2>
                             <div class="mb-3">
-                                <label for="school_college" class="form-label">School/College</label>
+                                <label for="school_college" class="form-label d-none">School/College</label>
                                 <select name="school_college" id="school_college" class="form-select">
                                     <option value="school-college">Select School/College</option>
                                     <option value="college-of-agriculture-health-natural-resources">College of Agriculture,
@@ -67,9 +65,14 @@
                                     the Provost and CFO, focusing on FY26 – FY27, including reducing positions, decreasing
                                     programming, or eliminating services. Additionally, include any plans for the one-time
                                     use of operating or Foundation fund balances.</p>
+                                {{-- character counter --}}
+
                                 <label for="deficit_mitigation" class="form-label d-none">Deficit Mitigation</label>
                                 <textarea name="deficit_mitigation" class="form-control d-none" id="deficit_mitigation" rows="3"></textarea>
                                 <trix-editor input="deficit_mitigation"></trix-editor>
+                                <span class="text-muted" class="character_counter" data-element="deficit_mitigation">
+                                    <span class="count">0</span>/2000 (max # of characters)
+                                </span>
                             </div>
                         </div>
                         <div class="col mt-3">
@@ -81,6 +84,11 @@
                                 <label for="faculty_hiring" class="form-label d-none">Faculty Hiring</label>
                                 <textarea id="faculty_hiring" name="faculty_hiring" class="form-control d-none" id="faculty_hiring" rows="3"></textarea>
                                 <trix-editor input="faculty_hiring"></trix-editor>
+
+                                <span class="text-muted" class="character_counter" data-element="faculty_hiring">
+                                    <span class="count">0</span>/2000 (max # of characters)
+                                </span>
+
                             </div>
                         </div>
 
@@ -94,6 +102,9 @@
                                 <textarea id="student_enrollment" name="student_enrollment" class="form-control d-none" id="student_enrollment"
                                     rows="3"></textarea>
                                 <trix-editor input="student_enrollment"></trix-editor>
+                                <span class="text-muted character_counter" data-element="student_enrollment">
+                                    <span class="count">0</span>/2000 (max # of characters)
+                                </span>
                             </div>
                         </div>
 
@@ -108,6 +119,12 @@
                                 <textarea id="student_retention" name="student_retention" class="form-control d-none" id="student_retention"
                                     rows="3"></textarea>
                                 <trix-editor input="student_retention"></trix-editor>
+                                
+                                <span class="text-muted character_counter" data-element="student_retention">
+                                    <span class="count">0</span>/2000 (max # of characters)
+                                </span>
+
+
                             </div>
                         </div>
 
@@ -120,6 +137,11 @@
                                 <label for="foundation_engagement" class="form-label d-none">Foundation Engagement</label>
                                 <textarea id="foundation_engagement" name="foundation_engagement" class="form-control d-none" rows="3"></textarea>
                                 <trix-editor input="foundation_engagement"></trix-editor>
+
+                                <span class="text-muted character_counter" data-element="foundation_engagement">
+                                    <span class="count">0</span>/2000 (max # of characters)
+                                </span>
+
                             </div>
                         </div>
 
@@ -137,4 +159,39 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // console log the trix editor content on change
+            document.addEventListener('trix-change', function (event) {
+                // strip the html tags from the trix editor content and log it
+                // update the corresponding character counter that has the same data-element attribute as the curennt trix editor's input
+                let strippedContent = event.target.innerText.replace(/(<([^>]+)>)/gi, "");
+                let target = event.target.getAttribute('input');
+                
+                let characterCounter = document.querySelector(`[data-element="${target}"] .count`);
+
+                
+
+                characterCounter.innerText = strippedContent.length;
+
+                // as it gets closer to the 2000 character limit, change the color of the character counter
+
+                if (strippedContent.length > 1800) {
+                    characterCounter.style.color = 'red';
+                } else if (strippedContent.length > 1600) {
+                    characterCounter.style.color = 'orange';
+                } else if (strippedContent.length > 1400) {
+                    characterCounter.style.color = 'orange';
+                } else if (strippedContent.length > 1200) {
+                    characterCounter.style.color = 'green';
+                } else {
+                    characterCounter.style.color = 'black';
+                }
+
+
+                // update the corresponding .count with the length of the stripped content
+
+
+            });
+        </script>
     @endsection
