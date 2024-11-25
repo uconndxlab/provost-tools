@@ -12,7 +12,13 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function index()
     {
-        //
+        return view('budget_hearing_questionnaire.index');
+    }
+
+    public function adminIndex()
+    {
+        $submissions = BudgetHearingQuestionnaire::paginate(20);
+        return view('budget_hearing_questionnaire.admin_index', compact('submissions'));
     }
 
     /**
@@ -38,7 +44,7 @@ class BudgetHearingQuestionnaireController extends Controller
 
         BudgetHearingQuestionnaire::create($request->all());
 
-        return redirect()->route('budget-hearing-questionnaire.create')
+        return redirect()->route('admin.budgetHearingQuestionnaire.index')
             ->with('success', 'Budget Hearing Questionnaire created successfully.');
     }
 
