@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SchoolCollege;
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,6 +13,8 @@ class HomeController extends Controller
     }
 
     public function adminHome(Request $request) {
-        return view('admin.home');
+
+        $allSchools = SchoolCollege::where('type', 'school')->get();
+        return view('admin.home')->with('allSchools', $allSchools);
     }
 }

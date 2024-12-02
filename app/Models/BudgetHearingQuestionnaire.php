@@ -25,4 +25,14 @@ class BudgetHearingQuestionnaire extends Model
         'school_college'
     ];
 
+    public function school()
+    {
+        return $this->belongsTo(SchoolCollege::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }

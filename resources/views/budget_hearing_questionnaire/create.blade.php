@@ -28,32 +28,22 @@
 
                 <div class="row">
                     <form
-                        action="{{ route('budgetHearingQuestionnaire.store', ['user' => Auth::user()->id]) }}"
+                        action="{{ isset($questionnaire) ? route('budgetHearingQuestionnaire.update', ['user' => Auth::user()->id, 'questionnaire' => $questionnaire->id]) : route('budgetHearingQuestionnaire.store', ['user' => Auth::user()->id]) }}"
                         method="POST">
                         @csrf
+                        @if(isset($questionnaire))
+                            @method('PUT')
+                        @endif
                         <div class="col mt-3">
                             <h2>School/College</h2>
                             <div class="mb-3">
                                 <label for="school_college" class="form-label d-none">School/College</label>
                                 <select name="school_college" id="school_college" class="form-select">
                                     <option value="school-college">Select School/College</option>
-                                    <option value="college-of-agriculture-health-natural-resources">College of Agriculture,
-                                        Health and Natural Resources</option>
-                                    <option value="school-of-business">School of Business</option>
-                                    <option value="school-of-dental-medicine">School of Dental Medicine</option>
-                                    <option value="college-of-engineering">College of Engineering</option>
-                                    <option value="school-of-fine-arts">School of Fine Arts</option>
-                                    <option value="the-graduate-school">The Graduate School</option>
-                                    <option value="school-of-law">School of Law</option>
-                                    <option value="college-of-liberal-arts-sciences">College of Liberal Arts and Sciences
-                                    </option>
-                                    <option value="school-of-medicine">School of Medicine</option>
-                                    <option value="neag-school-of-education">Neag School of Education</option>
-                                    <option value="school-of-nursing">School of Nursing</option>
-                                    <option value="school-of-pharmacy">School of Pharmacy</option>
-                                    <option value="ratcliffe-hicks-school-of-agriculture">Ratcliffe Hicks School of
-                                        Agriculture</option>
-                                    <option value="school-of-social-work">School of Social Work</option>
+
+                                    @foreach ($allSchools as $school)
+                                        <option value="{{ $school->id }}" @if (isset($questionnaire) && $questionnaire->school_college == $school->id) selected @endif>{{ $school->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -68,10 +58,10 @@
                                 {{-- character counter --}}
 
                                 <label for="deficit_mitigation" class="form-label d-none">Deficit Mitigation</label>
-                                <textarea name="deficit_mitigation" class="form-control d-none" id="deficit_mitigation" rows="3"></textarea>
+                                <textarea name="deficit_mitigation" class="form-control d-none" id="deficit_mitigation" rows="3">{{ isset($questionnaire) ? $questionnaire->deficit_mitigation : '' }}</textarea>
                                 <trix-editor input="deficit_mitigation"></trix-editor>
                                 <span class="text-muted" class="character_counter" data-element="deficit_mitigation">
-                                    <span class="count">0</span>/2000 (max # of characters)
+                                    <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->deficit_mitigation)) : 0 }}</span>/2000 (max # of characters)
                                 </span>
                             </div>
                         </div>
@@ -82,11 +72,11 @@
                                     robust research portfolio? If not, where might you consider doing so to build on
                                     existing or emerging strengths in your unit?</p>
                                 <label for="faculty_hiring" class="form-label d-none">Faculty Hiring</label>
-                                <textarea id="faculty_hiring" name="faculty_hiring" class="form-control d-none" id="faculty_hiring" rows="3"></textarea>
+                                <textarea id="faculty_hiring" name="faculty_hiring" class="form-control d-none" id="faculty_hiring" rows="3">{{ isset($questionnaire) ? $questionnaire->faculty_hiring : '' }}</textarea>
                                 <trix-editor input="faculty_hiring"></trix-editor>
 
                                 <span class="text-muted" class="character_counter" data-element="faculty_hiring">
-                                    <span class="count">0</span>/2000 (max # of characters)
+                                    <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->faculty_hiring)) : 0 }}</span>/2000 (max # of characters)
                                 </span>
 
                             </div>
@@ -100,10 +90,10 @@
                                     what additional resources would be needed to support the increased enrollment?</p>
                                 <label for="student_enrollment" class="form-label d-none">Student Enrollment</label>
                                 <textarea id="student_enrollment" name="student_enrollment" class="form-control d-none" id="student_enrollment"
-                                    rows="3"></textarea>
+                                    rows="3">{{ isset($questionnaire) ? $questionnaire->student_enrollment : '' }}</textarea>
                                 <trix-editor input="student_enrollment"></trix-editor>
                                 <span class="text-muted character_counter" data-element="student_enrollment">
-                                    <span class="count">0</span>/2000 (max # of characters)
+                                    <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->student_enrollment)) : 0 }}</span>/2000 (max # of characters)
                                 </span>
                             </div>
                         </div>
@@ -117,11 +107,11 @@
                                 <label for="student_retention" class="form-label d-none">Student Retention, Graduation &
                                     Outcomes</label>
                                 <textarea id="student_retention" name="student_retention" class="form-control d-none" id="student_retention"
-                                    rows="3"></textarea>
+                                    rows="3">{{ isset($questionnaire) ? $questionnaire->student_retention : '' }}</textarea>
                                 <trix-editor input="student_retention"></trix-editor>
                                 
                                 <span class="text-muted character_counter" data-element="student_retention">
-                                    <span class="count">0</span>/2000 (max # of characters)
+                                    <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->student_retention)) : 0 }}</span>/2000 (max # of characters)
                                 </span>
 
 
@@ -135,11 +125,11 @@
                                     and student success initiatives, what philanthropic contributions of $100,000 or more
                                     are currently in the pipeline?</p>
                                 <label for="foundation_engagement" class="form-label d-none">Foundation Engagement</label>
-                                <textarea id="foundation_engagement" name="foundation_engagement" class="form-control d-none" rows="3"></textarea>
+                                <textarea id="foundation_engagement" name="foundation_engagement" class="form-control d-none" rows="3">{{ isset($questionnaire) ? $questionnaire->foundation_engagement : '' }}</textarea>
                                 <trix-editor input="foundation_engagement"></trix-editor>
 
                                 <span class="text-muted character_counter" data-element="foundation_engagement">
-                                    <span class="count">0</span>/2000 (max # of characters)
+                                    <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->foundation_engagement)) : 0 }}</span>/2000 (max # of characters)
                                 </span>
 
                             </div>

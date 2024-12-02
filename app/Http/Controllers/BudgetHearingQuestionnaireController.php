@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\BudgetHearingQuestionnaire;
+use App\Models\SchoolCollege;
+use App\Models\User;
+
 use Illuminate\Http\Request;
+
 
 class BudgetHearingQuestionnaireController extends Controller
 {
@@ -26,7 +30,8 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function create()
     {
-        return view('budget_hearing_questionnaire.create');
+        $allSchools = SchoolCollege::all();
+        return view('budget_hearing_questionnaire.create', compact('allSchools'));
     }
 
     /**
@@ -62,7 +67,8 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function edit(BudgetHearingQuestionnaire $budgetHearingQuestionnaire)
     {
-        //
+        $questionnaire = $budgetHearingQuestionnaire;
+        return view('budget_hearing_questionnaire.create', compact('questionnaire'));
     }
 
     /**

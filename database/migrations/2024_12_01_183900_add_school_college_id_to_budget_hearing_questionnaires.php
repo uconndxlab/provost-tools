@@ -6,17 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::table('budget_hearing_questionnaires', function (Blueprint $table) {
-            $table->string('school_college')->nullable(); 
+            $table->foreignId('school_college_id')
+            ->nullable() // Nullable if some questionnaires may not be tied to a school
+            ->constrained()
+            ->onDelete('cascade');
         });
     }
-    
-    public function down()
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('budget_hearing_questionnaires', function (Blueprint $table) {
-            $table->dropColumn('school_college');
+            
         });
     }
 };

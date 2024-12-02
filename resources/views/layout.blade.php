@@ -51,6 +51,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('faculty_salary_tables.index') }}" class="dropdown-item">Salary
                                         Tables</a></li>
+                                <li><a href="{{route('budgetHearingQuestionnaire.create')}}" class="dropdown-item">Budget
+                                        Hearing Questionnaire</a></li>
                             </ul>
                         </li>
                         {{-- <li class="nav-item dropdown">

@@ -9,6 +9,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PayrollIdController;
 use App\Http\Controllers\BudgetHearingQuestionnaireController;
+use App\Models\SchoolCollege;
+use App\Http\Controllers\SchoolCollegeController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
@@ -26,6 +28,7 @@ Route::middleware(['cas.auth'])->group(function() {
         Route::get('/admin/users', [UserController::class, 'adminIndex'])->name('admin.users.index');
         Route::get('/admin/faculty/salary', [FacultySalaryTablesController::class, 'adminIndex'])->name('admin.faculty_salary_tables.index');
         Route::get('/admin/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'adminIndex'])->name('admin.budgetHearingQuestionnaire.index');
+        Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permission')->defaults('permission', 'create_budget_questionnaire');
     });
 });
 
