@@ -73,6 +73,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('admin.faculty_salary_tables.index') }}"
                                         class="dropdown-item">Salary Tables</a></li>
+                                <li><a href="{{ route('admin.budgetHearingQuestionnaire.index') }}"
+                                        class="dropdown-item">Budget Hearing Questionnaire</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -102,6 +104,13 @@
         </nav>
     </header>
     <main>
+        @if ( session('success') )
+        <div class="container pt-4">
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        </div>
+        @endif
         @if ( session('message') )
         <div class="container pt-4">
             <div class="alert alert-warning">
@@ -110,7 +119,18 @@
         </div>
         @endif
 
-        @if (session('error'))
+        @if ( $errors->any() )
+
+        <div class="container pt-4">
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                <p class="mb-1">{{ $error }}</p>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
+        @if ( session('error') )
         <div class="container pt-4">
             <div class="alert alert-danger">
                 {{ session('error') }}

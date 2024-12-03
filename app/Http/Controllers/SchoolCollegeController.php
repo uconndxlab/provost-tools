@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SchoolCollege;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Ldap\LdapUser;
 
 class SchoolCollegeController extends Controller
 {
@@ -66,11 +67,22 @@ class SchoolCollegeController extends Controller
     
         $schoolId = $validated['school_id'];
         $netId = $validated['user_id'];
+        $remove = $request->has('remove');
+        $created = false;
     
         // Find the user by netid
         $user = User::where('netid', $netId)->first();
         if (!$user) {
-            return redirect()->route('admin.home')->with('error', "User with netid $netId not found.");
+            $ldapUser = LdapUser::where('uid', $netId)->first();
+            if ( !$ldapUser ) {
+                return redirect()->route('admin.home')->with('error', "User with netid $netId not found in Active Directory.");
+            }
+            $user = User::create([
+                'netid' => $netId,
+                'name' => $ldapUser->cn[0],
+                'email' => $ldapUser->mail[0],
+            ]);
+            $created = true;
         }
     
         $school = SchoolCollege::find($schoolId);
@@ -78,11 +90,18 @@ class SchoolCollegeController extends Controller
             return redirect()->route('admin.home')->with('error', "School with id $schoolId not found.");
         }
     
-        // Attach the permission
-        $school->usersWithPermission($permission)->attach($user->id);
+        if ( $remove ) {
+            $school->users()->detach($user->id);
+            return redirect()->route('admin.home')->with('message', "Permission $permission removed for user {$user->id} ({$user->netid}) to school {$school->name}");
+        } else {
+            // Attach the permission, unless a pivot already exists, in which update it
+            $school->users()->syncWithoutDetaching([$user->id => ['can_submit_budget_hearing_questionnaire' => true]]);
+        }
+        
     
         // Redirect with success message
-        return redirect()->route('admin.home')->with('message', "Permission $permission added for user {$user->id} ({$user->netid}) to school {$school->name}");
+        $message = $created ? "User $netId created and permission $permission added for school {$school->name}" : "Permission $permission added for user {$user->id} ({$user->netid}) to school {$school->name}";
+        return redirect()->route('admin.home')->with('message', $message);
     }
 
     /**

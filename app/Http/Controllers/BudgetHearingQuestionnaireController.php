@@ -7,6 +7,8 @@ use App\Models\SchoolCollege;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 
 class BudgetHearingQuestionnaireController extends Controller
@@ -30,8 +32,8 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function create()
     {
-        $allSchools = SchoolCollege::all();
-        return view('budget_hearing_questionnaire.create', compact('allSchools'));
+        $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get();
+        return view('budget_hearing_questionnaire.create', compact('schools'));
     }
 
     /**
@@ -39,9 +41,11 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function store(Request $request)
     {
+        $school = SchoolCollege::find($request->school_college);
         $request->validate([
+            'school_college' => 'required|exists:school_colleges,id',
             'deficit_mitigation' => 'required',
-            'faculty_hiring' => 'required',
+            'faculty_hiring' => Rule::requiredIf($school && $school->type === 'school'),
             'student_enrollment' => 'required',
             'student_retention' => 'required',
             'foundation_engagement' => 'required',
@@ -49,7 +53,7 @@ class BudgetHearingQuestionnaireController extends Controller
 
         BudgetHearingQuestionnaire::create($request->all());
 
-        return redirect()->route('admin.budgetHearingQuestionnaire.index')
+        return redirect()->route('home')
             ->with('success', 'Budget Hearing Questionnaire created successfully.');
     }
 

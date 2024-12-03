@@ -13,8 +13,7 @@ class HomeController extends Controller
     }
 
     public function adminHome(Request $request) {
-
-        $allSchools = SchoolCollege::where('type', 'school')->get();
+        $allSchools = SchoolCollege::all();
         return view('admin.home')->with('allSchools', $allSchools);
     }
 }

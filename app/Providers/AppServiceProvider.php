@@ -25,12 +25,14 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
+        \Livewire\Livewire::forceAssetInjection();
+
         Gate::define('faculty-salary-tables-view', function (User $user) {
             return $user->id === $post->user_id;
         });
 
         Gate::define('can_create_budget_questionnaire', function (User $user, SchoolCollege $schoolCollege) {
-            return $schoolCollege->usersWithPermission('create_budget_questionnaire')->contains($user);
+            return $schoolCollege->usersWithPermission('can_submit_budget_hearing_questionnaire')->contains($user);
         });
     }
 }

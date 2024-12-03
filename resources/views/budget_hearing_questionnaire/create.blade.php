@@ -27,39 +27,13 @@
 
                 </div>
 
-                <div class="row">
-                   
-                    {{-- if current route is just budgetHearingQuestionnaire.create --}}
+                @if ( $schools->isEmpty() )
+                <div class="alert alert-warning">You do not currently have access to submit this form.  Please contact CHANGEME if you believe this is incorrect.</div>
+                @else
 
-                    @if (Route::currentRouteName() == 'budgetHearingQuestionnaire.create')
+                    @include('budget_hearing_questionnaire.form')
 
-
-                   <div class="col-md-6">
-                        <h3>For School/Colleges</h3>
-                        <p>Submit your budget hearing questionnaire for a School/College.</p>
-                        <a href="{{ route('budgetHearingQuestionnaire.createForCollege')}}"
-                            class="btn btn-primary">Submit</a>
-                    </div>
-                    <div class="col-md-6">
-                        <h3>For Regional Campuses</h3>
-                        <p>Submit your budget hearing questionnaire for a Regional Campus.</p>
-                        <a href="{{ route('budgetHearingQuestionnaire.createForRegional')}}"
-                            class="btn btn-primary">Submit</a>
-                    </div>
-
-                    @endif
-
-
-                    @if (Route::currentRouteName() == 'budgetHearingQuestionnaire.createForRegional')
-                        @include ('budget_hearing_questionnaire.form_regional')
-                    @endif
-
-                    @if (Route::currentRouteName() == 'budgetHearingQuestionnaire.createForCollege')
-                        @include ('budget_hearing_questionnaire.form_schoolCollege')
-                    @endif
-
-
-                </div>
+                @endif
             </div>
         </div>
 

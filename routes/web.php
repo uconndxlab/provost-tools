@@ -33,6 +33,7 @@ Route::middleware(['cas.auth'])->group(function() {
 
 
         Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
+        Route::post('/admin/removeBudgetHearingPermission', [SchoolCollegeController::class, 'removePermissionForUser'])->name('admin.remove_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
     });
 });
 
