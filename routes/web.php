@@ -22,12 +22,16 @@ Route::middleware(['cas.auth'])->group(function() {
     Route::get('/faculty/salary', [FacultySalaryTablesController::class, 'index'])->name('faculty_salary_tables.index');
     Route::get('/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.create');
     Route::post('/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'store'])->name('budgetHearingQuestionnaire.store');
-    Route::get('budgetHearingQuestionnaire/{budgetHearingQuestionnaire}', [BudgetHearingQuestionnaireController::class, 'show'])->name('budgetHearingQuestionnaire.show');
+    Route::get('/budgetHearingQuestionnaire/regional', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.createForRegional');
+    Route::get('/budgetHearingQuestionnaire/schoolCollege', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.createForCollege');
+    Route::get('/budgetHearingQuestionnaire/{budgetHearingQuestionnaire}', [BudgetHearingQuestionnaireController::class, 'show'])->name('budgetHearingQuestionnaire.show');
     Route::middleware(['admin'])->group(function() {
         Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::get('/admin/users', [UserController::class, 'adminIndex'])->name('admin.users.index');
         Route::get('/admin/faculty/salary', [FacultySalaryTablesController::class, 'adminIndex'])->name('admin.faculty_salary_tables.index');
         Route::get('/admin/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'adminIndex'])->name('admin.budgetHearingQuestionnaire.index');
+
+
         Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
     });
 });

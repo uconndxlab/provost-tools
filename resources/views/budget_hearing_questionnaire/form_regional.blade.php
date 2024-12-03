@@ -8,11 +8,11 @@
                         <div class="col mt-3">
                             <h2>School/College</h2>
                             <div class="mb-3">
-                                <label for="school_college" class="form-label d-none">School/College</label>
+                                <label for="school_college" class="form-label d-none">Regional Campus</label>
                                 <select name="school_college" id="school_college" class="form-select">
-                                    <option value="school-college">Select School/College</option>
+                                    <option value="school-college">Select Regional Campus</option>
 
-                                    @foreach ($allSchools as $school)
+                                    @foreach ($allSchools->where('type', 'campus') as $school)
                                         <option value="{{ $school->id }}" @if (isset($questionnaire) && $questionnaire->school_college == $school->id) selected @endif>{{ $school->name }}</option>
                                     @endforeach
                                 </select>

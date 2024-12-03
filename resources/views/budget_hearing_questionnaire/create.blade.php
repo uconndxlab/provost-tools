@@ -24,10 +24,41 @@
                         <a href="{{ route('admin.budgetHearingQuestionnaire.index') }}"
                             class="btn btn-danger ms-auto btn-sm">Review</a>
                     @endif
+
                 </div>
 
                 <div class="row">
-                    @include('budget_hearing_questionnaire.form_schoolCollege')
+                   
+                    {{-- if current route is just budgetHearingQuestionnaire.create --}}
+
+                    @if (Route::currentRouteName() == 'budgetHearingQuestionnaire.create')
+
+
+                   <div class="col-md-6">
+                        <h3>For School/Colleges</h3>
+                        <p>Submit your budget hearing questionnaire for a School/College.</p>
+                        <a href="{{ route('budgetHearingQuestionnaire.createForCollege')}}"
+                            class="btn btn-primary">Submit</a>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>For Regional Campuses</h3>
+                        <p>Submit your budget hearing questionnaire for a Regional Campus.</p>
+                        <a href="{{ route('budgetHearingQuestionnaire.createForRegional')}}"
+                            class="btn btn-primary">Submit</a>
+                    </div>
+
+                    @endif
+
+
+                    @if (Route::currentRouteName() == 'budgetHearingQuestionnaire.createForRegional')
+                        @include ('budget_hearing_questionnaire.form_regional')
+                    @endif
+
+                    @if (Route::currentRouteName() == 'budgetHearingQuestionnaire.createForCollege')
+                        @include ('budget_hearing_questionnaire.form_schoolCollege')
+                    @endif
+
+
                 </div>
             </div>
         </div>

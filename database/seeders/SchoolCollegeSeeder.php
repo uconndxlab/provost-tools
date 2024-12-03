@@ -65,42 +65,40 @@ class SchoolCollegeSeeder extends Seeder
                 'name' => 'School of Social Work',
                 'slug' => 'school-of-social-work',
             ],
-
             [
                 'name' => 'Avery Point',
                 'slug' => 'avery-point',
-                'type' => 'campus'
+                'type' => 'campus',
             ],
-
             [
                 'name' => 'Hartford',
                 'slug' => 'hartford',
-                'type' => 'campus'
+                'type' => 'campus',
             ],
-
             [
                 'name' => 'Stamford',
                 'slug' => 'stamford',
-                'type' => 'campus'
+                'type' => 'campus',
             ],
-
             [
                 'name' => 'Waterbury',
                 'slug' => 'waterbury',
-                'type' => 'campus'
+                'type' => 'campus',
             ],
-
             [
                 'name' => 'UConn Health',
                 'slug' => 'uconn-health',
                 'type' => 'campus',
-            ]
+            ],
         ];
-
+    
         foreach ($schools as $school) {
             SchoolCollege::updateOrCreate(
                 ['slug' => $school['slug']],
-                ['name' => $school['name']]
+                [
+                    'name' => $school['name'],
+                    'type' => $school['type'] ?? 'school',
+                ]
             );
         }
     }
