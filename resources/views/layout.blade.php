@@ -110,6 +110,14 @@
         </div>
         @endif
 
+        @if (session('error'))
+        <div class="container pt-4">
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        </div>
+        @endif
+
         @yield('content')
     </main>
     <footer class="text-bg-dark d-block w-100 py-4">

@@ -31,7 +31,7 @@
                                             <span class="badge bg-warning">No users</span>
                                         @else
                                             @foreach ($school->usersWithPermission('create_budget_questionnaire') as $user)
-                                                <span class="badge bg-secondary">{{ $user->name }}</span>
+                                                <span class="badge bg-secondary">{{ $user }}</span>
                                             @endforeach
                                         @endif
                                     </td>
@@ -53,7 +53,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="user_id" class="form-label">User</label>
+                            <label for="user_id" class="form-label">User (NetID)</label>
                             <input type="text" class="form-control" id="user_id" name="user_id">
                         </div>
                         <button type="submit" class="btn btn-primary">Add Permission</button>

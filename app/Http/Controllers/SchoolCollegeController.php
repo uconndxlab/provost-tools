@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SchoolCollege;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class SchoolCollegeController extends Controller
 {
@@ -55,14 +56,33 @@ class SchoolCollegeController extends Controller
         //
     }
 
-    public function addPermissionForUser(Request $request, $permission) {
-        $schoolId = $request->schoolId;
-        $userId = $request->userId;
-        $permission = $permission;
+    public function addPermissionForUser(Request $request, $permission)
+    {
+        // Validate the input
+        $validated = $request->validate([
+            'school_id' => 'required|exists:school_colleges,id',
+            'user_id' => 'required|string',
+        ]);
+    
+        $schoolId = $validated['school_id'];
+        $netId = $validated['user_id'];
+    
+        // Find the user by netid
+        $user = User::where('netid', $netId)->first();
+        if (!$user) {
+            return redirect()->route('admin.home')->with('error', "User with netid $netId not found.");
+        }
+    
         $school = SchoolCollege::find($schoolId);
-        $school->users()->attach($userId);
-        // back to admin.home with message
-        return redirect()->route('admin.home')->with('message', 'Permission $permission added for user $userId to school $school->name');
+        if (!$school) {
+            return redirect()->route('admin.home')->with('error', "School with id $schoolId not found.");
+        }
+    
+        // Attach the permission
+        $school->usersWithPermission($permission)->attach($user->id);
+    
+        // Redirect with success message
+        return redirect()->route('admin.home')->with('message', "Permission $permission added for user {$user->id} ({$user->netid}) to school {$school->name}");
     }
 
     /**
