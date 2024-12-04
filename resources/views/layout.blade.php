@@ -47,10 +47,10 @@
                         @if ( !$is_admin )
                         <li class="nav-item dropdown">
                             <a href="#" @class(["nav-link dropdown-toggle", "active"=> Route::is('faculty*')])
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Faculty Tools</a>
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Available Tools</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ route('faculty_salary_tables.index') }}" class="dropdown-item">Salary
-                                        Tables</a></li>
+                                {{-- <li><a href="{{ route('faculty_salary_tables.index') }}" class="dropdown-item">Salary
+                                        Tables</a></li> --}}
                                 <li><a href="{{route('budgetHearingQuestionnaire.create')}}" class="dropdown-item">Budget
                                         Hearing Questionnaire</a></li>
                             </ul>
@@ -69,7 +69,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a href="#" @class(["nav-link dropdown-toggle", "active"=> Route::is('admin.faculty*')])
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Faculty Tools</a>
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools for Faculty</a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ route('admin.faculty_salary_tables.index') }}"
                                         class="dropdown-item">Salary Tables</a></li>
