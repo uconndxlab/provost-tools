@@ -43,11 +43,6 @@ class BudgetHearingQuestionnaireController extends Controller
             $school_selected = $schools->firstWhere('id', $request->school);
         }
 
-        if ( $schools->count() === 0 ) {
-            return redirect()->route('home')
-                ->with('error', 'You do not have permission to submit a Budget Hearing Questionnaire for any school.');
-        }
-
         if ( $school_selected && $school_selected->questionnaire()->exists() ) {
             return $this->edit($school_selected->questionnaire);
         }
