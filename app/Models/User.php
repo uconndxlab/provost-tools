@@ -54,4 +54,12 @@ class User extends Authenticatable
     public function facultySalaryTables() {
         return $this->hasMany(FacultySalaryTable::class, 'emplid', 'emplid');
     }
+
+    public function schoolColleges() {
+        return $this->belongsToMany(SchoolCollege::class, 'school_user_permissions')->withPivot('can_submit_budget_hearing_questionnaire');
+    }
+
+    public function schoolsWithPermission($perm) {
+        return $this->schoolColleges()->wherePivot($perm, true);
+    }
 }
