@@ -27,12 +27,17 @@ class BudgetHearingQuestionnaire extends Model
 
     public function school()
     {
-        return $this->belongsTo(SchoolCollege::class);
+        return $this->belongsTo(SchoolCollege::class, 'school_college_id');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function history()
+    {
+        return $this->hasMany(BudgetHearingQuestionnaireHistory::class);
     }
     
 }

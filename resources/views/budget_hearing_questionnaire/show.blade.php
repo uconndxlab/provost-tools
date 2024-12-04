@@ -8,9 +8,12 @@
                 <div class="row">
                     <div class="col-12">
                         <h1>Budget Hearing Questionnaire</h1>
-                        <h2>{{ $submission->school_college }}</h2>
+                        <p class="fs-4">{{ $submission->school->name }}</p>
+                        <p>Last Modified {{ $submission->updated_at->format('m/d/Y') }} by {{ $submission->history->last()->user->name }}</p>
                     </div>
                 </div>
+
+                <hr> 
                 <div class="row">
                     <div class="col-12 mt-3">
                         <h2>Deficit Mitigation</h2>

@@ -23,16 +23,35 @@ class BudgetHearingQuestionnaireController extends Controller
 
     public function adminIndex()
     {
-        $submissions = BudgetHearingQuestionnaire::paginate(20);
+        $submissions = BudgetHearingQuestionnaire::with(['history'])->paginate(20);
         return view('budget_hearing_questionnaire.admin_index', compact('submissions'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get();
+        $school_selected = null;
+
+        if ( $schools->count() === 1 ) {
+            $school_selected = $schools->first();
+        }
+
+        if ( $request->has('school') ) {
+            $school_selected = $schools->firstWhere('id', $request->school);
+        }
+
+        if ( $schools->count() === 0 ) {
+            return redirect()->route('home')
+                ->with('error', 'You do not have permission to submit a Budget Hearing Questionnaire for any school.');
+        }
+
+        if ( $school_selected && $school_selected->questionnaire()->exists() ) {
+            return $this->edit($school_selected->questionnaire);
+        }
+
         return view('budget_hearing_questionnaire.create', compact('schools'));
     }
 
@@ -51,7 +70,27 @@ class BudgetHearingQuestionnaireController extends Controller
             'foundation_engagement' => 'required',
         ]);
 
-        BudgetHearingQuestionnaire::create($request->all());
+        if ( BudgetHearingQuestionnaire::where('school_college_id', $request->school_college)->exists() ) {
+            return redirect()->route('home')
+                ->with('error', 'Budget Hearing Questionnaire already submitted for this school.');
+        }
+
+        $response_data = $request->only(
+            'deficit_mitigation',
+            'faculty_hiring',
+            'student_enrollment',
+            'student_retention',
+            'foundation_engagement',
+        );
+
+        $questionnaire = new BudgetHearingQuestionnaire($response_data);
+        $questionnaire->school()->associate($school);
+        $questionnaire->save();
+
+        $response_data['user_id'] = Auth::id();
+        $response_data['budget_hearing_questionnaire_id'] = $questionnaire->id;
+
+        $history = $questionnaire->history()->create($response_data);
 
         return redirect()->route('home')
             ->with('success', 'Budget Hearing Questionnaire created successfully.');
@@ -71,16 +110,41 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function edit(BudgetHearingQuestionnaire $budgetHearingQuestionnaire)
     {
+        $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get();
         $questionnaire = $budgetHearingQuestionnaire;
-        return view('budget_hearing_questionnaire.create', compact('questionnaire'));
+        return view('budget_hearing_questionnaire.create', compact('questionnaire', 'schools'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BudgetHearingQuestionnaire $budgetHearingQuestionnaire)
+    public function update(Request $request, BudgetHearingQuestionnaire $questionnaire)
     {
-        //
+        $request->validate([
+            'deficit_mitigation' => 'required',
+            'faculty_hiring' => 'required',
+            'student_enrollment' => 'required',
+            'student_retention' => 'required',
+            'foundation_engagement' => 'required',
+        ]);
+
+        $response_data = $request->only(
+            'deficit_mitigation',
+            'faculty_hiring',
+            'student_enrollment',
+            'student_retention',
+            'foundation_engagement',
+        );
+
+        $questionnaire->update($response_data);
+
+        $response_data['user_id'] = Auth::id();
+        $response_data['budget_hearing_questionnaire_id'] = $questionnaire->id;
+
+        $history = $questionnaire->history()->create($response_data);
+
+        return redirect()->route('home')
+            ->with('success', 'Budget Hearing Questionnaire updated successfully.');
     }
 
     /**

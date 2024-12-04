@@ -93,3 +93,13 @@ trix-editor {
     position: relative;
     z-index: 2; /* Ensure content is above the gradient overlay */
 }
+
+trix-toolbar .trix-button-group--file-tools {
+    display: none!important;
+}
+
+@media print {
+    .container {
+        max-width: 95%!important;
+    }
+}

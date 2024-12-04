@@ -38,6 +38,16 @@
         </div>
 
         <script>
+            // Disables file attachments
+            (function() {
+                addEventListener("trix-initialize", function(e) {
+                const file_tools = document.querySelector(".trix-button-group--file-tools");
+                file_tools.remove();
+                })
+                addEventListener("trix-file-accept", function(e) {
+                e.preventDefault();
+                })
+            })();
             // console log the trix editor content on change
             document.addEventListener('trix-change', function (event) {
                 // strip the html tags from the trix editor content and log it
@@ -53,13 +63,13 @@
 
                 // as it gets closer to the 2000 character limit, change the color of the character counter
 
-                if (strippedContent.length > 1800) {
+                if (strippedContent.length > 2600) {
                     characterCounter.style.color = 'red';
-                } else if (strippedContent.length > 1600) {
+                } else if (strippedContent.length > 2200) {
+                    characterCounter.style.color = 'orange';
+                } else if (strippedContent.length > 1800) {
                     characterCounter.style.color = 'orange';
                 } else if (strippedContent.length > 1400) {
-                    characterCounter.style.color = 'orange';
-                } else if (strippedContent.length > 1200) {
                     characterCounter.style.color = 'green';
                 } else {
                     characterCounter.style.color = 'black';
@@ -68,6 +78,11 @@
 
                 // update the corresponding .count with the length of the stripped content
 
+                // if strippedContent is > 3000 character limit, set it back to 3000
+                if (strippedContent.length > 3000) {
+                    event.target.editor.setSelectedRange([3000, strippedContent.length]);
+                    event.target.editor.deleteInDirection('forward');
+                }
 
             });
         </script>

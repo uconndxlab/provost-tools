@@ -9,9 +9,9 @@ class SchoolCollege extends Model
 {
     use HasFactory;
 
-    public function questionnaires()
+    public function questionnaire()
     {
-        return $this->hasMany(BudgetHearingQuestionnaire::class);
+        return $this->hasOne(BudgetHearingQuestionnaire::class);
     }
 
     public function users() {
