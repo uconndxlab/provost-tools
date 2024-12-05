@@ -1,23 +1,35 @@
-<form action="{{ isset($questionnaire) ? route('budgetHearingQuestionnaire.update', ['questionnaire' => $questionnaire->id]) : route('budgetHearingQuestionnaire.store') }}"
-    method="POST"
-    x-data="{
-        type: 'campus'
+<form
+    action="{{ isset($questionnaire) ? route('budgetHearingQuestionnaire.update', ['questionnaire' => $questionnaire->id]) : route('budgetHearingQuestionnaire.store') }}"
+    method="POST" x-data="{
+        type: (() => {
+            const preselectedSchool = document.querySelector('#school_college option[selected]');
+            return preselectedSchool ? preselectedSchool.dataset.type : 'campus';
+        })()
     }">
     @csrf
-    @if(isset($questionnaire))
+    @if (isset($questionnaire))
         @method('PUT')
     @endif
     <div class="col mt-4">
         <h2>School/College or Campus</h2>
         <div class="mb-3">
             <label for="school_college" class="form-label d-none">School/College/Campus</label>
-            <select name="school_college" id="school_college" class="form-select" x-on:change="type = $el.options[$el.selectedIndex].dataset.type">
-                @if ( $schools->count() > 1 )
+            <select 
+                name="school_college" 
+                id="school_college" 
+                class="form-select" 
+                x-on:change="type = $el.options[$el.selectedIndex].dataset.type">
+                @if ($schools->count() > 1)
                     <option value="" selected>Select a School/College</option>
                 @endif
 
                 @foreach ($schools as $school)
-                    <option value="{{ $school->id }}" @selected(isset($questionnaire) ? $questionnaire->school_college_id === $school->id : request()->query('school') == $school->id) data-type="{{ $school->type }}">{{ $school->name }}</option>
+                    <option 
+                        value="{{ $school->id }}" 
+                        @selected($schools->count() === 1 || (isset($questionnaire) ? $questionnaire->school_college_id === $school->id : request()->query('school') == $school->id)) 
+                        data-type="{{ $school->type }}">
+                        {{ $school->name }}
+                    </option>
                 @endforeach
             </select>
         </div>
@@ -35,14 +47,16 @@
             <textarea name="deficit_mitigation" class="form-control d-none" id="deficit_mitigation" rows="3">{{ isset($questionnaire) ? $questionnaire->deficit_mitigation : '' }}</textarea>
             <trix-editor input="deficit_mitigation"></trix-editor>
             <span class="text-muted" class="character_counter" data-element="deficit_mitigation">
-                <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->deficit_mitigation)) : 0 }}</span>/3000 (max # of characters)
+                <span
+                    class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->deficit_mitigation)) : 0 }}</span>/3000
+                (max # of characters)
             </span>
         </div>
     </div>
 
 
     <div class="col mt-4" x-show="type === 'school'">
-        
+
         <h2>Faculty Hiring</h2>
         <div class="mb-3">
             <p>Are you actively recruiting any endowed chairs/professorships or targeted hires with a
@@ -53,7 +67,9 @@
             <trix-editor input="faculty_hiring"></trix-editor>
 
             <span class="text-muted" class="character_counter" data-element="faculty_hiring">
-                <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->faculty_hiring)) : 0 }}</span>/3000 (max # of characters)
+                <span
+                    class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->faculty_hiring)) : 0 }}</span>/3000
+                (max # of characters)
             </span>
         </div>
     </div>
@@ -69,7 +85,9 @@
                 rows="3">{{ isset($questionnaire) ? $questionnaire->student_enrollment : '' }}</textarea>
             <trix-editor input="student_enrollment"></trix-editor>
             <span class="text-muted character_counter" data-element="student_enrollment">
-                <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->student_enrollment)) : 0 }}</span>/3000 (max # of characters)
+                <span
+                    class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->student_enrollment)) : 0 }}</span>/3000
+                (max # of characters)
             </span>
         </div>
     </div>
@@ -85,9 +103,11 @@
             <textarea id="student_retention" name="student_retention" class="form-control d-none" id="student_retention"
                 rows="3">{{ isset($questionnaire) ? $questionnaire->student_retention : '' }}</textarea>
             <trix-editor input="student_retention"></trix-editor>
-            
+
             <span class="text-muted character_counter" data-element="student_retention">
-                <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->student_retention)) : 0 }}</span>/3000 (max # of characters)
+                <span
+                    class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->student_retention)) : 0 }}</span>/3000
+                (max # of characters)
             </span>
 
 
@@ -105,7 +125,9 @@
             <trix-editor input="foundation_engagement"></trix-editor>
 
             <span class="text-muted character_counter" data-element="foundation_engagement">
-                <span class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->foundation_engagement)) : 0 }}</span>/3000 (max # of characters)
+                <span
+                    class="count">{{ isset($questionnaire) ? strlen(strip_tags($questionnaire->foundation_engagement)) : 0 }}</span>/3000
+                (max # of characters)
             </span>
 
         </div>
@@ -124,9 +146,9 @@
 </form>
 
 <script>
-document.getElementById('school_college').addEventListener('change', function() {
-    if (this.value !== '') {
-        window.location.href = window.location.pathname + '?school=' + this.value;
-    }
-});
+    document.getElementById('school_college').addEventListener('change', function() {
+        if (this.value !== '') {
+            window.location.href = window.location.pathname + '?school=' + this.value;
+        }
+    });
 </script>
