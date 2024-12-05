@@ -14,11 +14,7 @@
                             our finances move towards long-term financial sustainability, and our institutional priorities
                             and goals are appropriately resourced.</p>
 
-                        <p>In this year's budget hearings, we will center our discussion around how your unit will meet the
-                            budget guidance through a review of your FY25 - FY27 forecasts, along with the responses to the
-                            questions in the submission linked [here]. As part of our assessment of current resources we
-                            also ask you to submit a faculty teaching load report through this submission, detailing the
-                            expected and actual teaching load of each faculty member within your unit.</p>
+                        <p> To center our discussion around how your unit will meet the budget guidance,  through awe will review of your FY25 - FY27 forecasts, along with the responses to the below. Note that the answers should be brief and are exclusively meant as a tool to guide our discussion.</p>
                     </div>
                     @if (Auth::check() && Auth::user()->can_admin)
                         <a href="{{ route('admin.budgetHearingQuestionnaire.index') }}"

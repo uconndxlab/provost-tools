@@ -142,7 +142,7 @@
 
         @yield('content')
     </main>
-    <footer class="text-bg-dark d-block w-100 py-4">
+    <footer class="text-bg-dark d-block w-100 py-4 d-print-none">
         <div class="container">
             <div class="d-flex w-100 flex-column flex-md-row justify-content-center align-items-center">
                 <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover"

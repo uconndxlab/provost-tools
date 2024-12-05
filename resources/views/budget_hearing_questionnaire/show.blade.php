@@ -10,6 +10,8 @@
                         <h1>Budget Hearing Questionnaire</h1>
                         <p class="fs-4">{{ $submission->school->name }}</p>
                         <p>Last Modified {{ $submission->updated_at->format('m/d/Y') }} by {{ $submission->history->last()->user->name }}</p>
+                        {{-- print with js --}}
+                        <a href="javascript:window.print()" class="btn btn-primary d-print-none">PDF</a>
                     </div>
                 </div>
 
