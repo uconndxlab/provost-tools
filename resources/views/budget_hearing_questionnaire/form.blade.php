@@ -1,6 +1,6 @@
 <form
     action="{{ isset($questionnaire) ? route('budgetHearingQuestionnaire.update', ['questionnaire' => $questionnaire->id]) : route('budgetHearingQuestionnaire.store') }}"
-    method="POST">
+    method="POST" x-data>
     @csrf
     @if (isset($questionnaire))
         @method('PUT')
