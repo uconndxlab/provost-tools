@@ -24,7 +24,7 @@
                 </div>
 
                 @if ( $schools->isEmpty() )
-                <div class="alert alert-warning">You do not currently have access to submit this form.  Please contact CHANGEME if you believe this is incorrect.</div>
+                <div class="alert alert-warning">You do not currently have access to submit this form.  Please contact i3@uconn.edu if you believe this is incorrect.</div>
                 @else
 
                     @include('budget_hearing_questionnaire.form')
