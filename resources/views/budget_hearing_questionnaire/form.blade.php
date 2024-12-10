@@ -1,11 +1,6 @@
 <form
     action="{{ isset($questionnaire) ? route('budgetHearingQuestionnaire.update', ['questionnaire' => $questionnaire->id]) : route('budgetHearingQuestionnaire.store') }}"
-    method="POST" x-data="{
-        type: (() => {
-            const preselectedSchool = document.querySelector('#school_college option[selected]');
-            return preselectedSchool ? preselectedSchool.dataset.type : 'campus';
-        })()
-    }">
+    method="POST">
     @csrf
     @if (isset($questionnaire))
         @method('PUT')
@@ -17,8 +12,8 @@
             <select 
                 name="school_college" 
                 id="school_college" 
-                class="form-select" 
-                x-on:change="type = $el.options[$el.selectedIndex].dataset.type">
+                class="form-select"
+                x-ref="school_college">
                 @if ($schools->count() > 1)
                     <option value="" selected>Select a School/College</option>
                 @endif
@@ -55,7 +50,7 @@
     </div>
 
 
-    <div class="col mt-4" x-show="type === 'school'">
+    <div class="col mt-4" x-show="$refs.school_college.options[$refs.school_college.selectedIndex].dataset.type === 'school'">
 
         <h2>Faculty Hiring</h2>
         <div class="mb-3">
