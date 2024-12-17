@@ -33,6 +33,12 @@ class BudgetHearingQuestionnaireController extends Controller
     public function create(Request $request)
     {
         $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get();
+
+        // if it's and admin, show all schools
+        if ( Auth::user()->can_admin ) {
+            $schools = SchoolCollege::all();
+        }
+
         $school_selected = null;
 
         if ( $schools->count() === 1 ) {
@@ -58,11 +64,6 @@ class BudgetHearingQuestionnaireController extends Controller
         $school = SchoolCollege::find($request->school_college);
         $request->validate([
             'school_college' => 'required|exists:school_colleges,id',
-            'deficit_mitigation' => 'required',
-            'faculty_hiring' => Rule::requiredIf($school && $school->type === 'school'),
-            'student_enrollment' => 'required',
-            'student_retention' => 'required',
-            'foundation_engagement' => 'required',
         ]);
 
         if ( BudgetHearingQuestionnaire::where('school_college_id', $request->school_college)->exists() ) {

@@ -9,17 +9,19 @@
                     <div>
                         <h1>Budget Hearing Questionnaire</h1>
                         {{-- current user var dump --}}
-                        <p>Supporting our 10-year strategic plan requires a reallocation of institutional resources. The
-                            previously communicated permanent 2-ledger budget reductions for the coming years will ensure
-                            our finances move towards long-term financial sustainability, and our institutional priorities
-                            and goals are appropriately resourced.</p>
+                        <div class="alert alert-info">
+                            <p>Supporting our 10-year strategic plan requires a reallocation of institutional resources. The
+                                previously communicated permanent 2-ledger budget reductions for the coming years will ensure
+                                our finances move towards long-term financial sustainability, and our institutional priorities
+                                and goals are appropriately resourced.</p>
 
-                        <p> To center our discussion around how your unit will meet the budget guidance,  through awe will review of your FY25 - FY27 forecasts, along with the responses to the below. Note that the answers should be brief and are exclusively meant as a tool to guide our discussion.</p>
+                            <p>To center our discussion around how your unit will meet the budget guidance, we will review your FY25 - FY27 forecasts, along with the responses to the below. Note that the answers should be brief and are exclusively meant as a tool to guide our discussion.</p>
+                        </div>
                     </div>
-                    @if (Auth::check() && Auth::user()->can_admin)
+                    {{-- @if (Auth::check() && Auth::user()->can_admin)
                         <a href="{{ route('admin.budgetHearingQuestionnaire.index') }}"
                             class="btn btn-danger ms-auto btn-sm">Review</a>
-                    @endif
+                    @endif --}}
 
                 </div>
 
