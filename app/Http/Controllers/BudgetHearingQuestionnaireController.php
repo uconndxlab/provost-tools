@@ -124,13 +124,7 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function update(Request $request, BudgetHearingQuestionnaire $questionnaire)
     {
-        $request->validate([
-            'deficit_mitigation' => 'required',
-            'faculty_hiring' => 'required',
-            'student_enrollment' => 'required',
-            'student_retention' => 'required',
-            'foundation_engagement' => 'required',
-        ]);
+
 
         $response_data = $request->only(
             'deficit_mitigation',
@@ -138,6 +132,9 @@ class BudgetHearingQuestionnaireController extends Controller
             'student_enrollment',
             'student_retention',
             'foundation_engagement',
+            'library_research_activity',
+            'library_student_enrollment',
+
         );
 
         $questionnaire->update($response_data);
