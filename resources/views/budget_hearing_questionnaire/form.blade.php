@@ -12,9 +12,9 @@
         <div class="mb-3">
             <label for="school_college" class="form-label d-none">School/College/Campus</label>
             <select name="school_college" id="school_college" class="form-select" x-ref="school_college">
-                @if ($schools->count() > 1)
+
                 <option value="" selected>Select a School/College</option>
-                @endif
+
 
                 @foreach ($schools as $school)
                 <option value="{{ $school->id }}" @selected($schools->count() === 1 || (isset($questionnaire) ?
@@ -77,6 +77,8 @@
     ];
     @endphp
 
+    @if (request()->query('school') && $schools->find(request()->query('school')))
+
     @foreach ($sections as $field => $section)
     @php
         $school = request()->query('school') ? $schools->find(request()->query('school')) : $schools->first();
@@ -115,6 +117,8 @@
             </button>
         </div>
     </div>
+
+    @endif
 </form>
 
 
