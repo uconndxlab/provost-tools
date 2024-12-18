@@ -32,11 +32,11 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function create(Request $request)
     {
-        $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get();
+        $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get()->sortBy('name');
 
         // if it's and admin, show all schools
         if ( Auth::user()->can_admin ) {
-            $schools = SchoolCollege::all();
+            $schools = SchoolCollege::all()->sortBy('name');
         }
 
         $school_selected = null;
@@ -77,6 +77,8 @@ class BudgetHearingQuestionnaireController extends Controller
             'student_enrollment',
             'student_retention',
             'foundation_engagement',
+            'library_research_activity',
+            'library_student_enrollment',
         );
 
         $questionnaire = new BudgetHearingQuestionnaire($response_data);
@@ -106,7 +108,13 @@ class BudgetHearingQuestionnaireController extends Controller
      */
     public function edit(BudgetHearingQuestionnaire $budgetHearingQuestionnaire)
     {
-        $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get();
+        $schools = Auth::user()->schoolsWithPermission('can_submit_budget_hearing_questionnaire')->get()->sortBy('name');
+
+        // if it's and admin, show all schools
+        if ( Auth::user()->can_admin ) {
+            $schools = SchoolCollege::all()->sortBy('name');
+        }
+
         $questionnaire = $budgetHearingQuestionnaire;
         return view('budget_hearing_questionnaire.create', compact('questionnaire', 'schools'));
     }

@@ -24,6 +24,8 @@ return new class extends Migration
             $table->text('student_enrollment')->nullable();
             $table->text('student_retention')->nullable();
             $table->text('foundation_engagement')->nullable();
+            $table->text('library_research_activity')->nullable();
+            $table->text('library_student_enrollment')->nullable();
             $table->foreignId('user_id')->constrained()->nullOnDelete();
             $table->timestamps();
         });

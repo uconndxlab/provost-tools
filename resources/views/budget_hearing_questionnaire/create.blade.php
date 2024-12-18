@@ -7,15 +7,11 @@
                 <div class="d-flex align-items-start">
 
                     <div>
-                        <h1>Budget Hearing Questionnaire</h1>
+
                         {{-- current user var dump --}}
                         <div class="alert alert-info">
-                            <p>Supporting our 10-year strategic plan requires a reallocation of institutional resources. The
-                                previously communicated permanent 2-ledger budget reductions for the coming years will ensure
-                                our finances move towards long-term financial sustainability, and our institutional priorities
-                                and goals are appropriately resourced.</p>
-
-                            <p>To center our discussion around how your unit will meet the budget guidance, we will review your FY25 - FY27 forecasts, along with the responses to the below. Note that the answers should be brief and are exclusively meant as a tool to guide our discussion.</p>
+                            <h4 class="alert-heading">Welcome to the Budget Hearing Questionnaire</h4>
+                            <p>To center our discussion around how your unit will meet the previously communicated budget guidance, we will focus on reviewing your responses to the questions below. Note that answers should be brief and are exclusively meant as a tool to guide our discussion (each text box has a 3000-character limit).</p>
                         </div>
                     </div>
                     {{-- @if (Auth::check() && Auth::user()->can_admin)

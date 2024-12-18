@@ -22,7 +22,9 @@ class BudgetHearingQuestionnaire extends Model
         'student_enrollment',
         'student_retention',
         'foundation_engagement',
-        'school_college'
+        'school_college',
+        'library_research_activity',
+        'library_student_enrollment',
     ];
 
     public function school()

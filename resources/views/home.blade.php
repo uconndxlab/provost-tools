@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <p>In this year’s budget hearings, we will center our discussion around how your unit will meet
                                 the budget guidance through a review of your FY25 – FY27 forecasts, along with the responses
-                                to the questions in the submission linked.</p>
+                                to the questions contained in your submission.</p>
                         </div>
                         <div class="card-footer">
                             <a href="{{ route('budgetHearingQuestionnaire.create') }}" class="btn btn-primary">
@@ -41,12 +41,12 @@
                     <div class="card" style="opacity: 0.5;">
                         <div class="card-header bg-primary text-white">
                             <h3>Faculty Salary Tables</h3>
+                            <span class="badge bg-danger">Available April 1- Jun 1</span>
                         </div>
                         <div class="card-body">
 
                             <p>As stated in the FY25 Provost Fund Guidance, faculty within the AAUP may request a salary adjustment for compression/inversion or special achievement by emailing their department head 
-                                (copy dean or designee) between <strong>April 1 and June 1</strong>. This request should include any relevant supporting 
-                                documentation (i.e. evidence of compression/inversion or major prize/award). 
+                                (copy dean or designee) between <strong>April 1 and June 1</strong>.
                                 AAUP faculty can access this information using the link below.</p>
 
                         </div>

@@ -66,22 +66,22 @@ class SchoolCollegeSeeder extends Seeder
                 'slug' => 'school-of-social-work',
             ],
             [
-                'name' => 'Avery Point',
+                'name' => 'Avery Point Campus',
                 'slug' => 'avery-point',
                 'type' => 'campus',
             ],
             [
-                'name' => 'Hartford',
+                'name' => 'Hartford Campus',
                 'slug' => 'hartford',
                 'type' => 'campus',
             ],
             [
-                'name' => 'Stamford',
+                'name' => 'Stamford Campus',
                 'slug' => 'stamford',
                 'type' => 'campus',
             ],
             [
-                'name' => 'Waterbury',
+                'name' => 'Waterbury Campus',
                 'slug' => 'waterbury',
                 'type' => 'campus',
             ],
@@ -90,6 +90,12 @@ class SchoolCollegeSeeder extends Seeder
                 'slug' => 'uconn-health',
                 'type' => 'campus',
             ],
+
+            [
+                'name' => 'Libraries',
+                'slug' => 'libraries',
+                'type' => 'library',
+            ]
         ];
     
         foreach ($schools as $school) {
