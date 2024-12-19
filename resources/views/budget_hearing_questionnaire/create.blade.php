@@ -10,8 +10,10 @@
 
                         {{-- current user var dump --}}
                         <div class="alert alert-info">
-                            <h4 class="alert-heading">Welcome to the Budget Hearing Questionnaire</h4>
-                            <p>To center our discussion around how your unit will meet the previously communicated budget guidance, we will focus on reviewing your responses to the questions below. Note that answers should be brief and are exclusively meant as a tool to guide our discussion (each text box has a 3000-character limit).</p>
+                            <h4 class="alert-heading">Annual Budget Discussion – Unit Submission</h4>
+                            <p>To center our discussion around how your unit will meet the previously communicated budget guidance, 
+                                we will focus on reviewing your responses to the questions below. Note that answers should be brief 
+                                and are exclusively meant as a tool to guide our discussion (each text box has a 3000-character limit).</p>
                         </div>
                     </div>
                     {{-- @if (Auth::check() && Auth::user()->can_admin)

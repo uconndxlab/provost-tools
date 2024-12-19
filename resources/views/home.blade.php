@@ -6,9 +6,9 @@
             <div class="container">
                 <h1>Welcome to POET</h1>
                 <p class="lead mt-3">
-                    Discover the <strong>Provost's Operational Efficiency Toolkit</strong>—a suite of tools designed to
+                    Welcome to the <strong>Provost's Operational Efficiency Toolkit</strong>—a suite of tools designed to
                     streamline operations, foster collaboration, and empower decision-making for the Provost’s
-                    Office and faculty.
+                    Office and other academic administrators.
                 </p>
                 <a href="#tools" class="btn btn-lg btn-light mt-4 shadow">
                     Explore the Tools <i class="fas fa-arrow-right ms-2"></i>
@@ -26,9 +26,7 @@
                             <h3>Budget Hearing Questionnaire</h3>
                         </div>
                         <div class="card-body">
-                            <p>In this year’s budget hearings, we will center our discussion around how your unit will meet
-                                the budget guidance through a review of your FY25 – FY27 forecasts, along with the responses
-                                to the questions contained in your submission.</p>
+                            <p>Streamlined submission tool that creates an outline for annual budget hearing meetings. Discussions will center around how units will meet the budget guidance, while striving towards strategic plan goals.</p>
                         </div>
                         <div class="card-footer">
                             <a href="{{ route('budgetHearingQuestionnaire.create') }}" class="btn btn-primary">
@@ -45,9 +43,7 @@
                         </div>
                         <div class="card-body">
 
-                            <p>As stated in the FY25 Provost Fund Guidance, faculty within the AAUP may request a salary adjustment for compression/inversion or special achievement by emailing their department head 
-                                (copy dean or designee) between <strong>April 1 and June 1</strong>.
-                                AAUP faculty can access this information using the link below.</p>
+                            <p>Salary data for faculty within the AAUP, in accordance with the annual Provost Fund Guidance.</p>
 
                         </div>
                         <div class="card-footer">

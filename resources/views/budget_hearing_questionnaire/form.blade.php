@@ -34,26 +34,22 @@
     'deficit_mitigation' => [
     'school_types' => ['school', 'campus', 'library'],
     'title' => 'Deficit Mitigation',
-    'description' => 'Please explain how your unit will meet the FY25 – FY29 budget hearing guidance shared by
-    the Provost and CFO, focusing on FY26 – FY27, including reducing positions, decreasing programming, or eliminating
-    services.'
+    'description' => 'Please explain how your unit will meet the FY25 – FY29 budget hearing guidance shared by the Provost and CFO, focusing on FY26 – FY27, including reducing positions, decreasing programming, or eliminating services.  Additionally, include any plans for the one-time use of operating or Foundation fund balances to bridge the gap until permanent reductions are achieved.'
     ],
     'faculty_hiring' => [
     'school_types' => ['school'],
-    'title' => 'Faculty Hiring',
-    'description' => 'Are you actively recruiting any endowed chairs/professorships or targeted hires with a robust
-    research portfolio?'
+    'title' => 'Research Goals and Targeted Faculty Hiring',
+    'description' => 'Are you actively recruiting any endowed chairs/professorships or targeted hires with a robust research portfolio? If not, where might you consider doing so to build on existing or emerging strengths in your unit?'
     ],
     'student_enrollment' => [
-    'school_types' => ['school'],
-    'title' => 'Student Enrollment',
-    'description' => 'What programs have the demand to increase in net new enrollment and what steps are being taken?'
+    'school_types' => ['school','campus'],
+    'title' => 'Instructional Needs and Student Enrollment',
+    'description' => 'What academic programs have the demand to increase in net new enrollment based on your discussions with Student Life & Enrollment? What additional resources would be needed to support the increased enrollment and instructional needs?'
     ],
     'student_retention' => [
     'school_types' => ['school', 'campus'],
-    'title' => 'Student Retention, Graduation & Outcomes',
-    'description' => 'What is your unit doing to improve student retention and graduation rates, and how do you track
-    post-graduation outcomes?'
+    'title' => 'Student Retention, Graduation & Post-Graduation Outcomes',
+    'description' => 'We are fundamentally here to serve our students, ensuring that they receive value in their education to achieve future success. What is your unit doing to improve student retention and graduation rates, and how do you track post-graduation outcomes?'
     ],
     'foundation_engagement' => [
     'school_types' => ['school', 'campus'],
