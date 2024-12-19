@@ -92,8 +92,8 @@ class SchoolCollegeSeeder extends Seeder
             ],
 
             [
-                'name' => 'Libraries',
-                'slug' => 'libraries',
+                'name' => 'Library',
+                'slug' => 'library',
                 'type' => 'library',
             ]
         ];
