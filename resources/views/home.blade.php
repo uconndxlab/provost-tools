@@ -23,7 +23,7 @@
                 <div class="col-md-6 mb-4">
                     <div class="card">
                         <div class="card-header bg-primary text-white">
-                            <h3>Budget Hearing Questionnaire</h3>
+                            <h3>Annual Budget Discussion – Unit Submission</h3>
                         </div>
                         <div class="card-body">
                             <p>Streamlined submission tool that creates an outline for annual budget hearing meetings. Discussions will center around how units will meet the budget guidance, while striving towards strategic plan goals.</p>
