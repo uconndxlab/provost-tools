@@ -52,9 +52,9 @@
     'description' => 'We are fundamentally here to serve our students, ensuring that they receive value in their education to achieve future success. What is your unit doing to improve student retention and graduation rates, and how do you track post-graduation outcomes?'
     ],
     'foundation_engagement' => [
-    'school_types' => ['school', 'campus'],
+    'school_types' => ['school'],
     'title' => 'Philanthropy',
-    'description' => 'What philanthropic contributions of $100,000 or more are currently in the pipeline?'
+    'description' => 'To align with these budget plans and strategic investments in research, enrollment growth, and student success initiatives, what major gifts of $100,000 or more are currently in the pipeline'
     ],
 
     'library_student_enrollment' => [
