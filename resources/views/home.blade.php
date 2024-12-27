@@ -5,13 +5,23 @@
         <div class="hero text-center text-white py-5">
             <div class="container">
                 <h1>Welcome to POET</h1>
-                <p class="lead mt-3">
-                    Welcome to the <strong>Provost's Operational Efficiency Toolkit</strong>—a suite of tools designed to
-                    streamline operations, foster collaboration, and empower decision-making for the Provost’s
-                    Office and other academic administrators.
-                </p>
+                <div class="poet-line-container">
+                    <div class="poet-line">
+                        <div class="poet-dot"></div>
+                        <span>Streamline Operations</span>
+                    </div>
+                    <div class="poet-line">
+                        <div class="poet-dot"></div>
+                        <span>Foster Collaboration</span>
+                    </div>
+                    <div class="poet-line">
+                        <div class="poet-dot"></div>
+                        <span>Empower Decision-making</span>
+                    </div>
+                </div>
+                
                 <a href="#tools" class="btn btn-lg btn-light mt-4 shadow">
-                    Explore the Tools <i class="fas fa-arrow-right ms-2"></i>
+                    See all Tools <i class="fas fa-arrow-down ms-2"></i>
                 </a>
             </div>
         </div>

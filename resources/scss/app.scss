@@ -3,12 +3,14 @@
  */
 $uconn-blue: #000e2f;
 $uconn-red: #b50106;
-$provost-blue: #03357a;
-$provost-lightblue: #b5d6ef;
-$provost-grey: #272727;
+$provost-blue: #03357A;
+$provost-lightblue: #C0DBFF;
+$provost-grey: #F0F1F5;
+
 $primary: $provost-blue;
 $danger: $uconn-red;
 $info: $provost-lightblue;
+
 $secondary: #ccc;
 $dark: $provost-grey;
 
@@ -27,6 +29,14 @@ main {
     min-height: 80vh;
 }
 
+.link-dark {
+    color: #000!important;
+}
+
+.nav-link {
+    color: #000!important;
+}
+
 .header-level-two {
     font-family: "proxima-nova", sans-serif;
     font-size: 13px;
@@ -38,6 +48,10 @@ main {
 .header-level-one {
     font-family: "proxima-nova", sans-serif;
     font-size: 30px;
+}
+
+.bg-provost-grey {
+    background-color: $provost-grey;
 }
 
 
@@ -67,8 +81,8 @@ trix-editor {
 
 .hero {
     position: relative;
-    background: $provost-blue;
-    color: white;
+    background: $provost-grey;
+    color: $provost-blue;
     overflow: hidden;
 }
 
@@ -106,4 +120,48 @@ trix-toolbar .trix-button-group--file-tools {
     .no-print {
         display: none;
     }
+}
+
+.poet-line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px; /* Space between the sections */
+    position: relative;
+    margin-top: 20px;
+}
+
+.poet-line-container::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #000;
+    z-index: 0;
+}
+
+.poet-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1; /* To ensure it sits above the line */
+    text-align: center;
+}
+
+.poet-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 50%;
+    margin-bottom: 8px; /* Spacing between dot and text */
+}
+
+.poet-line span {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+    white-space: nowrap;
 }

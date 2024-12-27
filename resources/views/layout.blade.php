@@ -23,87 +23,97 @@
         <x-uconn-banner />
         <header>
             @php $is_admin = Route::is('admin*'); @endphp
-            <div @class(["text-bg-primary py-4", "border-bottom border-danger border-5"=> $is_admin])>
-                <div class="container">
-                    <p class="header-level-two"><a href="https://provost.uconn.edu/"
-                            class="link-underline-opacity-0 link-underline-opacity-100-hover link-light link-offset-2">Office
-                            of the Provost</a></p>
-                    <h1 class="header-level-one"><a href="/"
-                            class="link-underline-opacity-0 link-underline-opacity-100-hover link-light link-offset-1">Provost's Operational Efficiency Toolkit</a></h1>
-                </div>
-            </div>
-            <nav @class(["navbar navbar-expand-lg py-3", "bg-primary"=> !$is_admin,
-                "bg-primary-subtle" => $is_admin
-                ]) @if(!$is_admin) data-bs-theme="dark" @endif>
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#provostToolsMainNav" aria-controls="provostToolsMainNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="provostToolsMainNav">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-    
-                            @if ( !$is_admin )
-                            <li class="nav-item dropdown">
-                                <a href="#" @class(["nav-link dropdown-toggle", "active"=> Route::is('faculty*')])
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">Available Tools</a>
-                                <ul class="dropdown-menu">
-                                    {{-- <li><a href="{{ route('faculty_salary_tables.index') }}" class="dropdown-item">Salary
-                                            Tables</a></li> --}}
-                                    <li><a href="{{route('budgetHearingQuestionnaire.create')}}" class="dropdown-item">Budget
-                                            Hearing Questionnaire</a></li>
-                                </ul>
-                            </li>
-                            {{-- <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle disabled" role="button"
-                                    aria-expanded="false">University Tools</a>
-                            </li> --}}
-                            @else
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">Return to Site</a>
-                            </li>
-                            <li class="nav-item">
-                                <a @class(['nav-link', 'active'=> Route::is('admin.home') ]) href="{{ route('admin.home')
-                                    }}">Admin</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" @class(["nav-link dropdown-toggle", "active"=> Route::is('admin.faculty*')])
-                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">Tools for Faculty</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ route('admin.faculty_salary_tables.index') }}"
-                                            class="dropdown-item">Salary Tables</a></li>
-                                    <li><a href="{{ route('admin.budgetHearingQuestionnaire.index') }}"
-                                            class="dropdown-item">Budget Hearing Questionnaire</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a @class(['nav-link', 'active'=> Route::is('admin.users.index') ]) href="{{
-                                    route('admin.users.index') }}">Users</a>
-                            </li>
-                            @endif
-                        </ul>
+            <div @class(["bg-provost-grey py-4 text-black", "border-bottom border-danger border-5"=> $is_admin])>
+                <div class="container d-flex align-items-center justify-content-between">
+                    <div>
+                        <p class="header-level-two">
+                            <a href="https://provost.uconn.edu/" 
+                                class="link-underline-opacity-0 link-underline-opacity-100-hover link-dark link-offset-2">
+                                Office of the Provost
+                            </a>
+                        </p>
+                        <h1 class="header-level-one">
+                            <a href="/" 
+                                class="link-underline-opacity-0 link-underline-opacity-100-hover link-dark link-offset-1">
+                                Provost's Operational Efficiency Toolkit
+                            </a>
+                        </h1>
                     </div>
-                    <div class="navbar-nav">
-                        @if ( Auth::check() )
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">{{ Auth::user()->name }}</a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                @if ( Auth::user()->can_admin )
-                                <li><a href="{{ route('admin.home') }}" class="dropdown-item">Admin</a></li>
+                    <!-- Navigation Menu -->
+                    <nav class="navbar navbar-expand-lg">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#provostToolsMainNav" aria-controls="provostToolsMainNav" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="provostToolsMainNav">
+                            <ul class="navbar-nav ms-auto">
+                                @if ( !$is_admin )
+                                <li class="nav-item dropdown">
+                                    <a href="#" @class(["nav-link dropdown-toggle", "active"=> Route::is('faculty*')])
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Available Tools
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{route('budgetHearingQuestionnaire.create')}}" class="dropdown-item">
+                                                Budget Hearing Questionnaire
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    {{-- login --}}
+                                    @if (Auth::check())
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-link nav-link">Logout</button>
+                                    </form>
+                                    @else
+                                    <a href="{{ route('login') }}" class="nav-link">Login</a>
+                                    @endif
+                                </li>
+                                @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">Return to Site</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a @class(['nav-link', 'active'=> Route::is('admin.home') ]) href="{{ route('admin.home') }}">
+                                        Admin
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" @class(["nav-link dropdown-toggle", "active"=> Route::is('admin.faculty*')])
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Tools for Faculty
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ route('admin.faculty_salary_tables.index') }}" class="dropdown-item">
+                                                Salary Tables
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('admin.budgetHearingQuestionnaire.index') }}" class="dropdown-item">
+                                                Budget Hearing Questionnaire
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a @class(['nav-link', 'active'=> Route::is('admin.users.index') ]) 
+                                        href="{{ route('admin.users.index') }}">Users
+                                    </a>
+                                </li>
                                 @endif
-                                <li><a href="{{ route('logout') }}" class="dropdown-item">Log Out</a></li>
                             </ul>
                         </div>
-                        @else
-                        <a href="{{ route('login') }}" class="nav-link">UConn Log In</a>
-                        @endif
-                    </div>
+                    </nav>
                 </div>
-            </nav>
+            </div>
         </header>
     </div>
+    
     
     <main>
         @if ( session('success') )
