@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'Provost Tools')</title>
+    <title>@yield('title') - Provost's Operational Efficiency Toolkit</title>
     <link rel="stylesheet" href="https://use.typekit.net/nyu4feu.css">
     @vite('resources/scss/app.scss')
     {{--
@@ -98,7 +98,7 @@
                                             'active' => Route::is('admin.faculty*'),
                                         ]) role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
-                                            Tools for Faculty
+                                            Tools to Admin
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li>

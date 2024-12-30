@@ -25,6 +25,12 @@ $table-cell-vertical-align: middle;
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.min.css";
 
+h2,h3,h4,h5,h6 {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 700;
+    color: $provost-blue;
+}
+
 main {
     min-height: 80vh;
     background-color: $provost-grey;
@@ -231,4 +237,18 @@ trix-toolbar .trix-button-group--file-tools {
 
 #tools .card:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.alert-info {
+
+    color: $provost-blue;
+    border: 1px solid $provost-blue;
+}
+
+/** print cards should not have border or shadow */
+@media print {
+    .card {
+        border: none;
+        box-shadow: none;
+    }
 }
