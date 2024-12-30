@@ -57,10 +57,11 @@
                                             {{ $submission->history->last()->user->name }}</p>
 
                                         {{-- if adming, edit link --}}
-                                        @if (Auth::check() && Auth::user()->can_admin)
+                                  
+                                        @can('can_create_budget_questionnaire', $submission->school)
                                             <a href="{{ route('budgetHearingQuestionnaire.create', 'school=' . $submission->school->id) }}"
-                                                class="btn btn-primary d-print-none">Edit</a>
-                                        @endif
+                                                class="btn btn-primary d-print-none">Edit Submission</a>
+                                        @endcan
                                         <!-- print with js -->
                                         <a href="javascript:window.print()" class="btn btn-primary d-print-none">Download
                                             PDF</a>
