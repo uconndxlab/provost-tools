@@ -10,6 +10,7 @@
                     <div class="card-header">
                         <h5>Responses</h5>
                         <h6>{{ $submission->school->name }}</h6>
+
                     </div>
                     <div class="card-body">
                         <nav class="nav flex-column">
@@ -36,7 +37,15 @@
                             @endif
                         </nav>
                     </div>
+                    <div class="card-footer">
+                        <a href="javascript:window.print()" class="btn btn-primary d-print-none">Download PDF</a>
+                        @can ('can_create_budget_questionnaire', $submission->school)
+                        <a href="{{ route('budgetHearingQuestionnaire.create', 'school=' . $submission->school->id) }}"
+                            class="btn btn-secondary d-print-none">Edit Submission</a>
+                        @endcan
+                    </div>
                 </div>
+
             </div>
 
             <!-- Main Content Area -->
@@ -58,15 +67,7 @@
 
                                         {{-- if adming, edit link --}}
                                   
-                                        @can('can_create_budget_questionnaire', $submission->school)
-                                            <a href="{{ route('budgetHearingQuestionnaire.create', 'school=' . $submission->school->id) }}"
-                                                class="btn btn-primary d-print-none">Edit Submission</a>
-                                        @endcan
-                                        <!-- print with js -->
-                                        <a href="javascript:window.print()" class="btn btn-primary d-print-none">Download
-                                            PDF</a>
                                     </div>
-
                                 </div>
 
                                 @if ($submission->deficit_mitigation)

@@ -168,14 +168,14 @@
             @yield('content')
         </div>
     </main>
-    <footer class="text-bg-dark d-block w-100 py-4 d-print-none">
+    <footer class="text-primary d-block w-100 py-4 d-print-none">
         <div class="container">
             <div class="d-flex w-100 flex-column flex-md-row justify-content-center align-items-center">
-                <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
+                <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
                     href="https://uconn.edu/">© {{ date('Y') }} University of Connecticut</a>
-                <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
+                <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
                     href="http://uconn.edu/disclaimers-privacy-copyright/">Disclaimers, Privacy &amp; Copyright</a>
-                <a class="p-4 link-light link-underline-opacity-0 link-underline-opacity-100-hover"
+                <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
                     href="https://accessibility.uconn.edu/">Accessibility</a>
             </div>
         </div>

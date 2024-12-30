@@ -32,15 +32,14 @@
             <div class="container">
 
                 <div id="tools" class="row mt-5">
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <i class="material-icons">content_paste</i>
                                 <h3>Annual Budget Discussion – Unit Submission</h3>
 
                                 <p>Streamlined submission tool that creates an outline for annual budget hearing meetings.
-                                    Discussions will center around how units will meet the budget guidance, while striving
-                                    towards strategic plan goals.</p>
+                                </p>
                             </div>
                             <div class="card-footer">
                                 <a href="{{ route('budgetHearingQuestionnaire.create') }}" class="tool-link">
@@ -49,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-md-4 mb-4">
                         <div class="card">
 
                             <div class="card-body">
@@ -65,6 +64,22 @@
                             </div>
                             <div class="card-footer">
                                 <small>Available April 1 - June 1</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- one for the academic space usage tool -- contains forecasting tools for academic space requirements --}}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="material-icons">apartment</i>
+                                <h3>Academic Space Usage Dashboard</h3>
+                                <p>Forecasting tools for teaching and research space requirements.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="tool-link">
+                                    Coming soon
+                                </a>
                             </div>
                         </div>
                     </div>
