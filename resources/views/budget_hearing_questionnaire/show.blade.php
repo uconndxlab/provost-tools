@@ -3,6 +3,7 @@
 
 @section('content')
     <div class="container-fluid">
+        @can ('can_create_budget_questionnaire', $submission->school)
         <div class="row">
             <!-- Sidebar (Subnav) -->
             <div class="col-12 col-md-3 d-print-none py-5">
@@ -138,5 +139,10 @@
                 </div>
             </div>
         </div>
+        @endcan
+        @cannot ('can_create_budget_questionnaire', $submission->school)
+        <div class="alert alert-warning">You do not currently have access to submit this form. 
+            Please contact i3@uconn.edu if you think this is incorrect.</div>
+        @endcannot
     </div>
 @endsection
