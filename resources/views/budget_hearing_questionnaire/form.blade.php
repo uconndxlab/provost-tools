@@ -87,8 +87,8 @@
         <textarea id="{{ $field }}" name="{{ $field }}" class="form-control d-none"
             rows="3">{{ isset($questionnaire) ? $questionnaire->$field : '' }}</textarea>
         <trix-editor input="{{ $field }}"></trix-editor>
-        <span class="text-muted character_counter">
-            <span class="count">
+        <span data-element="{{ $field }}" class="text-muted character_counter">
+            <span class="count" >
                 {{ isset($questionnaire) ? strlen(strip_tags($questionnaire->$field)) : 0 }}
             </span>/3000 (max # of characters)
         </span>

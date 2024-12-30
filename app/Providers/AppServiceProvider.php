@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('can_create_budget_questionnaire', function (User $user, SchoolCollege $schoolCollege) {
-            return $schoolCollege->usersWithPermission('can_submit_budget_hearing_questionnaire')->contains($user);
+            return $user->can_admin ||  $schoolCollege->usersWithPermission('can_submit_budget_hearing_questionnaire')->pluck('users.id')->contains($user->id);
         });
+        
     }
 }

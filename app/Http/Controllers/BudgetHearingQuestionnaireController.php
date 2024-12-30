@@ -90,8 +90,8 @@ class BudgetHearingQuestionnaireController extends Controller
 
         $history = $questionnaire->history()->create($response_data);
 
-        return redirect()->route('home')
-            ->with('success', 'Budget Hearing Questionnaire created successfully.');
+        return redirect()->route('budgetHearingQuestionnaire.show', $questionnaire)
+            ->with('success', 'Budget Hearing Questionnaire submitted successfully.');
     }
 
     /**
@@ -144,7 +144,7 @@ class BudgetHearingQuestionnaireController extends Controller
 
         $history = $questionnaire->history()->create($response_data);
 
-        return redirect()->route('home')
+        return redirect()->route('budgetHearingQuestionnaire.show', $questionnaire)
             ->with('success', 'Budget Hearing Questionnaire updated successfully.');
     }
 

@@ -9,7 +9,7 @@
                     <div>
 
                         {{-- current user var dump --}}
-                        <div class="alert alert-info">
+                        <div class="alert alert-info text-primary">
                             <h4 class="alert-heading">Annual Budget Discussion – Unit Submission</h4>
                             <p>To center our discussion around how your unit will meet the previously communicated budget guidance, 
                                 we will focus on reviewing your responses to the questions below. Note that answers should be brief 
@@ -53,9 +53,10 @@
                 
                 let characterCounter = document.querySelector(`[data-element="${target}"] .count`);
 
-                
+                console.log(characterCounter)
 
                 characterCounter.innerText = strippedContent.length;
+                
 
                 // as it gets closer to the 2000 character limit, change the color of the character counter
 

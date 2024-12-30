@@ -3,12 +3,14 @@
  */
 $uconn-blue: #000e2f;
 $uconn-red: #b50106;
-$provost-blue: #03357a;
-$provost-lightblue: #b5d6ef;
-$provost-grey: #272727;
+$provost-blue: #03357A;
+$provost-lightblue: #C0DBFF;
+$provost-grey: #F0F1F5;
+
 $primary: $provost-blue;
 $danger: $uconn-red;
 $info: $provost-lightblue;
+
 $secondary: #ccc;
 $dark: $provost-grey;
 
@@ -23,8 +25,29 @@ $table-cell-vertical-align: middle;
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.min.css";
 
+h2,h3,h4,h5,h6 {
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 700;
+    color: $provost-blue;
+}
+
 main {
     min-height: 80vh;
+    background-color: $provost-grey;
+}
+
+/* Main Section with a Subtle Sweeping Curve */
+  
+header {
+    background-color: #fff;
+}
+
+.link-dark {
+    color: #000 !important;
+}
+
+.nav-link {
+    color: #000 !important;
 }
 
 .header-level-two {
@@ -40,10 +63,21 @@ main {
     font-size: 30px;
 }
 
+.header-level-one a, .header-level-two a {
+    color: $uconn-blue;
+    text-decoration: none;
+}
+
+
+
+.bg-provost-grey {
+    background-color: $provost-grey;
+}
+
 
 tr:hover {
     .bg-hover-green {
-        --bs-table-bg-state: hwb(128 42% 0% / 0.171)!important;
+        --bs-table-bg-state: hwb(128 42% 0% / 0.171) !important;
     }
 }
 
@@ -54,56 +88,167 @@ table {
 trix-editor {
     font-family: "proxima-nova", sans-serif;
     font-size: 16px;
-    background:#ffffff;
-    min-height:200px;
+    background: #ffffff;
+    min-height: 200px;
 }
 
 .dangerHover {
     &:hover {
-        background-color: $red!important;
-        color: white!important;
+        background-color: $red !important;
+        color: white !important;
     }
 }
 
 .hero {
     position: relative;
-    background: $provost-blue;
-    color: white;
+    background: #fff;
+    color: $provost-blue;
     overflow: hidden;
 }
+
+abbr {
+    text-decoration-style: solid!important;
+    text-decoration-color: $provost-lightblue!important;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    background-color: #fff;
+    padding: 4rem 2rem;
+    color: #333;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -40px; // Adjust this to control the height of the curve
+        left: 0;
+        right: 0;
+        height: 80px; // Double the `top` value for symmetry
+        background-color: #fff;
+        border-bottom-left-radius: 100%;
+        border-bottom-right-radius: 100%;
+        z-index: 0; // Push it behind the `.content-wrap` background
+        z-index: 2;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+        margin: 0;
+        font-weight: 200;
+        color: #000;
+        font-style: italic;
+      }
+}
+
 
 .hero h1 {
     font-size: 3rem;
     margin: 0;
     padding: 2rem;
     font-weight: 200;
+    color: #000;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Ensure it’s below the content */
-}
-
-.hero .container {
+.content-wrap {
+    background-color: $provost-grey;
+    padding: 2rem;
     position: relative;
-    z-index: 2; /* Ensure content is above the gradient overlay */
-}
+  }
 
 trix-toolbar .trix-button-group--file-tools {
-    display: none!important;
+    display: none !important;
 }
 
 @media print {
     .container {
-        max-width: 95%!important;
+        max-width: 95% !important;
     }
 
     .no-print {
         display: none;
+    }
+}
+
+.poet-line-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    /* Space between the sections */
+    position: relative;
+    margin-top: 20px;
+}
+
+.card-body h3 {
+    font-family: 'Proxima Nova', sans-serif;
+    font-size:1.2rem;
+    font-weight: 700;
+    color:$provost-blue;
+}
+
+.card-body .material-icons {
+    font-size:32px;
+}
+
+.card {
+    border: 1px solid $provost-blue;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.card-footer button {
+    background-color: $provost-blue;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.material-icons {
+    color:$provost-blue;
+}
+
+.tool-link {
+    display: inline-block;
+    color: $provost-blue;
+    text-decoration: none;
+    font-weight: 400;
+    text-decoration: underline;
+    text-transform: uppercase;
+    text-decoration-thickness: 3px;
+    text-decoration-color: $provost-lightblue;
+    padding-left: 10px;
+    padding-right:10px;
+}
+
+.tool-link:hover {
+    background-color: $provost-lightblue;
+    color: $provost-blue;
+}
+
+.tool-link.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#tools .card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.alert-info {
+
+    color: $provost-blue;
+    border: 1px solid $provost-blue;
+}
+
+/** print cards should not have border or shadow */
+@media print {
+    .card {
+        border: none;
+        box-shadow: none;
     }
 }
