@@ -75,10 +75,7 @@
                                     <li class="nav-item">
                                         {{-- login --}}
                                         @if (Auth::check())
-                                            <form action="{{ route('logout') }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-link nav-link">Logout</button>
-                                            </form>
+                                           <a href="{{ route('logout') }}" class="nav-link">Logout</a>
                                         @else
                                             <a href="{{ route('login') }}" class="nav-link">Login</a>
                                         @endif

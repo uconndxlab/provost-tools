@@ -19,6 +19,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::middleware(['cas.auth'])->group(function() {
+    Route::get('tools', [HomeController::class, 'home'])->name('tools');
     Route::get('/faculty/salary', [FacultySalaryTablesController::class, 'index'])->name('faculty_salary_tables.index');
     Route::get('/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.create');
     Route::post('/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'store'])->name('budgetHearingQuestionnaire.store');
@@ -26,6 +27,8 @@ Route::middleware(['cas.auth'])->group(function() {
     Route::get('/budgetHearingQuestionnaire/regional', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.createForRegional');
     Route::get('/budgetHearingQuestionnaire/schoolCollege', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.createForCollege');
     Route::get('/budgetHearingQuestionnaire/{budgetHearingQuestionnaire}', [BudgetHearingQuestionnaireController::class, 'show'])->name('budgetHearingQuestionnaire.show');
+    
+    
     Route::middleware(['admin'])->group(function() {
         Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::get('/admin/users', [UserController::class, 'adminIndex'])->name('admin.users.index');

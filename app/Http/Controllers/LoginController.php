@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function login() {
-        return redirect()->route('faculty_salary_tables.index');
+        return redirect()->route('tools');
     }
 
     public function logout(Request $request) {
