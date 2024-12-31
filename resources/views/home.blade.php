@@ -27,8 +27,6 @@
         </div>
 
         <div class="content-wrap">
-
-
             <div class="container">
 
                 <div id="tools" class="row mt-5">

@@ -119,22 +119,8 @@ abbr {
     position: relative;
     text-align: center;
     background-color: #fff;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     color: #333;
-
-    &::after {
-        content: '';
-        position: absolute;
-        bottom: -40px; // Adjust this to control the height of the curve
-        left: 0;
-        right: 0;
-        height: 80px; // Double the `top` value for symmetry
-        background-color: #fff;
-        border-bottom-left-radius: 100%;
-        border-bottom-right-radius: 100%;
-        z-index: 0; // Push it behind the `.content-wrap` background
-        z-index: 2;
-      }
 
       h4 {
         font-size: 1.5rem;
@@ -142,7 +128,26 @@ abbr {
         font-weight: 200;
         color: #000;
         font-style: italic;
+        font-family: 'georgiapro', serif;
       }
+}
+
+.content-wrap {
+    padding-top:80px!important;
+
+    &::before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background-color: #ffff;
+        clip-path: ellipse(56% 94% at 50% 0);
+        z-index: 0;
+      }
+
 }
 
 
@@ -181,7 +186,8 @@ trix-toolbar .trix-button-group--file-tools {
     gap: 40px;
     /* Space between the sections */
     position: relative;
-    margin-top: 20px;
+    margin-top: 40px;
+    color:#000;
 }
 
 .card-body h3 {
