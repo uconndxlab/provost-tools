@@ -253,6 +253,33 @@ trix-toolbar .trix-button-group--file-tools {
     min-height: 280px;
 }
 
+// the tool cards should fly in from alternate sides on page load
+#tools div:nth-child(odd) {
+    animation: slide-in-left 0.25s ease-out;
+}
+
+#tools div:nth-child(even) {
+    animation: slide-in-right 0.25s ease-out;
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .alert-info {
 
     color: $provost-blue;
