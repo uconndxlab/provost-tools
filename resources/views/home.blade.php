@@ -11,15 +11,15 @@
                 <h4>The Provost's Operational Efficiency Toolkit</h4>
                 <div class="poet-line-container">
                     <div class="poet-line">
-                        <div class="poet-dot"></div>
+                        <div class="poet-dot">&#10003;</div>
                         <span>Streamline Operations</span>
                     </div>
                     <div class="poet-line">
-                        <div class="poet-dot"></div>
+                        <div class="poet-dot">&#10003;</div>
                         <span>Foster Collaboration</span>
                     </div>
                     <div class="poet-line">
-                        <div class="poet-dot"></div>
+                        <div class="poet-dot">&#10003;</div>
                         <span>Empower Decision-making</span>
                     </div>
                 </div>
@@ -30,7 +30,7 @@
             <div class="container">
 
                 <div id="tools" class="row mt-5">
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-3 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <i class="material-icons">content_paste</i>
@@ -46,13 +46,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-3 mb-4">
                         <div class="card">
 
                             <div class="card-body">
                                 <i class="material-icons">paid</i> <br>
 
-                                <span class="badge bg-info text-primary">Available April 1- Jun 1</span>
 
                                 <h3>Faculty Salary Tables</h3>
 
@@ -61,18 +60,35 @@
 
                             </div>
                             <div class="card-footer">
-                                <small>Available April 1 - June 1</small>
+                                <span class="badge bg-info text-primary">Available April 1- Jun 1</span>
+
                             </div>
                         </div>
                     </div>
 
                     {{-- one for the academic space usage tool -- contains forecasting tools for academic space requirements --}}
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-3 mb-4">
                         <div class="card">
                             <div class="card-body">
                                 <i class="material-icons">apartment</i>
                                 <h3>Academic Space Usage Dashboard</h3>
                                 <p>Forecasting tools for teaching and research space requirements.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="tool-link">
+                                    Coming soon
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- one for the strategic plan deicison-making tool, allows units to align their decisionmaking with institutional priorities --}}
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="material-icons">trending_up</i>
+                                <h3>Strategic Plan Decision-making Tool</h3>
+                                <p>Align your unit's decision-making with institutional priorities.</p>
                             </div>
                             <div class="card-footer">
                                 <a href="#" class="tool-link">

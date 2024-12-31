@@ -249,6 +249,10 @@ trix-toolbar .trix-button-group--file-tools {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
+#tools .card {
+    min-height: 280px;
+}
+
 .alert-info {
 
     color: $provost-blue;
