@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title', 'Budget Hearing Questionnaire Submission')
 @section('content')
     <div class="py-5">
         <div class="container">

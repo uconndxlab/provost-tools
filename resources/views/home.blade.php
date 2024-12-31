@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title', 'Home')
 @section('content')
     <div>
         <div class="hero text-center text-white py-5">
