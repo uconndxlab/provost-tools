@@ -97,6 +97,22 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- one for the Provost's Office financial committment tracker --}}
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <i class="material-icons">account_balance</i>
+                                <h3>Provost's Office Financial Commitment Tracker</h3>
+                                <p>Track financial commitments made by the Provost's Office.</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="tool-link">
+                                    Coming soon
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
