@@ -64,7 +64,7 @@
                             </div>
                             <div class="card-body">
                                 <i class="material-icons">apartment</i>
-                                <h3>Academic Space Usage Dashboard</h3>
+                                <h3>Academic Space Needs Dashboard</h3>
                                 <p>Forecasting tools for teaching and research space requirements.</p>
                             </div>
 
@@ -76,7 +76,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <span class="badge bg-ideation">In Ideation</span>
+                                <span class="badge bg-inprogress">In Development</span>
                             </div>
                             <div class="card-body">
                                 <i class="material-icons">trending_up</i>
@@ -91,7 +91,7 @@
                     <div class="col-md-3 mb-4">
                         <div class="card">
                             <div class="card-header">
-                                <span class="badge bg-ideation">In Ideation</span>
+                                <span class="badge bg-inprogress">In Development</span>
                             </div>
                             <div class="card-body">
                                 <i class="material-icons">account_balance</i>
@@ -109,7 +109,7 @@ a tool for modeling departmental operational needs, based on student plans of st
                     <div class="col-md-3 mb-4">
                         <div class="card">
                             <div class="card-header">
-                                <span class="badge bg-ideation">In Ideation</span>
+                                <span class="badge bg-inprogress">In Development</span>
                             </div>
                             <div class="card-body">
                                 <i class="material-icons">engineering</i>
