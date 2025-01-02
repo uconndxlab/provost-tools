@@ -180,6 +180,12 @@
                     href="http://uconn.edu/disclaimers-privacy-copyright/">Disclaimers, Privacy &amp; Copyright</a>
                 <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
                     href="https://accessibility.uconn.edu/">Accessibility</a>
+                <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover">
+                    {{-- asset i3blue.png --}}
+                    <img style="position: relative; top:-2px;" src="{{ asset('images/i3blue.png') }}" alt="i3 logo" width="20">
+                    Powered by <abbr title="Internal Insights & Innovation"><span class="i3-mark">i3</span></abbr>
+
+                </a>
             </div>
         </div>
     </footer>

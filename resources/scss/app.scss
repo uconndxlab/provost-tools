@@ -33,6 +33,14 @@ $table-cell-vertical-align: middle;
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.min.css";
 
+.i3-mark {
+    color: $provost-blue;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: $provost-lightblue;
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .bg-testing {
     background-color: $testing;
 }

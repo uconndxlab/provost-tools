@@ -16,7 +16,7 @@
             <div class="container">
 
                 <div id="tools" class="row mt-5">
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-success">Available Now</span>
@@ -36,7 +36,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-info text-primary">Available April 1- Jun 1</span>
@@ -57,7 +57,7 @@
                     </div>
 
                     {{-- one for the academic space usage tool -- contains forecasting tools for academic space requirements --}}
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-testing">In Testing</span>
@@ -72,7 +72,7 @@
                     </div>
 
                     {{-- one for the strategic plan deicison-making tool, allows units to align their decisionmaking with institutional priorities --}}
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
 
                         <div class="card">
                             <div class="card-header">
@@ -88,7 +88,7 @@
                     </div>
 
                     {{-- one for the Provost's Office financial committment tracker --}}
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-inprogress">In Development</span>
@@ -106,7 +106,7 @@
                     {{-- Department Simulation Tool
 a tool for modeling departmental operational needs, based on student plans of study and progress toward degree. --}}
 
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-inprogress">In Development</span>
@@ -121,7 +121,7 @@ a tool for modeling departmental operational needs, based on student plans of st
                     </div>
 
                     {{-- Crowdsourced IDeas Forum --}}
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-inprogress">In Development</span>
@@ -136,7 +136,7 @@ a tool for modeling departmental operational needs, based on student plans of st
                     </div>
 
                     {{-- one for the academic program review tool --}}
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-ideation">In Ideation</span>
@@ -151,7 +151,7 @@ a tool for modeling departmental operational needs, based on student plans of st
                     </div>
 
                     {{-- one for the faculty hiring tool --}}
-                    <div class="col-md-3 mb-4">
+                    <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
                                 <span class="badge bg-ideation">In Ideation</span>
