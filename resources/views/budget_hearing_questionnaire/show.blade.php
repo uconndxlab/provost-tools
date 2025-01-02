@@ -49,6 +49,50 @@
 
             </div>
 
+            @php
+            $sections = [
+            'deficit_mitigation' => [
+            'school_types' => ['school', 'campus', 'library'],
+            'title' => 'Deficit Mitigation',
+            'description' => 'Please explain how your unit will meet the FY25 – FY29 budget hearing guidance shared by the Provost and CFO, focusing on FY26 – FY27, including reducing vacancies/positions, decreasing programming, or eliminating services.  Additionally, include any plans for the one-time use of operating or Foundation fund balances to bridge the gap until permanent reductions are achieved.'
+            ],
+            'faculty_hiring' => [
+            'school_types' => ['school'],
+            'title' => 'Research Goals and Targeted Faculty Hiring',
+            'description' => 'Are you actively recruiting any endowed chairs/professorships or targeted hires with a robust research portfolio? If not, where might you consider doing so to build on existing or emerging strengths in your unit?'
+            ],
+            'student_enrollment' => [
+            'school_types' => ['school','campus'],
+            'title' => 'Instructional Needs and Student Enrollment',
+            'description' => 'What academic programs have the demand to increase in net new enrollment based on your discussions with Student Life & Enrollment? What additional resources would be needed to support the increased enrollment and instructional needs?'
+            ],
+            'student_retention' => [
+            'school_types' => ['school', 'campus'],
+            'title' => 'Student Retention, Graduation & Post-Graduation Outcomes',
+            'description' => 'We are fundamentally here to serve our students, ensuring that they receive value in their education to achieve future success. What is your unit doing to improve student retention and graduation rates, and how do you track post-graduation outcomes?'
+            ],
+            'foundation_engagement' => [
+            'school_types' => ['school'],
+            'title' => 'Philanthropy',
+            'description' => 'To align with these budget plans and strategic investments in research, enrollment growth, and student success initiatives, what major gifts of $100,000 or more are currently in the pipeline?'
+            ],
+        
+            'library_student_enrollment' => [
+            'school_types' => ['library'],
+            'title' => 'Student Enrollment',
+            'description' => 'Are there any additional resources that would be needed to support increased enrollment in the
+            student body?'
+            ],
+        
+            'library_research_activity' => [
+            'school_types' => ['library'],
+            'title' => 'Research Activity',
+            'description' => 'What resources do you need to ensure that the Library is able to support the University’s research
+            goals?'
+            ],
+            ];
+            @endphp
+
             <!-- Main Content Area -->
 
             <div class="col-12 col-md-9">
@@ -62,6 +106,9 @@
 
                                     <div class="card-body">
                                         <h2 class="card-title">Budget Hearing Questionnaire Submission</h2>
+                                        
+                                        
+                                        
                                         <p class="card-text fs-4">{{ $submission->school->name }}</p>
                                         <p class="card-text">Last Modified {{ $submission->updated_at->format('m/d/Y') }} by
                                             {{ $submission->history->last()->user->name }}</p>
@@ -75,6 +122,9 @@
                                     <div class="col-12 card mt-3" id="deficit_mitigation">
                                         <div class="card-body">
                                             <h2 class="card-title">Deficit Mitigation</h2>
+                                            {{-- question text --}}
+                                            {{$sections['deficit_mitigation']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->deficit_mitigation !!}</p>
                                         </div>
                                     </div>
@@ -84,6 +134,9 @@
                                     <div class="col-12 card mt-3" id="faculty_hiring">
                                         <div class="card-body">
                                             <h2 class="card-title">Faculty Hiring</h2>
+                                            {{-- question text --}}
+                                            {{$sections['faculty_hiring']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->faculty_hiring !!}</p>
                                         </div>
                                     </div>
@@ -93,6 +146,9 @@
                                     <div class="col-12 card mt-3" id="student_enrollment">
                                         <div class="card-body">
                                             <h2 class="card-title">Student Enrollment</h2>
+                                            {{-- question text --}}
+                                            {{$sections['student_enrollment']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->student_enrollment !!}</p>
                                         </div>
                                     </div>
@@ -102,6 +158,9 @@
                                     <div class="col-12 card mt-3" id="student_retention">
                                         <div class="card-body">
                                             <h2 class="card-title">Student Retention, Graduation & Outcomes</h2>
+                                            {{-- question text --}}
+                                            {{$sections['student_retention']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->student_retention !!}</p>
                                         </div>
                                     </div>
@@ -111,6 +170,9 @@
                                     <div class="col-12 card mt-3" id="foundation_engagement">
                                         <div class="card-body">
                                             <h2 class="card-title">Philanthropy</h2>
+                                            {{-- question text --}}
+                                            {{$sections['foundation_engagement']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->foundation_engagement !!}</p>
                                         </div>
                                     </div>
@@ -120,6 +182,9 @@
                                     <div class="col-12 card mt-3" id="library_student_enrollment">
                                         <div class="card-body">
                                             <h2 class="card-title">Library Student Enrollment</h2>
+                                            {{-- question text --}}
+                                            {{$sections['library_student_enrollment']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->library_student_enrollment !!}</p>
                                         </div>
                                     </div>
@@ -129,6 +194,9 @@
                                     <div class="col-12 card mt-3" id="library_research_activity">
                                         <div class="card-body">
                                             <h2 class="card-title">Library Research Activity</h2>
+                                            {{-- question text --}}
+                                            {{$sections['library_research_activity']['description']}}
+                                            {{-- answer --}}
                                             <p class="card-text">{!! $submission->library_research_activity !!}</p>
                                         </div>
                                     </div>
