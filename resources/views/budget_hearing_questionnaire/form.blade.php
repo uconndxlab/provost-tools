@@ -34,7 +34,7 @@
     'deficit_mitigation' => [
     'school_types' => ['school', 'campus', 'library'],
     'title' => 'Deficit Mitigation',
-    'description' => 'Please explain how your unit will meet the FY25 – FY29 budget hearing guidance shared by the Provost and CFO, focusing on FY26 – FY27, including reducing positions, decreasing programming, or eliminating services.  Additionally, include any plans for the one-time use of operating or Foundation fund balances to bridge the gap until permanent reductions are achieved.'
+    'description' => 'Please explain how your unit will meet the FY25 – FY29 budget hearing guidance shared by the Provost and CFO, focusing on FY26 – FY27, including reducing vacancies/positions, decreasing programming, or eliminating services.  Additionally, include any plans for the one-time use of operating or Foundation fund balances to bridge the gap until permanent reductions are achieved.'
     ],
     'faculty_hiring' => [
     'school_types' => ['school'],
@@ -54,7 +54,7 @@
     'foundation_engagement' => [
     'school_types' => ['school'],
     'title' => 'Philanthropy',
-    'description' => 'To align with these budget plans and strategic investments in research, enrollment growth, and student success initiatives, what major gifts of $100,000 or more are currently in the pipeline'
+    'description' => 'To align with these budget plans and strategic investments in research, enrollment growth, and student success initiatives, what major gifts of $100,000 or more are currently in the pipeline?'
     ],
 
     'library_student_enrollment' => [

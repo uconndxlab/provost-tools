@@ -109,6 +109,9 @@ class SchoolCollegeController extends Controller
      */
     public function destroy(SchoolCollege $schoolCollege)
     {
-        //
+        // delete the school and detach all users
+        $schoolCollege->users()->detach();
+        $schoolCollege->delete();
+        return redirect()->route('admin.home')->with('message', "School {$schoolCollege->name} deleted.");
     }
 }

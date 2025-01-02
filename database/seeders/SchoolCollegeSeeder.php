@@ -18,20 +18,12 @@ class SchoolCollegeSeeder extends Seeder
                 'slug' => 'school-of-business',
             ],
             [
-                'name' => 'School of Dental Medicine',
-                'slug' => 'school-of-dental-medicine',
-            ],
-            [
                 'name' => 'College of Engineering',
                 'slug' => 'college-of-engineering',
             ],
             [
                 'name' => 'School of Fine Arts',
                 'slug' => 'school-of-fine-arts',
-            ],
-            [
-                'name' => 'The Graduate School',
-                'slug' => 'the-graduate-school',
             ],
             [
                 'name' => 'School of Law',
@@ -41,10 +33,7 @@ class SchoolCollegeSeeder extends Seeder
                 'name' => 'College of Liberal Arts and Sciences',
                 'slug' => 'college-of-liberal-arts-sciences',
             ],
-            [
-                'name' => 'School of Medicine',
-                'slug' => 'school-of-medicine',
-            ],
+
             [
                 'name' => 'Neag School of Education',
                 'slug' => 'neag-school-of-education',
@@ -56,10 +45,6 @@ class SchoolCollegeSeeder extends Seeder
             [
                 'name' => 'School of Pharmacy',
                 'slug' => 'school-of-pharmacy',
-            ],
-            [
-                'name' => 'Ratcliffe Hicks School of Agriculture',
-                'slug' => 'ratcliffe-hicks-school-of-agriculture',
             ],
             [
                 'name' => 'School of Social Work',
@@ -83,11 +68,6 @@ class SchoolCollegeSeeder extends Seeder
             [
                 'name' => 'Waterbury Campus',
                 'slug' => 'waterbury',
-                'type' => 'campus',
-            ],
-            [
-                'name' => 'UConn Health',
-                'slug' => 'uconn-health',
                 'type' => 'campus',
             ],
 
