@@ -72,6 +72,12 @@
                                             </li>
                                         </ul>
                                     </li>
+
+                                    <li class="nav-item">
+                                        {{-- contact     --}}
+                                        <a href="{{ route('contact') }}" class="nav-link">Contact</a>
+                                    </li>
+
                                     <li class="nav-item">
                                         {{-- login --}}
                                         @if (Auth::check())
@@ -178,6 +184,12 @@
         </div>
     </footer>
     @vite('resources/js/app.js')
+
+    <script type='text/javascript' src='https://ucommobjectstorage.blob.core.windows.net/cookie-jar/cookie-notification.js'></script>
+    <noscript>
+      <p>Our websites may use cookies to personalize and enhance your experience. By continuing without changing your cookie settings, you agree to this collection. For more information, please see our <a href="https://privacy.uconn.edu/university-website-notice/" target="_blank">University Websites Privacy Notice</a>.</p>
+    </noscript>
+
 </body>
 
 </html>

@@ -16,4 +16,8 @@ class HomeController extends Controller
         $allSchools = SchoolCollege::all();
         return view('admin.home')->with('allSchools', $allSchools);
     }
+
+    public function contact(Request $request) {
+        return view('contact');
+    }
 }
