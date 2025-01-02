@@ -120,6 +120,21 @@ a tool for modeling departmental operational needs, based on student plans of st
                         </div>
                     </div>
 
+                    {{-- Crowdsourced IDeas Forum --}}
+                    <div class="col-md-3 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="badge bg-inprogress">In Development</span>
+                            </div>
+                            <div class="card-body">
+                                <i class="material-icons">forum</i>
+                                <h3>Crowdsourced Ideas Forum</h3>
+                                <p>A platform for UConn faculty, staff, and students to share ideas, upvote suggestions, and engage in discussions that will improve our institution.</p>
+                            </div>
+
+                        </div>
+                    </div>
+
                     {{-- one for the academic program review tool --}}
                     <div class="col-md-3 mb-4">
                         <div class="card">
