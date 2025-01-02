@@ -129,7 +129,7 @@ a tool for modeling departmental operational needs, based on student plans of st
                             <div class="card-body">
                                 <i class="material-icons">school</i>
                                 <h3>Minimum Class Size Dashboard</h3>
-                                <p>Tool to assist administrations in identifying courses with low enrollment.</p>
+                                <p>Tool to support units in decisions around low enrollment course offerings and exemption requests.                </p>
                             </div>
 
                         </div>
@@ -144,7 +144,7 @@ a tool for modeling departmental operational needs, based on student plans of st
                             <div class="card-body">
                                 <i class="material-icons">people</i>
                                 <h3>Faculty Hiring Request Form</h3>
-                                <p>Tool to assist units with requests for faculty hiring.</p>
+                                <p>Streamlined submission tool for annual faculty hiring requests.     </p>
                             </div>
 
                         </div>
