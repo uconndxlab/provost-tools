@@ -100,7 +100,8 @@
         <div class="card-body d-flex align-items-center justify-content-between">
             <div class="text-muted">
                 <i class="bi bi-info-circle me-1"></i>
-                You can save your progress at any point and return to this form later.
+                You can save your progress at any point and return to this form later. 
+
 
                 @if (isset($questionnaire))
                 <a href="{{ route('budgetHearingQuestionnaire.show', $questionnaire->id) }}" class="ms-3">

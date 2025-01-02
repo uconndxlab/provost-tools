@@ -14,6 +14,8 @@
                             <p>To center our discussion around how your unit will meet the previously communicated budget guidance, 
                                 we will focus on reviewing your responses to the questions below. Note that answers should be brief 
                                 and are exclusively meant as a tool to guide our discussion (each text box has a 3000-character limit).</p>
+                            <p>  You can save your questionnaire at any point and return to this form later. 
+                                <strong> Submissions will be locked five days prior to your budget hearing.</strong></p>
                         </div>
                     </div>
                     {{-- @if (Auth::check() && Auth::user()->can_admin)

@@ -7,6 +7,14 @@ $provost-blue: #03357A;
 $provost-lightblue: #C0DBFF;
 $provost-grey: #F0F1F5;
 
+$success: #28a745;
+$warning: #ffc107;
+$danger: #dc3545;
+
+$inprogress:#6D39c5;
+$testing:#318B96;
+$ideation:#CF712D;
+
 $primary: $provost-blue;
 $danger: $uconn-red;
 $info: $provost-lightblue;
@@ -24,6 +32,18 @@ $table-cell-vertical-align: middle;
 
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.min.css";
+
+.bg-testing {
+    background-color: $testing;
+}
+
+.bg-ideation {
+    background-color: $ideation;
+}
+
+.bg-inprogress {
+    background-color: $inprogress;
+}
 
 h2,h3,h4,h5,h6 {
     font-family: "proxima-nova", sans-serif;
@@ -132,6 +152,23 @@ abbr {
       }
 }
 
+.badge-inprogress {
+    background-color: $inprogress;
+    color: white;
+}
+
+.badge-testing {
+    background-color: $testing;
+    color: white;
+}
+
+.badge-ideation {
+    background-color: $ideation;
+    color: white;
+}
+
+
+
 .content-wrap {
     padding-top:80px!important;
 
@@ -226,7 +263,7 @@ trix-toolbar .trix-button-group--file-tools {
     display: inline-block;
     color: $provost-blue;
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 600;
     text-decoration: underline;
     text-transform: uppercase;
     text-decoration-thickness: 3px;
