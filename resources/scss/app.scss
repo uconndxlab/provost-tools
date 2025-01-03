@@ -214,14 +214,73 @@ trix-toolbar .trix-button-group--file-tools {
     display: none !important;
 }
 
+.question-text {
+    font-family: "proxima-nova", sans-serif;
+    font-size: 16px;
+    border-left: 4px solid $provost-blue;
+    padding-left:10px;
+    color: $provost-blue;
+    font-style: italic;
+}
+
 @media print {
+    body {
+        padding-top:2rem;
+    }
     .container {
-        max-width: 95% !important;
+        max-width: 100% !important;
     }
 
     .no-print {
         display: none;
     }
+
+    .print-page {
+        margin-top:0px!important;
+        page-break-before: always;
+        padding-top:10px;
+    }
+
+    /* Cover Page Styles */
+    .cover-page {
+        text-align: center;
+        background: #fff;
+        color: #000;
+        padding: 60px 30px;
+    }
+
+    .cover-page .card-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .cover-page .card-text {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    /* Section Styles */
+    .q-response {
+        background-color: #f9f9f9;
+        border-top: 4px solid #007bff; /* Highlight sections with a border color */
+    }
+
+    .q-response .card-title {
+        font-size:18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .q-response .card-text {
+        font-size: 16px;
+    }
+
+    /* Question Text (Optional Styling) */
+    .q-response p {
+        margin-bottom: 15px;
+    }    
 }
 
 .poet-line-container {

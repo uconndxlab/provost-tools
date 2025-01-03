@@ -135,14 +135,14 @@
     <main class="curved-main">
         <div class="main-content">
             @if (session('success'))
-                <div class="container pt-4">
+                <div class="container pt-4 d-print-none">
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
                 </div>
             @endif
             @if (session('message'))
-                <div class="container pt-4">
+                <div class="container pt-4 d-print-none">
                     <div class="alert alert-warning">
                         {{ session('message') }}
                     </div>
@@ -151,7 +151,7 @@
 
             @if ($errors->any())
 
-                <div class="container pt-4">
+                <div class="container pt-4 d-print-none">
                     <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
                             <p class="mb-1">{{ $error }}</p>
@@ -161,7 +161,7 @@
             @endif
 
             @if (session('error'))
-                <div class="container pt-4">
+                <div class="container pt-4 d-print-none">
                     <div class="alert alert-danger">
                         {{ session('error') }}
                     </div>

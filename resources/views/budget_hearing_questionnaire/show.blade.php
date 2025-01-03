@@ -97,12 +97,12 @@
 
             <div class="col-12 col-md-9">
                 <div class="py-5">
-                    <div class="container">
+                    <div class="container questionnaire-responses">
                         <div class="mb-5">
 
 
                             <div class="row">
-                                <div class="col-12 mb-4 card">
+                                <div class="col-12 mb-4 card print-page cover-page">
 
                                     <div class="card-body">
                                         <h2 class="card-title">Budget Hearing Questionnaire Submission</h2>
@@ -119,11 +119,14 @@
                                 </div>
 
                                 @if ($submission->deficit_mitigation)
-                                    <div class="col-12 card mt-3" id="deficit_mitigation">
+                                    <div class="col-12 card mt-3 print-page q-response" id="deficit_mitigation">
                                         <div class="card-body">
                                             <h2 class="card-title">Deficit Mitigation</h2>
-                                            {{-- question text --}}
-                                            {{$sections['deficit_mitigation']['description']}}
+
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['deficit_mitigation']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->deficit_mitigation !!}</p>
                                         </div>
@@ -131,11 +134,13 @@
                                 @endif
 
                                 @if ($submission->faculty_hiring)
-                                    <div class="col-12 card mt-3" id="faculty_hiring">
+                                    <div class="col-12 card mt-3 print-page q-response" id="faculty_hiring">
                                         <div class="card-body">
                                             <h2 class="card-title">Faculty Hiring</h2>
-                                            {{-- question text --}}
-                                            {{$sections['faculty_hiring']['description']}}
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['faculty_hiring']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->faculty_hiring !!}</p>
                                         </div>
@@ -143,11 +148,14 @@
                                 @endif
 
                                 @if ($submission->student_enrollment)
-                                    <div class="col-12 card mt-3" id="student_enrollment">
+                                    <div class="col-12 card mt-3 print-page q-response" id="student_enrollment">
                                         <div class="card-body">
                                             <h2 class="card-title">Student Enrollment</h2>
-                                            {{-- question text --}}
-                                            {{$sections['student_enrollment']['description']}}
+
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['student_enrollment']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->student_enrollment !!}</p>
                                         </div>
@@ -155,11 +163,14 @@
                                 @endif
 
                                 @if ($submission->student_retention)
-                                    <div class="col-12 card mt-3" id="student_retention">
+                                    <div class="col-12 card mt-3 print-page q-response" id="student_retention">
                                         <div class="card-body">
                                             <h2 class="card-title">Student Retention, Graduation & Outcomes</h2>
-                                            {{-- question text --}}
-                                            {{$sections['student_retention']['description']}}
+
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['student_retention']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->student_retention !!}</p>
                                         </div>
@@ -167,11 +178,13 @@
                                 @endif
 
                                 @if ($submission->foundation_engagement)
-                                    <div class="col-12 card mt-3" id="foundation_engagement">
+                                    <div class="col-12 card mt-3 print-page q-response" id="foundation_engagement">
                                         <div class="card-body">
                                             <h2 class="card-title">Philanthropy</h2>
-                                            {{-- question text --}}
-                                            {{$sections['foundation_engagement']['description']}}
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['foundation_engagement']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->foundation_engagement !!}</p>
                                         </div>
@@ -179,11 +192,14 @@
                                 @endif
 
                                 @if ($submission->library_student_enrollment)
-                                    <div class="col-12 card mt-3" id="library_student_enrollment">
+                                    <div class="col-12 card mt-3 print-page q-response" id="library_student_enrollment">
                                         <div class="card-body">
                                             <h2 class="card-title">Library Student Enrollment</h2>
-                                            {{-- question text --}}
-                                            {{$sections['library_student_enrollment']['description']}}
+
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['library_student_enrollment']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->library_student_enrollment !!}</p>
                                         </div>
@@ -191,11 +207,14 @@
                                 @endif
 
                                 @if ($submission->library_research_activity)
-                                    <div class="col-12 card mt-3" id="library_research_activity">
+                                    <div class="col-12 card mt-3 print-page q-response" id="library_research_activity">
                                         <div class="card-body">
                                             <h2 class="card-title">Library Research Activity</h2>
-                                            {{-- question text --}}
-                                            {{$sections['library_research_activity']['description']}}
+
+                                            <div class="question-text">
+                                                {{-- question text --}}
+                                                {{$sections['library_research_activity']['description']}}
+                                            </div>
                                             {{-- answer --}}
                                             <p class="card-text">{!! $submission->library_research_activity !!}</p>
                                         </div>
