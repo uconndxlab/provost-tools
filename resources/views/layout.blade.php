@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Provost's Operational Efficiency Toolkit</title>
+    <meta name="description" content="POET is a collection of tools offered by the Provost's Office to help streamline operations, foster collaboration, and empower academic decisionmaking at UConn.">
     <link rel="stylesheet" href="https://use.typekit.net/nyu4feu.css">
     @vite('resources/scss/app.scss')
     {{--
@@ -34,7 +35,7 @@
                     <div>
                         <p class="header-level-two">
                             <a href="https://provost.uconn.edu/"
-                                class="link-offset-2">
+                                class="link-offset-2 py-2">
                                 Office of the Provost
                             </a>
                         </p>
@@ -180,9 +181,9 @@
                     href="http://uconn.edu/disclaimers-privacy-copyright/">Disclaimers, Privacy &amp; Copyright</a>
                 <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
                     href="https://accessibility.uconn.edu/">Accessibility</a>
-                <a class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover">
+                <a href="#" class="p-4 link-dark link-underline-opacity-0 link-underline-opacity-100-hover">
                     {{-- asset i3blue.png --}}
-                    <img style="position: relative; top:-2px;" src="{{ asset('images/i3blue.png') }}" alt="i3 logo" width="20">
+                    <img style="position: relative; top:-2px;" src="{{ asset('images/i3blue-48.png') }}" alt="i3 logo" width="20">
                     Powered by <abbr title="Internal Insights & Innovation"><span class="i3-mark">i3</span></abbr>
 
                 </a>

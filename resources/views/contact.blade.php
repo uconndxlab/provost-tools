@@ -5,7 +5,7 @@
     <div class="container">
         <h1>Contact Us
         </h1>
-        <h4>The Provost's Operational Efficiency Toolkit</h4>
+        <h2>The Provost's Operational Efficiency Toolkit</h2>
     </div>
 </div>
 <div class="content-wrap">

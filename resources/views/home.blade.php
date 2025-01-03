@@ -8,7 +8,7 @@
 
               <abbr title="Provost's Operational Efficiency Toolkit">POET</abbr>
                 </h1>
-                <h4>The Provost's Operational Efficiency Toolkit</h4>
+                <h2>The Provost's Operational Efficiency Toolkit</h2>
             </div>
         </div>
 
