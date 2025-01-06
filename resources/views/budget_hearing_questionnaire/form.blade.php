@@ -28,10 +28,13 @@
 
             {{-- button for "show the form" --}}
 
+            {{-- if request-> school is not set --}}
 
-            <a href="{{ route('budgetHearingQuestionnaire.create') }}?school=" 
-            onclick="this.href=this.href + document.getElementById('school_college').value" 
-            class="btn btn-primary mt-3">Continue &raquo;</a>
+                <a href="{{ route('budgetHearingQuestionnaire.create') }}?school=" 
+                onclick="this.href=this.href + document.getElementById('school_college').value" 
+                class="btn btn-primary mt-3 @if(request()->query('school')) d-none @endif">
+                    Continue &raquo;
+                </a>
 
         </div>
     </div>

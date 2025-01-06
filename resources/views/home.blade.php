@@ -30,7 +30,7 @@
                                 </p>
 
                                 <a href="{{ route('budgetHearingQuestionnaire.create') }}" class="tool-link">
-                                    Fill Out Questionnaire
+                                    Start Questionnaire &raquo;
                                 </a>
                             </div>
 
