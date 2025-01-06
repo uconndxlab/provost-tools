@@ -8,12 +8,12 @@
 
     <!-- School/College -->
     <div class="card shadow-sm p-4 mt-4">
-        <h2 class="h4 mb-3">School/College or Campus</h2>
+        <h2 class="h4 mb-3">School/College, Campus or Unit</h2>
         <div class="mb-3">
             <label for="school_college" class="form-label d-none">School/College/Campus</label>
             <select name="school_college" id="school_college" class="form-select" x-ref="school_college">
 
-                <option value="" selected>Select a School/College</option>
+                <option value="" selected>Select a School/College, Campus or Unit</option>
 
 
                 @foreach ($schools as $school)
