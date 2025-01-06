@@ -25,6 +25,14 @@
                 </option>
                 @endforeach
             </select>
+
+            {{-- button for "show the form" --}}
+
+
+            <a href="{{ route('budgetHearingQuestionnaire.create') }}?school=" 
+            onclick="this.href=this.href + document.getElementById('school_college').value" 
+            class="btn btn-primary mt-3">Continue &raquo;</a>
+
         </div>
     </div>
 
