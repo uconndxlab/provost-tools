@@ -11,6 +11,8 @@ use App\Http\Controllers\PayrollIdController;
 use App\Http\Controllers\BudgetHearingQuestionnaireController;
 use App\Models\SchoolCollege;
 use App\Http\Controllers\SchoolCollegeController;
+use App\Http\Controllers\InstitutionalPriorityController;
+use App\Http\Controllers\ProjectController;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -39,6 +41,10 @@ Route::middleware(['cas.auth'])->group(function() {
 
         Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
         Route::post('/admin/removeBudgetHearingPermission', [SchoolCollegeController::class, 'removePermissionForUser'])->name('admin.remove_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
+    
+        Route::resource('institutional_priorities', InstitutionalPriorityController::class)->middleware('auth');
+        Route::resource('projects', ProjectController::class)->middleware('auth');
+
     });
 
 
