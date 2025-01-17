@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="icon-container" id="icon-container-az">
-                            <a class="btn btn-popup-control" id="uconn-az" href="https://uconn.edu/az"
+                            <a class="btn" id="uconn-az" href="https://uconn.edu/az"
                                 aria-haspopup="true" aria-controls="a-z-popup" aria-expanded="false">
                                 <span class="no-css">A to Z Index</span>
 
@@ -44,17 +44,7 @@
                                     </path>
                                 </svg>
                             </a>
-                            <div id="a-z-popup" class="popup-container">
-                                <div class="link-wrapper az-link-wrapper">
-                                    <a href="https://aurora.uconn.edu/a-z-index">
-                                        <span class="banner-search-text">Site A-Z</span>
-                                    </a>
-                                </div>
-                                <hr>
-                                <div class="link-wrapper az-link-wrapper">
-                                    <a href="https://uconn.edu/az"><span class="banner-search-text"></span>UConn A-Z</a>
-                                </div>
-                            </div>
+                            <div id="uconn-az-tooltip" style="z-index: 99999 !important"></div>
                         </div>
                     </div>
 
