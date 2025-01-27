@@ -15,4 +15,9 @@ class InstitutionalPriority extends Model
     {
         return $this->belongsToMany(Project::class)->withPivot('score')->withTimestamps();
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }

@@ -21,10 +21,36 @@
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" required></textarea>
+                <textarea class="form-control d-none" id="description" name="description" required></textarea>
+                <trix-editor input="description"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">Create Priority</button>
+
+            <div class="form-group">
+                <label for="tags">Tags</label>
+                @foreach ($tags as $tag)
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag{{ $tag->id }}">
+                    <label class="form-check-label" for="tag{{ $tag->id }}">
+                        {{ $tag->name }}
+                    </label>
+                </div>
+                @endforeach
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-2">Create Priority</button>
         </form>
     </div>
+
+
+    <script>
+        // do a trix on the description field
+        document.addEventListener('trix-file-accept', function (event) {
+            event.preventDefault()
+
+            
+        })
+
+        
+
 </div>
 @endsection

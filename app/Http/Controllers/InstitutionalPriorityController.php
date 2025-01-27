@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\Models\InstitutionalPriority;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+
 
 class InstitutionalPriorityController extends Controller
 {
@@ -13,7 +17,8 @@ class InstitutionalPriorityController extends Controller
     public function index()
     {
         $priorities = InstitutionalPriority::all();
-        return view('decision_maker.institutional_priorities.index', compact('priorities'));
+        $tags = Tag::all();
+        return view('decision_maker.institutional_priorities.index', compact('priorities', 'tags'));
     }
 
     /**
@@ -21,7 +26,8 @@ class InstitutionalPriorityController extends Controller
      */
     public function create()
     {
-        return view('decision_maker.institutional_priorities.create');
+        $tags = Tag::all();
+        return view('decision_maker.institutional_priorities.create', compact('tags'));
     }
 
     /**
@@ -35,7 +41,14 @@ class InstitutionalPriorityController extends Controller
         ]);
     
         InstitutionalPriority::create($request->all());
-        return redirect()->route('institutional_priorities.index')->with('success', 'Priority added!');
+
+        // tags
+        $priority = InstitutionalPriority::latest()->first();
+        $priority->tags()->attach($request->tags);
+
+
+
+        return redirect()->route('decision_maker.institutional_priorities.index')->with('success', 'Priority added!');
     }
 
     /**
@@ -43,7 +56,8 @@ class InstitutionalPriorityController extends Controller
      */
     public function show(InstitutionalPriority $institutionalPriority)
     {
-        //
+        $priority = $institutionalPriority;
+        return view('decision_maker.institutional_priorities.show', compact('priority'));
     }
 
     /**
@@ -51,7 +65,13 @@ class InstitutionalPriorityController extends Controller
      */
     public function edit(InstitutionalPriority $institutionalPriority)
     {
-        //
+        $priority = $institutionalPriority;
+        $tags = Tag::all();
+$priorityTags = $institutionalPriority->tags->pluck('id')->toArray();
+
+
+
+        return view('decision_maker.institutional_priorities.edit', compact('institutionalPriority', 'priority', 'tags', 'priorityTags'));
     }
 
     /**
@@ -59,7 +79,16 @@ class InstitutionalPriorityController extends Controller
      */
     public function update(Request $request, InstitutionalPriority $institutionalPriority)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'weight' => 'required|integer|min:1|max:10',
+        ]);
+    
+        $institutionalPriority->update($request->all());
+
+        $institutionalPriority->tags()->sync($request->tags);
+
+        return redirect()->route('decision_maker.institutional_priorities.index')->with('success', 'Priority updated!');
     }
 
     /**
@@ -67,6 +96,7 @@ class InstitutionalPriorityController extends Controller
      */
     public function destroy(InstitutionalPriority $institutionalPriority)
     {
-        //
+        $institutionalPriority->delete();
+        return redirect()->route('decision_maker.institutional_priorities.index')->with('success', 'Priority deleted!');
     }
 }

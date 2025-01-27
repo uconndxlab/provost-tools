@@ -13,6 +13,7 @@ use App\Models\SchoolCollege;
 use App\Http\Controllers\SchoolCollegeController;
 use App\Http\Controllers\InstitutionalPriorityController;
 use App\Http\Controllers\ProjectController;
+use App\Models\InstitutionalPriority;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -42,7 +43,15 @@ Route::middleware(['cas.auth'])->group(function() {
         Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
         Route::post('/admin/removeBudgetHearingPermission', [SchoolCollegeController::class, 'removePermissionForUser'])->name('admin.remove_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
     
-        Route::resource('institutional_priorities', InstitutionalPriorityController::class)->middleware('auth');
+        Route::get('/decision-maker/', [InstitutionalPriorityController::class, 'index'])->name('decision_maker.index');
+        Route::get('/decision-maker/institutional-priorities', [InstitutionalPriorityController::class, 'index'])->name('decision_maker.institutional_priorities.index');
+        Route::get('/decision-maker/institutional-priorities/create', [InstitutionalPriorityController::class, 'create'])->name('decision_maker.institutional_priorities.create');
+        Route::post('/decision-maker/institutional-priorities', [InstitutionalPriorityController::class, 'store'])->name('institutional_priorities.store');
+        Route::get('/decision-maker/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'show'])->name('decision_maker.institutional_priorities.show');
+        Route::get('/decision-maker/institutional-priorities/{institutionalPriority}/edit', [InstitutionalPriorityController::class, 'edit'])->name('decision_maker.institutional_priorities.edit');
+        Route::put('/decision-maker/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'update'])->name('decision_maker.institutional_priorities.update');
+        Route::delete('/decision-maker/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'destroy'])->name('decision_maker.institutional_priorities.destroy');
+
         Route::resource('projects', ProjectController::class)->middleware('auth');
 
     });
