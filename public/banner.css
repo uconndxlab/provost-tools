@@ -255,7 +255,8 @@
 #uconn-banner a:link,
 #uconn-banner a:hover,
 #uconn-banner a:visited {
-    text-decoration: none
+    text-decoration: none;
+    line-height: 1.176;
 }
 
 @font-face {
@@ -487,7 +488,6 @@
     display: block;
     height: 100%;
     width: 100%;
-    font-size: 21px;
     text-align: center;
     padding: inherit;
     text-shadow: none;
@@ -528,7 +528,7 @@
     border-color: transparent #ededed transparent transparent;
     border-style: solid;
     border-width: 10px 8px 10px 0px;
-    bottom: 39px;
+    bottom:43px;
     content: '';
     position: absolute;
     transform: rotate(90deg)

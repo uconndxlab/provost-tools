@@ -28,14 +28,14 @@
         <header>
             @php $is_admin = Route::is('admin*'); @endphp
             <div @class([
-                'py-4 text-black',
+                'text-black',
                 'border-bottom border-danger border-5' => $is_admin,
             ])>
-                <div class="container d-flex align-items-center justify-content-between">
+                <div class="container d-flex align-items-center justify-content-between"  style="padding-top:30px;padding-bottom:30px;">
                     <div>
                         <p class="header-level-two">
                             <a href="https://provost.uconn.edu/"
-                                class="link-offset-2 py-2">
+                                class="link-offset-2">
                                 Office of the Provost
                             </a>
                         </p>
