@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Contact')
+@section('title', '2025 Big East Animation Showcase')
 @section('content')
 <div class="hero text-center text-white py-5 animation-hero">
     <div class="container">
@@ -47,6 +47,7 @@
         justify-content: center;
         align-items: center;
         overflow:visible;
+        background-attachment: fixed;
     }
     .animation-hero .container{
         position:relative;
@@ -93,6 +94,40 @@
         font-weight:500;
         text-align:center;
     }
+
+    /* make it so the hero h1 and h2 fly in from the left with keyframes
+    make it so the form flies in from the right with keyframes */
+
+    @keyframes fly-in-left{
+        from{
+            transform:translateX(-100%);
+        }
+        to{
+            transform:translateX(0%);
+        }
+    }
+
+    @keyframes fly-in-right{
+        from{
+            transform:translateX(100%);
+        }
+        to{
+            transform:translateX(0%);
+        }
+    }
+
+    .animation-hero h1, .animation-hero h2{
+        animation:fly-in-left 1s ease-out;
+    }
+
+    .form{
+        animation:fly-in-right 1s ease-out;
+    }
+
+    
+    
+
+    
 
 </style>
 @endsection
