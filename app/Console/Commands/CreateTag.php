@@ -12,7 +12,7 @@ class CreateTag extends Command
      *
      * @var string
      */
-    protected $signature = 'pt:createtag {name}';
+    protected $signature = 'pt:tag:create {name}';
 
     /**
      * The console command description.

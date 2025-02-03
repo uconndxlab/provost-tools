@@ -52,7 +52,8 @@ Route::middleware(['cas.auth'])->group(function() {
         Route::put('/decision-maker/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'update'])->name('decision_maker.institutional_priorities.update');
         Route::delete('/decision-maker/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'destroy'])->name('decision_maker.institutional_priorities.destroy');
 
-        Route::resource('projects', ProjectController::class)->middleware('auth');
+
+        Route::get('/decision-maker/projects', [ProjectController::class, 'index'])->name('decision_maker.projects.index');
 
     });
 

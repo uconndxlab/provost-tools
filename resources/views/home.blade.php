@@ -29,11 +29,14 @@
                                 <p>Streamlined submission tool that creates an outline for annual budget hearing meetings.
                                 </p>
 
+
+
+                            </div>
+                            <div class="card-footer">
                                 <a href="{{ route('budgetHearingQuestionnaire.create') }}" class="tool-link">
                                     Start Questionnaire &raquo;
                                 </a>
                             </div>
-
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-3 mb-4">
@@ -80,8 +83,14 @@
                             </div>
                             <div class="card-body">
                                 <i class="material-icons">trending_up</i>
-                                <h3>Strategic Plan Decision-making Tool</h3>
+                                <h3>Strategic Decision-making Tool</h3>
                                 <p>Tool to assist units in prioritizing their projects in alignment with institutional priorites.</p>
+                            </div>
+
+                            <div class="card-footer">
+                                <a 
+                                href="{{ route('decision_maker.index') }}"
+                                class="tool-link">Learn More &raquo;</a>
                             </div>
 
                         </div>

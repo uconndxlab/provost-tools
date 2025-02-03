@@ -1,6 +1,8 @@
 @extends('layout')
 @section('title', 'Institutional Priorities')
 @section('content')
+@include('decision_maker.parts.nav')
+
     <div class="py-5">
         <div class="container">
             <h1>Institutional Priorities</h1>

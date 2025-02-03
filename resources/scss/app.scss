@@ -397,3 +397,35 @@ trix-toolbar .trix-button-group--file-tools {
         box-shadow: none;
     }
 }
+
+// .app-nav is a custom class for the subnav inside a particular tool. it's a bootsrap5 nav bar but needs some custom styles likea border
+.app-nav {
+    border-top: 1px solid $provost-blue;
+    border-bottom: 1px solid $provost-blue;
+}
+
+.app-nav .nav-link {
+    color: $provost-blue;
+    font-weight: 600;
+}
+
+.app-nav .nav-link.active {
+    color: $provost-blue;
+    font-weight: 600;
+}
+
+.app-nav .nav-link:hover {
+    color: $provost-blue;
+    font-weight: 600;
+}
+
+.app-nav .nav-link.disabled {
+    color: $provost-grey;
+    font-weight: 600;
+}
+
+.app-nav .nav-link.disabled:hover {
+    color: $provost-grey;
+    font-weight: 600;
+}
+

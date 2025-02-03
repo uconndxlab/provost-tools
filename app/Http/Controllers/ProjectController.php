@@ -14,7 +14,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::with('institutionalPriorities')->get();
-        return view('projects.index', compact('projects'));
+        return view('decision_maker.projects.index', compact('projects'));
     }
 
     /**
