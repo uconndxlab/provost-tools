@@ -16,9 +16,11 @@ class InstitutionalPriorityController extends Controller
      */
     public function index()
     {
-        $priorities = InstitutionalPriority::all();
         $tags = Tag::all();
+        $priorities = InstitutionalPriority::with('tags')->get();
         return view('decision_maker.institutional_priorities.index', compact('priorities', 'tags'));
+        
+        
     }
 
     /**
