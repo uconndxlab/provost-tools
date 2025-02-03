@@ -18,6 +18,8 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/animation-showcase-submission', [HomeController::class, 'animationShowcaseSubmission'])->name('animationShowcaseSubmission');
+
 
 Route::middleware(['cas.auth'])->group(function() {
     Route::get('tools', [HomeController::class, 'home'])->name('tools');

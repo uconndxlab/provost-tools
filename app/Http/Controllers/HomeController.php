@@ -20,4 +20,9 @@ class HomeController extends Controller
     public function contact(Request $request) {
         return view('contact');
     }
+
+    public function animationShowcaseSubmission(Request $request) {
+        
+        return view('animation-showcase-portal.submission-form');
+    }
 }
