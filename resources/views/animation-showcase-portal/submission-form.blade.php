@@ -5,13 +5,13 @@
     <div class="container">
         <h1>2025 Big East <br>Animation Showcase
         </h1>
-        <h2 style="font-style:normal">This could be a subtitle</h2>
+        <h2 style="font-style:normal">Submissions open Feb 10th, 2025</h2>
         <p class="memo">COMING SOON</p>
 
     </div>
     <img class="decorative" src="{{url('/images/decorative.svg')}}" alt="">
 </div>
-<div class="form">
+<div class="form d-none">
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2">
