@@ -17,17 +17,17 @@
                 <!-- Submission Guidelines Modal Trigger -->
 
                 <!-- Submission Form -->
-                <div class="col-md-8">
+                <div class="col-md-8 mb-4">
                     <div class="card shadow-sm">
-                        <div class="card-header">
-                            <h5 class="mb-0">Submit Your Animation</h5>
+                        <div class="card-header card-header-main">
+                            <h2 class="mb-0">Submit Your Animation</h2>
                         </div>
                         <div class="card-body">
                             <form action="#" method="POST">
                                 @csrf
         
                                 <!-- Institution Information -->
-                                <h6 class="mb-3">Submittor Information</h6>
+                                <h6 class="mt-2 mb-3">Submittor Information</h6>
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <h6 class="mb-3">Institution Information</h6>
+                                    <h6 class="mt-4 mb-3">Institution Information</h6>
                                     <div class="col-md-6 mb-3">
                                         <label for="institution" class="form-label">Name of Institution</label>
                                         <input type="text" class="form-control" id="institution" name="institution" required>
@@ -58,7 +58,7 @@
                                 </div>
         
                                 <!-- Student Information -->
-                                <h6 class="mt-4 mb-3">Student Information</h6>
+                                <h6 class="mt-4 mb-3 pt-3">Student Information</h6>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="student_names" class="form-label">Student Name(s)</label>
@@ -102,7 +102,7 @@
                                 </div>
         
                                 <div class="text-end mt-4">
-                                    <button type="submit" class="btn btn-success">Submit Animation</button>
+                                    <button type="submit" class="btn btn-primary">Submit Animation</button>
                                 </div>
                             </form>
                         </div>
@@ -114,7 +114,7 @@
 
                     <div class="card shadow-sm mb-4">
                         <div class="card-header">
-                            <h5 class="mb-0">Submission Guidelines</h5>
+                            <h3 class="mb-0">Submission Guidelines</h3>
                         </div>
                         <div class="card-body">
                             <p>Before submitting your animation, please review the guidelines below:</p>
@@ -134,7 +134,7 @@
 
                     <div class="card shadow-sm">
                         <div class="card-header">
-                            <h5 class="mb-0">Accessibility Requirements</h5>
+                            <h3 class="mb-0">Accessibility Requirements</h3>
                         </div>
                         <div class="card-body">
                             <p>All submissions must comply with WCAG 2.1 - Level AA accessibility standards:</p>
@@ -261,26 +261,54 @@
         .form {
             position: relative;
             top: 0px;
-            padding: 80px 0px;
+            padding: 40px 0px;
         }
 
-        .form h2 {
+        .form h2{
             font-family: georgiapro, serif;
             color: #013ECD;
             font-weight: 500;
-            text-align: center;
         }
+
+        .card-header h2{
+            font-family: georgiapro, serif;
+            font-weight: 500;
+        }
+        .card-header h3{
+            font-size:22px;
+        }
+
+        .card{
+            border:0;
+        }
+
+        .card-header{
+            background:#fff;
+            border-bottom:0px;
+            padding-top:20px;
+            padding-bottom:5px;
+            border-top: 8px solid #03357a;
+        }
+        .card-header.card-header-main{
+            border-top: 8px solid #013ECD;
+        }
+        .card-body{
+            padding-top:5px;
+        }
+
 
         /* make it so the hero h1 and h2 fly in from the left with keyframes
             make it so the form flies in from the right with keyframes */
 
         @keyframes fly-in-left {
             from {
-                transform: translateX(-100%);
+                transform: translateX(-50%);
+                opacity:0;
             }
 
             to {
                 transform: translateX(0%);
+                opacity:100%;
             }
         }
 
@@ -294,17 +322,38 @@
             }
         }
 
+        @keyframes fly-in-down {
+            from {
+                transform: translateY(-100%);
+                opacity:0;
+            }
+
+            to {
+                transform: translateY(0%);
+                opacity:100%;
+            }
+        }
+
+        @keyframes fly-in-up {
+            from {
+                transform: translateY(50%);
+                opacity:0;
+            }
+
+            to {
+                transform: translateY(0%);
+                opacity:100%;
+            }
+        }
+
         .animation-hero h1,
         .animation-hero h2 {
-            animation: fly-in-left 1s ease-out;
+            animation: fly-in-down 1s ease;
         }
 
-        .form .col-md-6:nth-child(odd) {
-            animation: fly-in-right 1s ease-out;
+        .card{
+            animation: fly-in-up 1s ease;
         }
 
-        .form .col-md-6:nth-child(even) {
-            animation: fly-in-left 1s ease-out;
-        }
     </style>
 @endsection
