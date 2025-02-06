@@ -20,91 +20,119 @@
                 <div class="col-md-8 mb-4">
                     <div class="card shadow-sm">
                         <div class="card-header card-header-main">
-                            <h2 class="mb-0">Submit Your Animation</h2>
+                            <h2 class="mb-0">Submit An Animation</h2>
                         </div>
                         <div class="card-body">
-                            <form action="#" method="POST">
-                                @csrf
-        
-                                <!-- Institution Information -->
-                                <h6 class="mt-2 mb-3">Submittor Information</h6>
+                            <div id="submission-form">
+                                <form 
+                                    action="{{ route('animationShowcaseSubmission.store') }}"
+                                    hx-post="{{ route('animationShowcaseSubmission.store') }}"
+                                    hx-select=".alert" hx-swap="outerHTML" hx-target="#submission-form" method="POST">
+                                    @csrf
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="submittor_name" class="form-label">Submittor Name</label>
-                                        <input type="text" class="form-control" id="submittor_name" name="submittor_name" required>
+                                    <!-- Institution Information -->
+                                    <h6 class="mt-2 mb-3">Submittor Information</h6>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="submittor_name" class="form-label">Submittor Name</label>
+                                            <input type="text" class="form-control" id="submittor_name"
+                                                name="submittor_name" required>
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="submittor_email" class="form-label">Submittor Email</label>
+                                            <input type="email" class="form-control" id="submittor_email"
+                                                name="submittor_email" required>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label for="submittor_email" class="form-label">Submittor Email</label>
-                                        <input type="email" class="form-control" id="submittor_email" name="submittor_email" required>
+                                    <div class="row">
+                                        <h6 class="mt-4 mb-3">Institution Information</h6>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="institution" class="form-label">Name of Institution</label>
+                                            {{-- select box of all Big East Institutions --}}
+                                            <select class="form-select" id="institution" name="institution" required>
+                                                <option value="" selected disabled>Select an Institution</option>
+                                                <option value="Butler University">Butler University</option>
+                                                <option value="University of Connecticut">University of Connecticut</option>
+                                                <option value="Creighton University">Creighton University</option>
+                                                <option value="DePaul University">DePaul University</option>
+                                                <option value="Georgetown University">Georgetown University</option>
+                                                <option value="Marquette University">Marquette University</option>
+                                                <option value="Providence College">Providence College</option>
+                                                <option value="Seton Hall University">Seton Hall University</option>
+                                                <option value="St. John's University">St. John's University</option>
+                                                <option value="Villanova University">Villanova University</option>
+                                                <option value="Xavier University">Xavier University</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="program" class="form-label">Relevant Major/Program</label>
+                                            <input type="text" class="form-control" id="program" name="program"
+                                                required>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="program_description" class="form-label">Description of Major/Program
+                                            <span class="text-muted">(Optional)</span></label>
+                                        <textarea class="form-control" id="program_description" name="program_description" rows="2"></textarea>
+                                    </div>
 
-                                <div class="row">
-                                    <h6 class="mt-4 mb-3">Institution Information</h6>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="institution" class="form-label">Name of Institution</label>
-                                        <input type="text" class="form-control" id="institution" name="institution" required>
+                                    <!-- Student Information -->
+                                    <h6 class="mt-4 mb-3 pt-3">Student Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="student_names" class="form-label">Student Name(s)</label>
+                                            <textarea class="form-control" id="student_names" name="student_names" rows="2" required></textarea>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="student_bios" class="form-label">Student Bio(s)</label>
+                                            <textarea class="form-control" id="student_bios" name="student_bios" rows="2" required></textarea>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="program" class="form-label">Relevant Major/Program</label>
-                                        <input type="text" class="form-control" id="program" name="program" required>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="program_description" class="form-label">Description of Major/Program <span class="text-muted">(Optional)</span></label>
-                                    <textarea class="form-control" id="program_description" name="program_description" rows="2"></textarea>
-                                </div>
-        
-                                <!-- Student Information -->
-                                <h6 class="mt-4 mb-3 pt-3">Student Information</h6>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="student_names" class="form-label">Student Name(s)</label>
-                                        <textarea class="form-control" id="student_names" name="student_names" rows="2" required></textarea>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="student_bios" class="form-label">Student Bio(s)</label>
-                                        <textarea class="form-control" id="student_bios" name="student_bios" rows="2" required></textarea>
-                                    </div>
-                                </div>
-        
-                                <!-- Film Information -->
-                                <h6 class="mt-4 mb-3">Film Information</h6>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="title" class="form-label">Title of Work</label>
-                                        <input type="text" class="form-control" id="title" name="title" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="video_link" class="form-label">YouTube/Vimeo Link</label>
-                                        <input type="url" class="form-control" id="video_link" name="video_link" required>
-                                    </div>
-                                </div>
 
-                                <div class="mb-3">
-                                    <label for="synopsis" class="form-label">Short Synopsis (100-150 words)</label>
-                                    <textarea class="form-control" id="synopsis" name="synopsis" rows="3" required></textarea>
-                                </div>
+                                    <!-- Film Information -->
+                                    <h6 class="mt-4 mb-3">Film Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="title" class="form-label">Title of Work</label>
+                                            <input type="text" class="form-control" id="title" name="title"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="video_link" class="form-label">YouTube/Vimeo Link</label>
+                                            <input type="url" class="form-control" id="video_link" name="video_link"
+                                                required>
+                                        </div>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Detailed Description (if applicable for accessibility purposes)</label>
-                                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
-                                </div>
-        
-                                <!-- Accessibility Compliance -->
-                                <div class="form-check mt-3">
-                                    <input class="form-check-input" type="checkbox" id="accessibility" name="accessibility" required>
-                                    <label class="form-check-label" for="accessibility">
-                                        I confirm that this submission is subject to WCAG 2.1 - Level AA accessibility standards.
-                                    </label>
-                                </div>
-        
-                                <div class="text-end mt-4">
-                                    <button type="submit" class="btn btn-primary">Submit Animation</button>
-                                </div>
-                            </form>
+                                    <div class="mb-3">
+                                        <label for="synopsis" class="form-label">Short Synopsis (100-150 words)</label>
+                                        <textarea class="form-control" id="synopsis" name="synopsis" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Detailed Description (if applicable
+                                            for accessibility purposes)</label>
+                                        <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                                    </div>
+
+                                    <!-- Accessibility Compliance -->
+                                    <div class="form-check mt-3">
+                                        <input class="form-check-input" type="checkbox" id="accessibility"
+                                            name="accessibility" required>
+                                        <label class="form-check-label" for="accessibility">
+                                            I confirm that this submission is subject to WCAG 2.1 - Level AA accessibility
+                                            standards and may not be displayed if it cannot be made accessible.
+                                        </label>
+                                    </div>
+
+                                    <div class="text-end mt-4">
+                                        <button type="submit" class="btn btn-primary">Submit Animation</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,7 +168,8 @@
                             <p>All submissions must comply with WCAG 2.1 - Level AA accessibility standards:</p>
                             <ul>
                                 <li>Videos with audio must include accurate closed captions.
-                                    <a href="https://www.w3.org/WAI/WCAG21/quickref/#captions-prerecorded" target="_blank">More
+                                    <a href="https://www.w3.org/WAI/WCAG21/quickref/#captions-prerecorded"
+                                        target="_blank">More
                                         info</a>
                                 </li>
                                 <li>Videos without audio must include a detailed text-based description.
@@ -159,7 +188,8 @@
     </div>
 
     <!-- Submission Guidelines Modal -->
-    <div class="modal fade" id="guidelinesModal" tabindex="-1" aria-labelledby="guidelinesModalLabel" aria-hidden="true">
+    <div class="modal fade" id="guidelinesModal" tabindex="-1" aria-labelledby="guidelinesModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -264,51 +294,54 @@
             padding: 40px 0px;
         }
 
-        .form h2{
+        .form h2 {
             font-family: georgiapro, serif;
             color: #013ECD;
             font-weight: 500;
         }
 
-        .card-header h2{
+        .card-header h2 {
             font-family: georgiapro, serif;
             font-weight: 500;
         }
-        .card-header h3{
-            font-size:22px;
+
+        .card-header h3 {
+            font-size: 22px;
         }
 
-        .card{
-            border:0;
+        .card {
+            border: 0;
         }
 
-        .card-header{
-            background:#fff;
-            border-bottom:0px;
-            padding-top:20px;
-            padding-bottom:5px;
+        .card-header {
+            background: #fff;
+            border-bottom: 0px;
+            padding-top: 20px;
+            padding-bottom: 5px;
             border-top: 8px solid #03357a;
         }
-        .card-header.card-header-main{
+
+        .card-header.card-header-main {
             border-top: 8px solid #013ECD;
         }
-        .card-body{
-            padding-top:5px;
+
+        .card-body {
+            padding-top: 5px;
         }
 
 
         /* make it so the hero h1 and h2 fly in from the left with keyframes
-            make it so the form flies in from the right with keyframes */
+                make it so the form flies in from the right with keyframes */
 
         @keyframes fly-in-left {
             from {
                 transform: translateX(-50%);
-                opacity:0;
+                opacity: 0;
             }
 
             to {
                 transform: translateX(0%);
-                opacity:100%;
+                opacity: 100%;
             }
         }
 
@@ -325,24 +358,24 @@
         @keyframes fly-in-down {
             from {
                 transform: translateY(-100%);
-                opacity:0;
+                opacity: 0;
             }
 
             to {
                 transform: translateY(0%);
-                opacity:100%;
+                opacity: 100%;
             }
         }
 
         @keyframes fly-in-up {
             from {
                 transform: translateY(50%);
-                opacity:0;
+                opacity: 0;
             }
 
             to {
                 transform: translateY(0%);
-                opacity:100%;
+                opacity: 100%;
             }
         }
 
@@ -351,9 +384,8 @@
             animation: fly-in-down 1s ease;
         }
 
-        .card{
+        .card {
             animation: fly-in-up 1s ease;
         }
-
     </style>
 @endsection

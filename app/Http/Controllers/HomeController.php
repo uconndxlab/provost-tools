@@ -25,4 +25,8 @@ class HomeController extends Controller
         
         return view('animation-showcase-portal.submission-form');
     }
+
+    public function animationShowcaseSubmissionReceived(Request $request) {
+        return view('animation-showcase-portal.submission-received');
+    }
 }

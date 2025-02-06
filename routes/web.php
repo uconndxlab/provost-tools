@@ -11,6 +11,9 @@ use App\Http\Controllers\PayrollIdController;
 use App\Http\Controllers\BudgetHearingQuestionnaireController;
 use App\Models\SchoolCollege;
 use App\Http\Controllers\SchoolCollegeController;
+use App\Http\Controllers\AnimationShowcaseSubmissionController;
+
+
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -19,6 +22,8 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/animation-showcase-submission', [HomeController::class, 'animationShowcaseSubmission'])->name('animationShowcaseSubmission');
+Route::post('/animation-showcase-submission', [AnimationShowcaseSubmissionController::class, 'store'])->name('animationShowcaseSubmission.store');
+
 
 
 Route::middleware(['cas.auth'])->group(function() {
@@ -41,6 +46,9 @@ Route::middleware(['cas.auth'])->group(function() {
 
         Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
         Route::post('/admin/removeBudgetHearingPermission', [SchoolCollegeController::class, 'removePermissionForUser'])->name('admin.remove_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
+        
+        Route::get('/admin/animation-showcase-submissions', [AnimationShowcaseSubmissionController::class, 'index'])->name('admin.animationShowcaseSubmissions.index');
+        Route::get('/admin/animation-showcase-submissions/{submission}', [AnimationShowcaseSubmissionController::class, 'show'])->name('admin.animationShowcaseSubmissions.show');
     });
 
 
