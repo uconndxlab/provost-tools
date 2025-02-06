@@ -13,11 +13,19 @@
                 <input type="text" class="form-control" id="name" name="name" required>
             </div>
 
-            <div class="form-group">
-                <label for="priority">Weight</label>
-                <input type="number" class="form-control" id="weight" name="weight" required>
-            </div>
+  
+            <div class="form-group my-3">
+                <label for="priority_level">Priority Level</label> <br>
+                {{-- buttongroup from 1-5 --}}
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
 
+                    @for ($i = 1; $i <= 5; $i++)
+                    <input type="radio" class="btn-check" name="weight" id="priority_level{{ $i }}" value="{{ $i }}" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="priority_level{{ $i }}">{{ $i }}</label>
+                    @endfor
+
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
@@ -45,10 +53,12 @@
     <script>
         // do a trix on the description field
         document.addEventListener('trix-file-accept', function (event) {
-            event.preventDefault()
-
-            
+            event.preventDefault();
         })
+
+
+        // 
+    </script>
 
         
 

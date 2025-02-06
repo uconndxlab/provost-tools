@@ -40,7 +40,7 @@
                                         <td>{!! $priority->description !!}</td>
                                         <td>
                                             <a href="{{ route('decision_maker.institutional_priorities.edit', $priority) }}" class="btn btn-primary">Edit</a>
-                                            <form action="{{ route('decision_maker.institutional_priorities.destroy', $priority) }}" method="POST" style="display: inline;">
+                                            <form action="{{ route('decision_maker.institutional_priorities.destroy', $priority) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger mt-2">Delete</button>
