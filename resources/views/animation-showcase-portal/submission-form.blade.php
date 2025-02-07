@@ -83,7 +83,7 @@
                                             <colgroup>
                                                 <col style="width: 25%;">  <!-- Student Name -->
                                                 <col style="width: 25%;">  <!-- Major -->
-                                                <col style="width: 6ch;">  <!-- Graduation Year (4 characters + some padding) -->
+                                                <col style="width: 8ch;">  <!-- Graduation Year (4 characters + some padding) -->
                                                 <col style="width: 40%;">  <!-- Biography -->
                                                 <col style="width: 4%;">   <!-- Actions column -->
                                             </colgroup>
@@ -161,7 +161,7 @@
                                             <td><input type="text" class="form-control" name="student_major[]" required></td>
                                             <td><input type="text" class="form-control" name="student_year[]" required></td>
                                             <td><textarea class="form-control" name="student_bio[]" required></textarea></td>
-                                            <td><button type="button" class="btn btn-danger remove-student">Remove</button></td>
+                                            <td><button type="button" class="btn btn-danger remove-student">X</button></td>
                                         `;
                                         tbody.appendChild(newRow);
                                     });
