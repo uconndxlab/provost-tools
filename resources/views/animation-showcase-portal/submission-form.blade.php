@@ -91,7 +91,7 @@
                                                 <tr>
                                                     <th>Student Name</th>
                                                     <th>Major</th>
-                                                    <th>Graduation Year</th>
+                                                    <th>Grad Year</th>
                                                     <th>Biography</th>
                                                     <th></th>
                                                 </tr>
