@@ -80,6 +80,13 @@
                                     <h6 class="mt-4 mb-3 pt-3">Student Information</h6>
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="students-table">
+                                            <colgroup>
+                                                <col style="width: 25%;">  <!-- Student Name -->
+                                                <col style="width: 25%;">  <!-- Major -->
+                                                <col style="width: 6ch;">  <!-- Graduation Year (4 characters + some padding) -->
+                                                <col style="width: 40%;">  <!-- Biography -->
+                                                <col style="width: 4%;">   <!-- Actions column -->
+                                            </colgroup>
                                             <thead>
                                                 <tr>
                                                     <th>Student Name</th>
@@ -93,12 +100,13 @@
                                                 <tr>
                                                     <td><input type="text" class="form-control" name="student_name[]" required></td>
                                                     <td><input type="text" class="form-control" name="student_major[]" required></td>
-                                                    <td><input type="text" class="form-control" name="student_year[]" required></td>
+                                                    <td><input type="text" class="form-control" name="student_year[]" maxlength="4" style="width: 6ch;" required></td>
                                                     <td><textarea class="form-control" name="student_bio[]" required></textarea></td>
                                                     <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        
                                         <button type="button" class="btn btn-primary mt-2" id="add-student">Add Student</button>
                                     </div>
                                     
