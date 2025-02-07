@@ -86,7 +86,7 @@
                                                     <th>Major</th>
                                                     <th>Graduation Year</th>
                                                     <th>Biography</th>
-                                                    <th>Actions</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody id="students-body">
@@ -95,7 +95,7 @@
                                                     <td><input type="text" class="form-control" name="student_major[]" required></td>
                                                     <td><input type="text" class="form-control" name="student_year[]" required></td>
                                                     <td><textarea class="form-control" name="student_bio[]" required></textarea></td>
-                                                    <td><button type="button" class="btn btn-danger remove-student">Remove</button></td>
+                                                    <td></td>
                                                 </tr>
                                             </tbody>
                                         </table>
