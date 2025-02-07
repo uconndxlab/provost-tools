@@ -189,7 +189,7 @@
                         </div>
                         <div class="card-body">
                             <p>Before submitting your animation, please review the guidelines below:</p>
-                            <ul>
+                            <ul class="d-none">
                                 <li>Open to submissions from all Big East institutions.</li>
                                 <li>Submissions can be individual or collaborative.</li>
                                 <li>Only one submission per institution.</li>
@@ -199,7 +199,7 @@
                                 <li>Submission deadline: February 25, 2025</li>
                             </ul>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#guidelinesModal">View Full Guidelines</button>
+                                data-bs-target="#guidelinesModal">View Submission Guidelines</button>
                         </div>
                     </div>
 
@@ -268,11 +268,10 @@
                         </li>
                         <li><strong>Timeline:</strong>
                             <ul>
-                                <li>February 3: Outreach to institutions</li>
                                 <li>February 10: Submission portal opens</li>
                                 <li>February 25: Submission deadline</li>
                                 <li>March 1: Files sent to Mohegan Sun</li>
-                                <li>March 7-10: Screening during WBB tournament</li>
+                                <li>March 7-10: Films will be screened during the Women's Big East Basketball Tournament.</li>
                             </ul>
                         </li>
                     </ul>
