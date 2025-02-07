@@ -85,13 +85,13 @@
                                                 <col style="width: 25%;">  <!-- Major -->
                                                 <col style="width: 8ch;">  <!-- Graduation Year (4 characters + some padding) -->
                                                 <col style="width: 40%;">  <!-- Biography -->
-                                                <col style="width: 4%;">   <!-- Actions column -->
+                                                <col style="width: 5%;">   <!-- Actions column -->
                                             </colgroup>
                                             <thead>
                                                 <tr>
                                                     <th>Student Name</th>
                                                     <th>Major</th>
-                                                    <th>Grad Year</th>
+                                                    <th>Year</th>
                                                     <th>Biography (Max: 50 words)</th>
                                                     <th></th>
                                                 </tr>
@@ -270,8 +270,7 @@
                             <ul>
                                 <li>February 10: Submission portal opens</li>
                                 <li>February 25: Submission deadline</li>
-                                <li>March 1: Files sent to Mohegan Sun</li>
-                                <li>March 7-10: Films will be screened during the Women's Big East Basketball Tournament.</li>
+                                <li>March 7-10: Films will be screened during the Big East Women's Basketball Tournament.</li>
                             </ul>
                         </li>
                     </ul>
