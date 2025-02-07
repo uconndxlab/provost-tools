@@ -23,6 +23,7 @@
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QE4M6Q4PTD"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 

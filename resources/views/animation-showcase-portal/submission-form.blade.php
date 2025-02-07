@@ -17,108 +17,185 @@
                 <!-- Submission Guidelines Modal Trigger -->
 
                 <!-- Submission Form -->
-                <div class="col-md-8">
+                <div class="col-md-9 mb-4">
                     <div class="card shadow-sm">
-                        <div class="card-header">
-                            <h5 class="mb-0">Submit Your Animation</h5>
+                        <div class="card-header card-header-main">
+                            <h2 class="mb-0">Submit An Animation</h2>
                         </div>
                         <div class="card-body">
-                            <form action="#" method="POST">
-                                @csrf
-        
-                                <!-- Institution Information -->
-                                <h6 class="mb-3">Submittor Information</h6>
+                            <div id="submission-form">
+                                <form action="{{ route('animationShowcaseSubmission.store') }}"
+                                    hx-post="{{ route('animationShowcaseSubmission.store') }}" hx-select=".alert"
+                                    hx-swap="outerHTML" hx-target="#submission-form" method="POST">
+                                    @csrf
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="submittor_name" class="form-label">Submittor Name</label>
-                                        <input type="text" class="form-control" id="submittor_name" name="submittor_name" required>
+                                    <!-- Institution Information -->
+                                    <h6 class="mt-2 mb-3">Submittor Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="submittor_name" class="form-label">Submittor Name</label>
+                                            <input type="text" class="form-control" id="submittor_name"
+                                                name="submittor_name" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="submittor_email" class="form-label">Submittor Email</label>
+                                            <input type="email" class="form-control" id="submittor_email"
+                                                name="submittor_email" required>
+                                        </div>
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label for="submittor_email" class="form-label">Submittor Email</label>
-                                        <input type="email" class="form-control" id="submittor_email" name="submittor_email" required>
-                                    </div>
-                                </div>
+                                    <h6 class="mt-4 mb-3">Institution Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="institution" class="form-label">Name of Institution</label>
+                                            <select class="form-select" id="institution" name="institution" required>
+                                                <option value="" selected disabled>Select an Institution</option>
+                                                <option value="Butler University">Butler University</option>
+                                                <option value="University of Connecticut">University of Connecticut</option>
+                                                <option value="Creighton University">Creighton University</option>
+                                                <option value="DePaul University">DePaul University</option>
+                                                <option value="Georgetown University">Georgetown University</option>
+                                                <option value="Marquette University">Marquette University</option>
+                                                <option value="Providence College">Providence College</option>
+                                                <option value="Seton Hall University">Seton Hall University</option>
+                                                <option value="St. John's University">St. John's University</option>
+                                                <option value="Villanova University">Villanova University</option>
+                                                <option value="Xavier University">Xavier University</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="program" class="form-label">Relevant Department/Program</label>
+                                            <input type="text" class="form-control" id="program" name="program"
+                                                required>
+                                        </div>
 
-                                <div class="row">
-                                    <h6 class="mb-3">Institution Information</h6>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="institution" class="form-label">Name of Institution</label>
-                                        <input type="text" class="form-control" id="institution" name="institution" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="program" class="form-label">Relevant Major/Program</label>
-                                        <input type="text" class="form-control" id="program" name="program" required>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="program_description" class="form-label">Description of Major/Program <span class="text-muted">(Optional)</span></label>
-                                    <textarea class="form-control" id="program_description" name="program_description" rows="2"></textarea>
-                                </div>
-        
-                                <!-- Student Information -->
-                                <h6 class="mt-4 mb-3">Student Information</h6>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="student_names" class="form-label">Student Name(s)</label>
-                                        <textarea class="form-control" id="student_names" name="student_names" rows="2" required></textarea>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="student_bios" class="form-label">Student Bio(s)</label>
-                                        <textarea class="form-control" id="student_bios" name="student_bios" rows="2" required></textarea>
-                                    </div>
-                                </div>
-        
-                                <!-- Film Information -->
-                                <h6 class="mt-4 mb-3">Film Information</h6>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="title" class="form-label">Title of Work</label>
-                                        <input type="text" class="form-control" id="title" name="title" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="video_link" class="form-label">YouTube/Vimeo Link</label>
-                                        <input type="url" class="form-control" id="video_link" name="video_link" required>
-                                    </div>
-                                </div>
+                                        {{-- program_link --}}
+                                        <div class="col-md-6 mb-3">
+                                            <label for="program_link" class="form-label">Link to Program</label>
+                                            <input type="url" class="form-control" id="program_link" name="program_link">
+                                        </div>
 
-                                <div class="mb-3">
-                                    <label for="synopsis" class="form-label">Short Synopsis (100-150 words)</label>
-                                    <textarea class="form-control" id="synopsis" name="synopsis" rows="3" required></textarea>
-                                </div>
+                                        <div class="col-md-12 mb-3">
+                                            <label for="program_description" class="form-label">Program Description</label>
+                                            <textarea class="form-control" id="program_description" name="program_description"
+                                                rows="3" required></textarea>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">Detailed Description (if applicable for accessibility purposes)</label>
-                                    <textarea class="form-control" id="description" name="description" rows="5"></textarea>
-                                </div>
-        
-                                <!-- Accessibility Compliance -->
-                                <div class="form-check mt-3">
-                                    <input class="form-check-input" type="checkbox" id="accessibility" name="accessibility" required>
-                                    <label class="form-check-label" for="accessibility">
-                                        I confirm that this submission is subject to WCAG 2.1 - Level AA accessibility standards.
-                                    </label>
-                                </div>
-        
-                                <div class="text-end mt-4">
-                                    <button type="submit" class="btn btn-success">Submit Animation</button>
-                                </div>
-                            </form>
+                                    </div>
+
+                                    <h6 class="mt-4 mb-3 pt-3">Student Information</h6>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="students-table">
+                                            <colgroup>
+                                                <col style="width: 25%;">  <!-- Student Name -->
+                                                <col style="width: 25%;">  <!-- Major -->
+                                                <col style="width: 8ch;">  <!-- Graduation Year (4 characters + some padding) -->
+                                                <col style="width: 40%;">  <!-- Biography -->
+                                                <col style="width: 5%;">   <!-- Actions column -->
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>Student Name</th>
+                                                    <th>Major</th>
+                                                    <th>Year</th>
+                                                    <th>Biography (Max: 50 words)</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="students-body">
+                                                <tr>
+                                                    <td><input type="text" class="form-control" name="student_name[]" required></td>
+                                                    <td><input type="text" class="form-control" name="student_major[]" required></td>
+                                                    <td><input type="text" class="form-control" name="student_year[]" maxlength="4" style="width: 8ch;" required></td>
+                                                    <td><textarea maxlength="450" class="form-control" name="student_bio[]" required></textarea></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        
+                                        <button type="button" class="btn btn-primary mt-2" id="add-student">Add Student</button>
+                                    </div>
+                                    
+
+                                    <h6 class="mt-4 mb-3">Film Information</h6>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="title" class="form-label">Title of Work</label>
+                                            <input type="text" class="form-control" id="title" name="title"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="video_link" class="form-label">YouTube/Vimeo Link</label>
+                                            <input type="url" class="form-control" id="video_link" name="video_link"
+                                                required>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="synopsis" class="form-label">Short Synopsis (100-150 words)</label>
+                                        <textarea class="form-control" id="synopsis" name="synopsis" rows="3" required></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Detailed Description (if applicable
+                                            for accessibility purposes)</label>
+                                        <textarea class="form-control" id="description" name="description" rows="5"></textarea>
+                                    </div>
+
+                                    <div class="form-check mt-3">
+                                        <input class="form-check-input" type="checkbox" id="accessibility"
+                                            name="accessibility" required>
+                                        <label class="form-check-label" for="accessibility">
+                                            I acknowledge that this submission is subject to WCAG 2.1 - Level AA
+                                            accessibility standards and may not be displayed if it cannot be made
+                                            accessible.
+                                        </label>
+                                    </div>
+
+                                    <div class="text-end mt-4">
+                                        <button type="submit" class="btn btn-primary"
+                                            hx-on:click="formatStudentData()">Submit Animation</button>
+                                    </div>
+                                </form>
+
+                                <script>
+                                    document.getElementById("add-student").addEventListener("click", function() {
+                                        let tbody = document.getElementById("students-body");
+                                        let newRow = document.createElement("tr");
+                                        newRow.innerHTML = `
+                                            <td><input type="text" class="form-control" name="student_name[]" required></td>
+                                            <td><input type="text" class="form-control" name="student_major[]" required></td>
+                                            <td><input type="text" class="form-control" name="student_year[]" required></td>
+                                            <td><textarea class="form-control" name="student_bio[]" required></textarea></td>
+                                            <td><button type="button" class="btn btn-danger remove-student">X</button></td>
+                                        `;
+                                        tbody.appendChild(newRow);
+                                    });
+                                    
+                                    document.addEventListener("click", function(event) {
+                                        if (event.target.classList.contains("remove-student")) {
+                                            event.target.closest("tr").remove();
+                                        }
+                                    });
+                                    </script>
+                                    
+            
+
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-3">
 
                     <div class="card shadow-sm mb-4">
                         <div class="card-header">
-                            <h5 class="mb-0">Submission Guidelines</h5>
+                            <h3 class="mb-0">Submission Guidelines</h3>
                         </div>
                         <div class="card-body">
                             <p>Before submitting your animation, please review the guidelines below:</p>
-                            <ul>
+                            <ul class="d-none">
                                 <li>Open to submissions from all Big East institutions.</li>
                                 <li>Submissions can be individual or collaborative.</li>
                                 <li>Only one submission per institution.</li>
@@ -128,19 +205,20 @@
                                 <li>Submission deadline: February 25, 2025</li>
                             </ul>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#guidelinesModal">View Full Guidelines</button>
+                                data-bs-target="#guidelinesModal">View Submission Guidelines</button>
                         </div>
                     </div>
 
                     <div class="card shadow-sm">
                         <div class="card-header">
-                            <h5 class="mb-0">Accessibility Requirements</h5>
+                            <h3 class="mb-0">Accessibility Requirements</h3>
                         </div>
                         <div class="card-body">
                             <p>All submissions must comply with WCAG 2.1 - Level AA accessibility standards:</p>
                             <ul>
                                 <li>Videos with audio must include accurate closed captions.
-                                    <a href="https://www.w3.org/WAI/WCAG21/quickref/#captions-prerecorded" target="_blank">More
+                                    <a href="https://www.w3.org/WAI/WCAG21/quickref/#captions-prerecorded"
+                                        target="_blank">More
                                         info</a>
                                 </li>
                                 <li>Videos without audio must include a detailed text-based description.
@@ -159,7 +237,8 @@
     </div>
 
     <!-- Submission Guidelines Modal -->
-    <div class="modal fade" id="guidelinesModal" tabindex="-1" aria-labelledby="guidelinesModalLabel" aria-hidden="true">
+    <div class="modal fade" id="guidelinesModal" tabindex="-1" aria-labelledby="guidelinesModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -195,11 +274,9 @@
                         </li>
                         <li><strong>Timeline:</strong>
                             <ul>
-                                <li>February 3: Outreach to institutions</li>
                                 <li>February 10: Submission portal opens</li>
                                 <li>February 25: Submission deadline</li>
-                                <li>March 1: Files sent to Mohegan Sun</li>
-                                <li>March 7-10: Screening during WBB tournament</li>
+                                <li>March 7-10: Films will be screened during the Big East Women's Basketball Tournament.</li>
                             </ul>
                         </li>
                     </ul>
@@ -261,26 +338,57 @@
         .form {
             position: relative;
             top: 0px;
-            padding: 80px 0px;
+            padding: 40px 0px;
         }
 
         .form h2 {
             font-family: georgiapro, serif;
             color: #013ECD;
             font-weight: 500;
-            text-align: center;
         }
 
+        .card-header h2 {
+            font-family: georgiapro, serif;
+            font-weight: 500;
+        }
+
+        .card-header h3 {
+            font-size: 22px;
+        }
+
+        .card {
+            border: 0;
+        }
+
+        .card-header {
+            background: #fff;
+            border-bottom: 0px;
+            padding-top: 20px;
+            padding-bottom: 5px;
+            border-top: 8px solid #03357a;
+        }
+
+        .card-header.card-header-main {
+            border-top: 8px solid #013ECD;
+        }
+
+        .card-body {
+            padding-top: 5px;
+        }
+
+
         /* make it so the hero h1 and h2 fly in from the left with keyframes
-            make it so the form flies in from the right with keyframes */
+                        make it so the form flies in from the right with keyframes */
 
         @keyframes fly-in-left {
             from {
-                transform: translateX(-100%);
+                transform: translateX(-50%);
+                opacity: 0;
             }
 
             to {
                 transform: translateX(0%);
+                opacity: 100%;
             }
         }
 
@@ -294,17 +402,37 @@
             }
         }
 
+        @keyframes fly-in-down {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0%);
+                opacity: 100%;
+            }
+        }
+
+        @keyframes fly-in-up {
+            from {
+                transform: translateY(50%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0%);
+                opacity: 100%;
+            }
+        }
+
         .animation-hero h1,
         .animation-hero h2 {
-            animation: fly-in-left 1s ease-out;
+            animation: fly-in-down 1s ease;
         }
 
-        .form .col-md-6:nth-child(odd) {
-            animation: fly-in-right 1s ease-out;
-        }
-
-        .form .col-md-6:nth-child(even) {
-            animation: fly-in-left 1s ease-out;
+        .card {
+            animation: fly-in-up 1s ease;
         }
     </style>
 @endsection
