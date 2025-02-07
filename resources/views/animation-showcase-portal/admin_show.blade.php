@@ -89,7 +89,7 @@
                                                     <p>{!! $submission->student_names !!}</p>
 
                                                     <h6>Team Bios</h6>
-                                                    <p>{{ $submission->student_bios }}</p>
+                                                    <p>{!! $submission->student_bios !!}</p>
                                                     
 
                                                     <h6>Submission Synopsis</h6>

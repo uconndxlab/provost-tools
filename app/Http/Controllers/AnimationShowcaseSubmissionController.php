@@ -15,13 +15,33 @@ class AnimationShowcaseSubmissionController extends Controller
             'institution' => 'required|string|max:255',
             'program' => 'required|string|max:255',
             'program_description' => 'nullable|string',
-            'student_names' => 'required|string',
-            'student_bios' => 'required|string',
             'title' => 'required|string|max:255',
             'video_link' => 'required|url',
             'synopsis' => 'required|string|max:1000',
             'accessibility' => 'required'
         ]);
+
+
+        $studentNames = request('student_name'); // Array of names
+$studentMajors = request('student_major'); // Array of majors
+$studentYears = request('student_year'); // Array of years
+$studentBios = request('student_bio'); // Array of bios
+
+// Comma-separated list of student names
+$studentNamesFormatted = implode(', ', $studentNames);
+
+// Generate formatted student bios
+$formattedBios = [];
+foreach ($studentNames as $index => $name) {
+    $major = $studentMajors[$index] ?? 'Unknown Major';
+    $year = $studentYears[$index] ?? 'Unknown Year';
+    $bio = $studentBios[$index] ?? '';
+
+    $formattedBios[] = "{$name} ({$major} {$year})\n{$bio}";
+}
+
+// Join all bios into one string
+$studentBiosFormatted = implode("\n\n", $formattedBios);
 
         AnimationShowcaseSubmission::create([
             'submittor_name' => $request->submittor_name,
@@ -29,8 +49,8 @@ class AnimationShowcaseSubmissionController extends Controller
             'institution' => $request->institution,
             'program' => $request->program,
             'program_description' => $request->program_description,
-            'student_names' => $request->student_names,
-            'student_bios' => $request->student_bios,
+            'student_names' => $studentNamesFormatted,
+            'student_bios' => $studentBiosFormatted,
             'title' => $request->title,
             'video_link' => $request->video_link,
             'synopsis' => $request->synopsis,
