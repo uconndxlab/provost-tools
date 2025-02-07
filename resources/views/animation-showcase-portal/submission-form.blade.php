@@ -46,7 +46,7 @@
 
                                     <h6 class="mt-4 mb-3">Institution Information</h6>
                                     <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                        <div class="col-md-12 mb-3">
                                             <label for="institution" class="form-label">Name of Institution</label>
                                             <select class="form-select" id="institution" name="institution" required>
                                                 <option value="" selected disabled>Select an Institution</option>
@@ -67,6 +67,12 @@
                                             <label for="program" class="form-label">Relevant Department/Program</label>
                                             <input type="text" class="form-control" id="program" name="program"
                                                 required>
+                                        </div>
+
+                                        {{-- program_link --}}
+                                        <div class="col-md-6 mb-3">
+                                            <label for="program_link" class="form-label">Link to Program</label>
+                                            <input type="url" class="form-control" id="program_link" name="program_link">
                                         </div>
 
                                         <div class="col-md-12 mb-3">

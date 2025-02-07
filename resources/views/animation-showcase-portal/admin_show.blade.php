@@ -90,7 +90,7 @@
 
                                                     <h6>Team Bios</h6>
                                                     <p>{!! $submission->student_bios !!}</p>
-                                                    
+
 
                                                     <h6>Submission Synopsis</h6>
                                                     <p>{{ $submission->synopsis }}</p>
@@ -99,10 +99,27 @@
                                                     <h6>Submission Description</h6>
                                                     <p>{{ $submission->description }}</p>
 
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="mb-4 card">
+                                        <div class="card-header">
+                                            <h6>Program Information</h6>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12 col col-md-6">
+                                                    <h6>Program</h6>
+                                                    <p>{{ $submission->program }}</p>
+                                                    <p>{{ $submission->program_description }}</p>
+                                                    <p>{{ $submission->program_link }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -111,6 +128,5 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

@@ -14,6 +14,7 @@ class AnimationShowcaseSubmission extends Model
         'institution',
         'program',
         'program_description',
+        'program_link',
         'student_names',
         'student_bios',
         'title',

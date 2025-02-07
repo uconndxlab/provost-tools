@@ -37,7 +37,7 @@ foreach ($studentNames as $index => $name) {
     $year = $studentYears[$index] ?? 'Unknown Year';
     $bio = $studentBios[$index] ?? '';
 
-    $formattedBios[] = "{$name} ({$major} {$year})\n{$bio}";
+    $formattedBios[] = "{$name} ({$major} {$year})\n{$bio} <br>";
 }
 
 // Join all bios into one string
@@ -49,6 +49,7 @@ $studentBiosFormatted = implode("\n\n", $formattedBios);
             'institution' => $request->institution,
             'program' => $request->program,
             'program_description' => $request->program_description,
+            'program_link' => $request->program_link,
             'student_names' => $studentNamesFormatted,
             'student_bios' => $studentBiosFormatted,
             'title' => $request->title,
