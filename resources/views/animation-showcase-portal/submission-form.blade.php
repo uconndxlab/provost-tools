@@ -92,7 +92,7 @@
                                                     <th>Student Name</th>
                                                     <th>Major</th>
                                                     <th>Grad Year</th>
-                                                    <th>Biography</th>
+                                                    <th>Biography (Max: 50 words)</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
@@ -101,7 +101,7 @@
                                                     <td><input type="text" class="form-control" name="student_name[]" required></td>
                                                     <td><input type="text" class="form-control" name="student_major[]" required></td>
                                                     <td><input type="text" class="form-control" name="student_year[]" maxlength="4" style="width: 8ch;" required></td>
-                                                    <td><textarea class="form-control" name="student_bio[]" required></textarea></td>
+                                                    <td><textarea maxlength="450" class="form-control" name="student_bio[]" required></textarea></td>
                                                     <td></td>
                                                 </tr>
                                             </tbody>
