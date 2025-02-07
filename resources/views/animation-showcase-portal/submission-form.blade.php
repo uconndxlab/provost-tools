@@ -100,7 +100,7 @@
                                                 <tr>
                                                     <td><input type="text" class="form-control" name="student_name[]" required></td>
                                                     <td><input type="text" class="form-control" name="student_major[]" required></td>
-                                                    <td><input type="text" class="form-control" name="student_year[]" maxlength="4" style="width: 6ch;" required></td>
+                                                    <td><input type="text" class="form-control" name="student_year[]" maxlength="4" style="width: 8ch;" required></td>
                                                     <td><textarea class="form-control" name="student_bio[]" required></textarea></td>
                                                     <td></td>
                                                 </tr>
