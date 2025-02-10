@@ -5,7 +5,7 @@
     <div class="container">
         <h1>Create Institutional Priority</h1>
         <p>Use the form below to create a new institutional priority.</p>
-        <form action="{{ route('institutional_priorities.store') }}" method="POST">
+        <form action="{{ route('decision_maker.institutional_priorities.store') }}" method="POST">
             @csrf
 
             <div class="form-group">

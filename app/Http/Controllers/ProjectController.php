@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\InstitutionalPriority;
+use App\Models\Tag;
 
 class ProjectController extends Controller
 {
@@ -23,7 +24,8 @@ class ProjectController extends Controller
     public function create()
     {
         $priorities = InstitutionalPriority::all();
-        return view('projects.create', compact('priorities'));
+        $tags = Tag::all();
+        return view('decision_maker.projects.create', compact('priorities', 'tags'));
     }
 
     /**
@@ -31,23 +33,37 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate request data
         $request->validate([
             'name' => 'required|string|max:255',
-            'budget' => 'required|numeric|min:0',
-            'timeline' => 'required|string',
-            'institutional_priorities' => 'nullable|array',
-            'institutional_priorities.*.id' => 'exists:institutional_priorities,id',
-            'institutional_priorities.*.score' => 'integer|min:1|max:10',
+            'description' => 'required|string',
+            'start_date' => 'required|date',
+            'status' => 'required|in:planning,in_progress,completed',
         ]);
-    
-        $project = Project::create($request->only(['name', 'budget', 'timeline', 'user_id']));
-        if ($request->has('institutional_priorities')) {
-            foreach ($request->institutional_priorities as $priority) {
-                $project->institutionalPriorities()->attach($priority['id'], ['score' => $priority['score']]);
+
+        // Create the project
+        $project = Project::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date ?? null,
+            'status' => $request->status,
+            'user_id' => Auth::id(), // Assuming authentication is in place
+        ]);
+
+        // Attach selected priorities with scores
+        if ($request->has('priorities')) {
+            $priorities = [];
+            foreach ($request->priorities as $priority_id) {
+                $score = $request->priority_scores[$priority_id] ?? null;
+                if ($score) {
+                    $priorities[$priority_id] = ['score' => $score];
+                }
             }
+            $project->priorities()->attach($priorities);
         }
-    
-        return redirect()->route('projects.index')->with('success', 'Project created!');
+
+        return redirect()->route('decision_maker.projects.index')->with('success', 'Project created successfully!');
     }
 
     /**

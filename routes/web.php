@@ -27,6 +27,23 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/animation-showcase-submission', [HomeController::class, 'animationShowcaseSubmission'])->name('animationShowcaseSubmission');
 Route::post('/animation-showcase-submission', [AnimationShowcaseSubmissionController::class, 'store'])->name('animationShowcaseSubmission.store');
 
+Route::get('/admin/institutional-priorities', [InstitutionalPriorityController::class, 'index'])->name('decision_maker.institutional_priorities.index');
+Route::get('/admin/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'show'])->name('decision_maker.institutional_priorities.show');
+Route::get('/admin/institutional-priority/create', [InstitutionalPriorityController::class, 'create'])->name('decision_maker.institutional_priorities.create');
+Route::get('/admin/institutional-priorities/{institutionalPriority}/edit', [InstitutionalPriorityController::class, 'edit'])->name('decision_maker.institutional_priorities.edit');
+Route::put('/admin/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'update'])->name('decision_maker.institutional_priorities.update');
+Route::delete('/admin/institutional-priorities/{institutionalPriority}', [InstitutionalPriorityController::class, 'destroy'])->name('decision_maker.institutional_priorities.destroy');
+Route::post('/admin/institutional-priorities', [InstitutionalPriorityController::class, 'store'])->name('decision_maker.institutional_priorities.store');
+
+Route::get('/admin/projects', [ProjectController::class, 'index'])->name('decision_maker.projects.index');
+Route::get('/admin/projects/{project}', [ProjectController::class, 'show'])->name('decision_maker.projects.show');
+Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('decision_maker.projects.create');
+Route::get('/admin/projects/{project}/edit', [ProjectController::class, 'edit'])->name('decision_maker.projects.edit');
+Route::put('/admin/projects/{project}', [ProjectController::class, 'update'])->name('decision_maker.projects.update');
+Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('decision_maker.projects.destroy');
+Route::post('/admin/projects', [ProjectController::class, 'store'])->name('decision_maker.projects.store');
+
+
 
 
 Route::middleware(['cas.auth'])->group(function() {
@@ -52,6 +69,9 @@ Route::middleware(['cas.auth'])->group(function() {
         
         Route::get('/admin/animation-showcase-submissions', [AnimationShowcaseSubmissionController::class, 'index'])->name('admin.animationShowcaseSubmissions.index');
         Route::get('/admin/animation-showcase-submissions/{submission}', [AnimationShowcaseSubmissionController::class, 'show'])->name('admin.animationShowcaseSubmissions.show');
+    
+    
+        
     });
 
 

@@ -15,4 +15,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(InstitutionalPriority::class);
     }
+
+    public function priorities()
+    {
+        return $this->belongsToMany(InstitutionalPriority::class);
+    }
 }
