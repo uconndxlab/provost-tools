@@ -60,6 +60,18 @@ $table-cell-vertical-align: middle;
     font-weight: 600;
 }
 
+.bg-warning {
+    color:#CF712D;
+}
+
+.text-dark {
+    color:#000e2f!important;
+}
+
+.bg-accent {
+    background-color:lighten($provost-blue, 70%)!important;
+}
+
 h2,h3,h4,h5,h6 {
     font-family: "proxima-nova", sans-serif;
     font-weight: 700;

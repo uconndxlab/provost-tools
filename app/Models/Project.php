@@ -21,6 +21,11 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getScoreByPriority($priorityId)
+    {
+        return $this->institutionalPriorities->find($priorityId)->pivot->score;
+    }
+
     // get the scores for the project, grouped by priority's tag
     public function getScoresByTag($tagId)
     {
@@ -28,11 +33,23 @@ class Project extends Model
             return $priority->tags->contains('id', $tagId);
         });
 
-        $totalScore = $filteredPriorities->sum('pivot.score');
-        $maxScore = $filteredPriorities->max('pivot.score');
-        $averageScore = $filteredPriorities->avg('pivot.score');
+        $totalScore = $filteredPriorities->sum(function ($priority) {
+            return $priority->pivot->score * $priority->weight;
+        });
+
+        $maxScore = $filteredPriorities->max(function ($priority) {
+            return $priority->pivot->score * $priority->weight;
+        });
+
+        $averageScore = round($filteredPriorities->avg(function ($priority) {
+            return $priority->pivot->score * $priority->weight;
+        }), 2);
+        
+
         // possiblemaxscore is the total sum of the weights assigned to the priorities
-        $possibleMaxScore = $filteredPriorities->sum('weight');
+        $possibleMaxScore = $filteredPriorities->sum(function ($priority) {
+            return $priority->weight * 5; // assuming the max rating is 5
+        });
 
         return [
             'total_score' => $totalScore,

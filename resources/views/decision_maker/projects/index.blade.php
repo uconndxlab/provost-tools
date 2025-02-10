@@ -11,25 +11,42 @@
         </div>
 
         <div class="card shadow-sm p-4">
-            <div class="mb-3 d-flex">
-                <input type="text" class="form-control me-2" placeholder="Search projects...">
-                <button class="btn btn-primary">Filter</button>
-            </div>
+            <form action="{{ route('decision_maker.projects.index') }}" method="GET" class="mb-3 d-flex">
+                <input type="text" name="search" class="form-control me-2" placeholder="Search projects..." value="{{ request('search') }}">
+                <select name="status" class="form-select me-2">
+                    <option value="">All Statuses</option>
+                    <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
+                    <option value="In Progress" {{ request('status') == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                    <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
+                </select>
+                <select name="unit" class="form-select me-2">
+                    <option value="">All Units</option>
+                    @foreach ($schoolcolleges as $schoolcollege)
+                        <option value="{{ $schoolcollege->id }}" {{ request('unit') == $schoolcollege->id ? 'selected' : '' }}>{{ $schoolcollege->name }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
 
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead class="table-dark">
                         <tr>
+                            <th>Unit</th>
                             <th>Project Name</th>
+                            <th>Status</th>
+                            
                             <th>Starting Budget</th>
                             <th>Current Spend</th>
                             <th>Start Date</th>
                             <th>End Date</th>
-                            <th>Status</th>
+                            
 
                             {{-- for each one of the tags --}}
                             @foreach ($tags as $tag)
-                                <th>{{ $tag->name }}</th>
+                                <th class="bg-accent">
+                                    {{ $tag->name }}
+                                </th>
                             @endforeach
                         </tr>
                     </thead>
@@ -37,10 +54,20 @@
                         @foreach ($projects as $project)
                             <tr>
                                 <td>
-                                    <a href="{{ route('decision_maker.projects.show', $project) }}"
+                                    
+                                    {{ $project->user->name }}
+                                </td>
+                                <td>
+                                    <a href="{{ route('decision_maker.projects.edit', $project) }}"
                                         class="fw-semibold text-decoration-none">
                                         {{ $project->name }}
                                     </a>
+                                </td>
+                                <td>
+                                    <span
+                                        class="badge bg-{{ $project->status == 'Completed' ? 'success' : ($project->status == 'In Progress' ? 'primary' : 'warning') }}">
+                                        {{ $project->status }}
+                                    </span>
                                 </td>
                                 <td>${{ number_format($project->budget, 2) }}</td>
                                 <td>
@@ -50,23 +77,30 @@
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($project->start_date)->format('M d, Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($project->end_date)->format('M d, Y') }}</td>
-                                <td>
-                                    <span
-                                        class="badge bg-{{ $project->status == 'Completed' ? 'success' : ($project->status == 'In Progress' ? 'primary' : 'warning') }}">
-                                        {{ $project->status }}
-                                    </span>
-                                </td>
+
 
 
                                 @foreach ($tags as $tag)
-                                    <td>
+                                    <td class="bg-accent">
                                         <div class="d-flex flex-column align-items-center">
-                                            <div class="text-center">
-                                                <span class="badge bg-info">Avg: {{$project->getScoresByTag($tag->id)['average_score']}}</span>
-                                            </div>
+                                            @if ($project->getScoresByTag($tag->id)['total_score'] == 0)
+                                                <span class="badge bg-light text-dark">N/A</span>
+                                            @else
                                             <div class="text-center mt-1">
-                                                <span class="badge bg-secondary">Total: {{$project->getScoresByTag($tag->id)['total_score']}} / {{$project->getScoresByTag($tag->id)['possible_max_score']}}</span>
+                                                @php
+                                                    $scoreRatio = $project->getScoresByTag($tag->id)['total_score'] / $project->getScoresByTag($tag->id)['possible_max_score'];
+                                                    $badgeClass = 'bg-secondary';
+                                                    if ($scoreRatio >= 0.75) {
+                                                        $badgeClass = 'bg-success';
+                                                    } elseif ($scoreRatio >= 0.5) {
+                                                        $badgeClass = 'bg-warning';
+                                                    } else {
+                                                        $badgeClass = 'bg-danger';
+                                                    }
+                                                @endphp
+                                                <span class="badge {{ $badgeClass }}">Total: {{$project->getScoresByTag($tag->id)['total_score']}} / {{$project->getScoresByTag($tag->id)['possible_max_score']}}</span>
                                             </div>
+                                            @endif
                                         </div>
                                     </td>
                                 @endforeach

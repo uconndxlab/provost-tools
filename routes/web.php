@@ -38,7 +38,7 @@ Route::post('/admin/institutional-priorities', [InstitutionalPriorityController:
 Route::get('/admin/projects', [ProjectController::class, 'index'])->name('decision_maker.projects.index');
 Route::get('/admin/projects/{project}', [ProjectController::class, 'show'])->name('decision_maker.projects.show');
 Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('decision_maker.projects.create');
-Route::get('/admin/projects/{project}/edit', [ProjectController::class, 'edit'])->name('decision_maker.projects.edit');
+Route::get('/admin/project/{project}/edit', [ProjectController::class, 'edit'])->name('decision_maker.projects.edit');
 Route::put('/admin/projects/{project}', [ProjectController::class, 'update'])->name('decision_maker.projects.update');
 Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('decision_maker.projects.destroy');
 Route::post('/admin/projects', [ProjectController::class, 'store'])->name('decision_maker.projects.store');
