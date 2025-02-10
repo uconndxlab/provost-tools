@@ -110,7 +110,7 @@
                                         
                                         
                                         <p class="card-text fs-4">{{ $submission->school->name }}</p>
-                                        <p class="card-text">Last Modified {{ $submission->updated_at->format('m/d/Y') }} by
+                                        <p class="card-text d-print-none">Last Modified {{ $submission->updated_at->format('m/d/Y') }} by
                                             {{ $submission->history->last()->user->name }}</p>
 
                                         {{-- if adming, edit link --}}
