@@ -53,6 +53,13 @@ $table-cell-vertical-align: middle;
     background-color: $inprogress;
 }
 
+.btn-success {
+    background-color: $success;
+    border-color: $success;
+    color:darken($success, 80%);
+    font-weight: 600;
+}
+
 h2,h3,h4,h5,h6 {
     font-family: "proxima-nova", sans-serif;
     font-weight: 700;
@@ -80,6 +87,15 @@ header {
 
 .nav-link {
     color: #000 !important;
+}
+
+.bg-info {
+    color: $provost-blue;
+}
+
+.bg-secondary {
+    background-color: $provost-grey;
+    color:#333;
 }
 
 .header-level-two {

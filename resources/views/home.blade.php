@@ -89,7 +89,7 @@
 
                             <div class="card-footer">
                                 <a 
-                                href="{{ route('decision_maker.index') }}"
+                                href="{{ route('decision_maker.institutional_priorities.index') }}"
                                 class="tool-link">Learn More &raquo;</a>
                             </div>
 

@@ -217,6 +217,8 @@
                 Privacy Notice</a>.</p>
     </noscript>
 
+    @yield('scripts')
+
 </body>
 
 </html>

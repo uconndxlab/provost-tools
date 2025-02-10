@@ -6,6 +6,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\InstitutionalPriority;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -15,7 +16,10 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::with('institutionalPriorities')->get();
-        return view('decision_maker.projects.index', compact('projects'));
+        $tags = Tag::all();
+
+        
+        return view('decision_maker.projects.index', compact('projects', 'tags'));
     }
 
     /**
@@ -41,6 +45,8 @@ class ProjectController extends Controller
             'status' => 'required|in:planning,in_progress,completed',
         ]);
 
+        
+
         // Create the project
         $project = Project::create([
             'name' => $request->name,
@@ -48,23 +54,24 @@ class ProjectController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date ?? null,
             'status' => $request->status,
-            'user_id' => Auth::id(), // Assuming authentication is in place
+            'budget' => $request->budget ?? 0,
+            'current_spend' => $request->current_spend ?? 0,
+            'timeline' => $request->timeline ?? " ",
+            'user_id' => Auth::user()->id,
         ]);
 
-        // Attach selected priorities with scores
-        if ($request->has('priorities')) {
+        // Attach Institutional Priorities with Scores
+        if ($request->has('priority_rating')) {
             $priorities = [];
-            foreach ($request->priorities as $priority_id) {
-                $score = $request->priority_scores[$priority_id] ?? null;
-                if ($score) {
-                    $priorities[$priority_id] = ['score' => $score];
-                }
+            foreach ($request->priority_rating as $priorityId => $score) {
+                $priorities[$priorityId] = ['score' => $score];
             }
-            $project->priorities()->attach($priorities);
+            $project->institutionalPriorities()->sync($priorities);
         }
 
         return redirect()->route('decision_maker.projects.index')->with('success', 'Project created successfully!');
     }
+    
 
     /**
      * Display the specified resource.

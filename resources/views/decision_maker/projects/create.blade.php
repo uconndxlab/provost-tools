@@ -1,8 +1,11 @@
 @extends('layout')
 @section('title', 'Create Project')
 @section('content')
+
+@include('decision_maker.parts.nav')
+
     <div class="container">
-        <h2 class="mb-4 fw-bold">Create New Project</h2>
+        <h2 class="my-4">Create New Project</h2>
 
         <div class="card shadow-sm">
             <div class="card-body">
@@ -13,7 +16,7 @@
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="priority-tab" data-bs-toggle="tab" data-bs-target="#priority"
-                            type="button" role="tab">Priority Evaluation</button>
+                            type="button" role="tab">Priority Alignment</button>
                     </li>
                 </ul>
 
@@ -30,6 +33,7 @@
                                         <label for="name">Project Name</label>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" id="status" name="status" required>
@@ -40,6 +44,23 @@
                                         <label for="status">Status</label>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    {{-- budget --}}
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="budget" name="budget" required>
+                                        <label for="budget">Starting Budget</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{-- budget --}}
+                                    <div class="form-floating">
+                                        <input type="number" class="form-control" id="current_spend" name="current_spend" required>
+                                        <label for="current_budget">Current Spend</label>
+                                    </div>
+                                </div>
+
                                 <div class="col-12">
                                     <div class="form-floating">
                                         <textarea class="form-control" id="description" name="description" style="height: 100px;" required></textarea>
@@ -92,7 +113,7 @@
                                                             <label
                                                                 for="priority{{ $priority->id }}"><strong>{{ $priority->name }}</strong></label>
 
-                                                                <span>{!! $priority->description !!}</span>
+                                                            <span>{!! $priority->description !!}</span>
 
                                                             <div class="btn-group" role="group"
                                                                 aria-label="Priority Rating">
@@ -124,15 +145,20 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
     <script>
-        document.getElementById('noEndDate').addEventListener('change', function() {
-            const endDateInput = document.getElementById('end_date');
-            if (this.checked) {
-                endDateInput.value = '';
-                endDateInput.disabled = true;
-            } else {
-                endDateInput.disabled = false;
-            }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('noEndDate').addEventListener('change', function() {
+                const endDateInput = document.getElementById('end_date');
+                if (this.checked) {
+                    endDateInput.value = '';
+                    endDateInput.disabled = true;
+                } else {
+                    endDateInput.disabled = false;
+                }
+            });
         });
     </script>
 @endsection
