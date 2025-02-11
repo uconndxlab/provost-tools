@@ -23,7 +23,8 @@ class Project extends Model
 
     public function getScoreByPriority($priorityId)
     {
-        return $this->institutionalPriorities->find($priorityId)->pivot->score;
+        $priority = $this->institutionalPriorities->find($priorityId);
+        return $priority ? $priority->pivot->score : null;
     }
 
     // get the scores for the project, grouped by priority's tag
