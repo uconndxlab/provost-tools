@@ -62,9 +62,11 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" id="description" name="description" style="height: 100px;" required></textarea>
+                                    <div class="form-control">
+                                        <textarea class="form-control d-none" id="description" name="description" style="height: 100px;" required></textarea>
                                         <label for="description">Project Description</label>
+
+                                        <trix-editor input="description"></trix-editor>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -159,6 +161,11 @@
                     endDateInput.disabled = false;
                 }
             });
+        });
+
+        // do a trix editor
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
         });
     </script>
 @endsection

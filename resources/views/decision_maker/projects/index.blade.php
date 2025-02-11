@@ -181,6 +181,7 @@
                                         <div class="progress-bar {{ $progressColor }}" role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">
                                             {{ number_format($progress, 2) }}%
                                         </div>
+                                        
                                     </div>
                                     <a href="{{ route('decision_maker.projects.show', $project) }}" class="btn btn-link">Show</a>
                                 </td>

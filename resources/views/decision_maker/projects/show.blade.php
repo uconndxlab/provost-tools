@@ -11,7 +11,7 @@
             <h2 class="text-white">{{ $project->name }}</h2>
         </div>
         <div class="card-body">
-            <p>{{ $project->description }}</p>
+            <p>{!! $project->description !!}</p>
 
             <div class="card mt-4">
                 <div class="card-header bg-secondary text-white">
