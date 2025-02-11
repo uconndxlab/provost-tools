@@ -27,35 +27,42 @@ class Project extends Model
     }
 
     // get the scores for the project, grouped by priority's tag
-    public function getScoresByTag($tagId)
-    {
-        $filteredPriorities = $this->institutionalPriorities->filter(function ($priority) use ($tagId) {
-            return $priority->tags->contains('id', $tagId);
-        });
+    // public function getScoresByTag($tagId)
+    // {
+    //     $filteredPriorities = $this->institutionalPriorities->filter(function ($priority) use ($tagId) {
+    //         return $priority->tags->contains('id', $tagId);
+    //     });
 
-        $totalScore = $filteredPriorities->sum(function ($priority) {
-            return $priority->pivot->score * $priority->weight;
-        });
+    //     $totalScore = $filteredPriorities->sum(function ($priority) {
+    //         return $priority->pivot->score * $priority->weight;
+    //     });
 
-        $maxScore = $filteredPriorities->max(function ($priority) {
-            return $priority->pivot->score * $priority->weight;
-        });
+    //     $maxScore = $filteredPriorities->max(function ($priority) {
+    //         return $priority->pivot->score * $priority->weight;
+    //     });
 
-        $averageScore = round($filteredPriorities->avg(function ($priority) {
-            return $priority->pivot->score * $priority->weight;
-        }), 2);
+    //     $averageScore = round($filteredPriorities->avg(function ($priority) {
+    //         return $priority->pivot->score * $priority->weight;
+    //     }), 2);
         
 
-        // possiblemaxscore is the total sum of the weights assigned to the priorities
-        $possibleMaxScore = $filteredPriorities->sum(function ($priority) {
-            return $priority->weight * 5; // assuming the max rating is 5
-        });
+    //     // possiblemaxscore is the total sum of the weights assigned to the priorities
+    //     $possibleMaxScore = $filteredPriorities->sum(function ($priority) {
+    //         return $priority->weight * 5; // assuming the max rating is 5
+    //     });
 
-        return [
-            'total_score' => $totalScore,
-            'max_score' => $maxScore,
-            'average_score' => $averageScore,
-            'possible_max_score' => $possibleMaxScore
-        ];
+    //     return [
+    //         'total_score' => $totalScore,
+    //         'max_score' => $maxScore,
+    //         'average_score' => $averageScore,
+    //         'possible_max_score' => $possibleMaxScore
+    //     ];
+    // }
+
+    public function getPrioritiesByTag($tagId)
+    {
+        return $this->institutionalPriorities->filter(function ($priority) use ($tagId) {
+            return $priority->tags->contains('id', $tagId);
+        });
     }
 }

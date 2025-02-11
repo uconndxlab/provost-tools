@@ -61,7 +61,7 @@ $table-cell-vertical-align: middle;
 }
 
 .bg-warning {
-    color:#CF712D;
+    color:#2c1606;
 }
 
 .text-dark {
@@ -70,6 +70,13 @@ $table-cell-vertical-align: middle;
 
 .bg-accent {
     background-color:lighten($provost-blue, 70%)!important;
+}
+
+.progress {
+    height: 20px;
+    background-color:#ccc;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 h2,h3,h4,h5,h6 {
