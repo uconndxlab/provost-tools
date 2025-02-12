@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'budget', 'timeline', 'user_id', 'description', 'start_date', 'end_date', 'status', 'current_spend'];
+    protected $fillable = ['name', 'budget', 'timeline', 'user_id', 'description', 'start_date', 'end_date', 'status', 'current_spend', 'complexity', 'school_college_id'];
 
     public function institutionalPriorities()
     {
@@ -45,7 +45,7 @@ class Project extends Model
     //     $averageScore = round($filteredPriorities->avg(function ($priority) {
     //         return $priority->pivot->score * $priority->weight;
     //     }), 2);
-        
+
 
     //     // possiblemaxscore is the total sum of the weights assigned to the priorities
     //     $possibleMaxScore = $filteredPriorities->sum(function ($priority) {
@@ -65,5 +65,10 @@ class Project extends Model
         return $this->institutionalPriorities->filter(function ($priority) use ($tagId) {
             return $priority->tags->contains('id', $tagId);
         });
+    }
+
+    public function schoolCollege()
+    {
+        return $this->belongsTo(SchoolCollege::class);
     }
 }

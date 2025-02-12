@@ -47,6 +47,32 @@
                                 </div>
 
                                 <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="school_college" name="school_college">
+                                            <option value="">N/A</option>
+                                            @foreach ($schoolcolleges as $schoolCollege)
+                                                <option value="{{ $schoolCollege->id }}" {{ $project->school_college_id == $schoolCollege->id ? 'selected' : '' }}>
+                                                    {{ $schoolCollege->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <label for="school_college">School/College</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{-- complexity --}}
+                                    <div class="form-floating">
+                                        <select class="form-select" id="complexity" name="complexity" required>
+                                            <option value="low" {{ $project->complexity == 'low' ? 'selected' : '' }}>Low</option>
+                                            <option value="medium" {{ $project->complexity == 'medium' ? 'selected' : '' }}>Medium</option>
+                                            <option value="high" {{ $project->complexity == 'high' ? 'selected' : '' }}>High</option>
+                                        </select>
+                                        <label for="complexity">Complexity</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
                                     {{-- budget --}}
                                     <div class="form-floating">
                                         <input type="number" class="form-control" id="budget" name="budget" value="{{ $project->budget }}" required>
@@ -63,11 +89,14 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" id="description" name="description" style="height: 100px;" required>{{ $project->description }}</textarea>
+                                    <div class="form-group">
+                                        <textarea class="form-control d-none" id="description" name="description" style="height: 100px;" required>{{ $project->description }}</textarea>
                                         <label for="description">Project Description</label>
+                                        <trix-editor input="description"></trix-editor>
                                     </div>
                                 </div>
+
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $project->start_date }}" required>

@@ -52,7 +52,8 @@ class ProjectController extends Controller
     {
         $priorities = InstitutionalPriority::all();
         $tags = Tag::all();
-        return view('decision_maker.projects.create', compact('priorities', 'tags'));
+        $schoolcolleges = SchoolCollege::all();
+        return view('decision_maker.projects.create', compact('priorities', 'tags', 'schoolcolleges'));
     }
 
     /**
@@ -80,6 +81,7 @@ class ProjectController extends Controller
             'budget' => $request->budget ?? 0,
             'current_spend' => $request->current_spend ?? 0,
             'timeline' => $request->timeline ?? " ",
+            'complexity' => $request->complexity ?? "Medium",
             'user_id' => Auth::user()->id,
         ]);
 
@@ -90,6 +92,12 @@ class ProjectController extends Controller
                 $priorities[$priorityId] = ['score' => $score];
             }
             $project->institutionalPriorities()->sync($priorities);
+        }
+
+        // attach school_college_id
+        if ($request->has('school_college')) {
+            $project->school_college_id = $request->school_college;
+            $project->save();
         }
 
         return redirect()->route('decision_maker.projects.index')->with('success', 'Project created successfully!');
@@ -118,8 +126,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $tags = Tag::all();
+        $schoolcolleges = SchoolCollege::all();
 
-        return view('decision_maker.projects.edit', compact('project', 'tags'));
+        return view('decision_maker.projects.edit', compact('project', 'tags', 'schoolcolleges'));
     }
 
     /**
@@ -144,8 +153,15 @@ class ProjectController extends Controller
             'status' => $request->status,
             'budget' => $request->budget ?? 0,
             'current_spend' => $request->current_spend ?? 0,
+            'complexity' => $request->complexity ?? "Medium",
             'timeline' => $request->timeline ?? " ",
         ]);
+
+        // attach school_college_id
+        if ($request->has('school_college')) {
+            $project->school_college_id = $request->school_college;
+            $project->save();
+        }
 
         // Attach Institutional Priorities with Scores
         if ($request->has('priority_rating')) {

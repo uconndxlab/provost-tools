@@ -14,12 +14,18 @@ class SchoolCollege extends Model
         return $this->hasOne(BudgetHearingQuestionnaire::class);
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class, 'school_user_permissions')->withPivot('can_submit_budget_hearing_questionnaire');
     }
 
     public function usersWithPermission($perm)
     {
         return $this->users()->wherePivot($perm, true);
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
     }
 }

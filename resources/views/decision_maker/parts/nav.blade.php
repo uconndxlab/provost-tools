@@ -19,3 +19,5 @@
         </div>
     </div>
 </nav>
+
+@include ('parts.messages')

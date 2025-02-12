@@ -29,7 +29,7 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
                                         <label for="name">Project Name</label>
                                     </div>
                                 </div>
@@ -37,33 +37,50 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <select class="form-select" id="status" name="status" required>
-                                            <option value="planning">Planning</option>
-                                            <option value="in_progress">In Progress</option>
-                                            <option value="completed">Completed</option>
+                                            <option value="planning" {{ old('status') == 'planning' ? 'selected' : '' }}>Planning</option>
+                                            <option value="in_progress" {{ old('status') == 'in_progress' ? 'selected' : '' }}>In Progress</option>
+                                            <option value="completed" {{ old('status') == 'completed' ? 'selected' : '' }}>Completed</option>
                                         </select>
                                         <label for="status">Status</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
-                                    {{-- budget --}}
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" id="budget" name="budget" required>
-                                        <label for="budget">Starting Budget</label>
+                                        <select class="form-select" id="school_college" name="school_college" required>
+                                            @foreach ($schoolcolleges as $schoolCollege)
+                                                <option value="{{ $schoolCollege->id }}" {{ old('school_college') == $schoolCollege->id ? 'selected' : '' }}>
+                                                    {{ $schoolCollege->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <label for="school_college">School/College</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    {{-- complexity --}}
+                                    <div class="form-floating">
+                                        <select class="form-select" id="complexity" name="complexity" required>
+                                            <option value="low" {{ old('complexity') == 'low' ? 'selected' : '' }}>Low</option>
+                                            <option value="medium" {{ old('complexity') == 'medium' ? 'selected' : '' }}>Medium</option>
+                                            <option value="high" {{ old('complexity') == 'high' ? 'selected' : '' }}>High</option>
+                                        </select>
+                                        <label for="complexity">Complexity</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     {{-- budget --}}
                                     <div class="form-floating">
-                                        <input type="number" class="form-control" id="current_spend" name="current_spend" required>
-                                        <label for="current_budget">Current Spend</label>
+                                        <input type="number" class="form-control" id="budget" name="budget" value="{{ old('budget') }}" required>
+                                        <label for="budget">Starting Budget</label>
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-control">
-                                        <textarea class="form-control d-none" id="description" name="description" style="height: 100px;" required></textarea>
+                                        <textarea class="form-control d-none" id="description" name="description" style="height: 100px;" required>{{ old('description') }}</textarea>
                                         <label for="description">Project Description</label>
 
                                         <trix-editor input="description"></trix-editor>
@@ -71,14 +88,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="date" class="form-control" id="start_date" name="start_date"
-                                            required>
+                                        <input type="date" class="form-control" id="start_date" name="start_date" value="{{ old('start_date') }}" required>
                                         <label for="start_date">Start Date</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="date" class="form-control" id="end_date" name="end_date">
+                                        <input type="date" class="form-control" id="end_date" name="end_date" value="{{ old('end_date') }}">
                                         <label for="end_date">End Date</label>
                                     </div>
                                     <div class="form-check mt-2">
@@ -123,7 +139,7 @@
                                                                     <input type="radio" class="btn-check"
                                                                         name="priority_rating[{{ $priority->id }}]"
                                                                         id="priority{{ $priority->id }}-{{ $i }}"
-                                                                        value="{{ $i }}">
+                                                                        value="{{ $i }}" {{ old('priority_rating.' . $priority->id) == $i ? 'checked' : '' }}>
                                                                     <label class="btn btn-outline-primary"
                                                                         for="priority{{ $priority->id }}-{{ $i }}">{{ $i }}</label>
                                                                 @endfor
