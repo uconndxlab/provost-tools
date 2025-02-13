@@ -123,26 +123,24 @@
                                             <div class="accordion-body">
                                                 <div class="form-group my-3">
 
-                                                    @foreach ($tag->institutionalPriorities as $priority)
-                                                        <div class="mb-3">
-                                                            <label
-                                                                for="priority{{ $priority->id }}"><strong>{{ $priority->name }}</strong></label>
-
-                                                            <span>{!! $priority->description !!}</span>
-
-                                                            <div class="btn-group" role="group"
-                                                                aria-label="Priority Rating">
-                                                                @for ($i = 1; $i <= 5; $i++)
-                                                                    <input type="radio" class="btn-check"
-                                                                        name="priority_rating[{{ $priority->id }}]"
-                                                                        id="priority{{ $priority->id }}-{{ $i }}"
-                                                                        value="{{ $i }}" {{ $project->getScoreByPriority($priority->id) == $i ? 'checked' : '' }}>
-                                                                    <label class="btn btn-outline-primary"
-                                                                        for="priority{{ $priority->id }}-{{ $i }}">{{ $i }}</label>
-                                                                @endfor
+                                                    <div class="row">
+                                                        @foreach ($tag->institutionalPriorities as $priority)
+                                                            <div class="col-md-6 mb-3">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <label for="priority{{ $priority->id }}"><strong>{{ $priority->name }}</strong></label>
+                                                                        <span>{!! $priority->description !!}</span>
+                                                                        <div class="btn-group d-flex" role="group" aria-label="Priority Rating">
+                                                                            @for ($i = 1; $i <= 5; $i++)
+                                                                                <input type="radio" class="btn-check" name="priority_rating[{{ $priority->id }}]" id="priority{{ $priority->id }}-{{ $i }}" value="{{ $i }}" {{ $project->getScoreByPriority($priority->id) == $i ? 'checked' : '' }}>
+                                                                                <label class="btn btn-outline-primary flex-fill" for="priority{{ $priority->id }}-{{ $i }}">{{ $i }}</label>
+                                                                            @endfor
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    @endforeach
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
