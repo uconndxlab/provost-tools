@@ -18,26 +18,36 @@ class ProjectController extends Controller
     {
         $orderBy = $request->input('order_by', 'created_at');
         $orderDirection = $request->input('direction', 'asc');
-    
+        $complexity = $request->input('complexity', null);
+        $status = $request->input('status', null);
+        
         $projectsQuery = Project::select('projects.*')
             ->with('institutionalPriorities.tags');
-    
+        
         if (strpos($orderBy, 'tag_') === 0) {
             $tagId = substr($orderBy, 4);
-    
+        
             $projectsQuery->leftJoin('institutional_priority_project as ipp', 'projects.id', '=', 'ipp.project_id')
-                ->leftJoin('institutional_priorities as ip', 'ipp.institutional_priority_id', '=', 'ip.id')
-                ->leftJoin('institutional_priority_tag as ipt', 'ip.id', '=', 'ipt.institutional_priority_id')
-                ->where('ipt.tag_id', $tagId) // Filter for the given tag
-                ->groupBy('projects.id') // Group by project
-                ->selectRaw('SUM(ipp.score * ip.weight) as weighted_tag_score') // Weighted sum
-                ->orderByRaw('weighted_tag_score ' . $orderDirection);
+            ->leftJoin('institutional_priorities as ip', 'ipp.institutional_priority_id', '=', 'ip.id')
+            ->leftJoin('institutional_priority_tag as ipt', 'ip.id', '=', 'ipt.institutional_priority_id')
+            ->where('ipt.tag_id', $tagId) // Filter for the given tag
+            ->groupBy('projects.id') // Group by project
+            ->selectRaw('SUM(ipp.score * ip.weight) as weighted_tag_score') // Weighted sum
+            ->orderByRaw('weighted_tag_score ' . $orderDirection);
         } else {
             $projectsQuery->orderBy($orderBy, $orderDirection);
         }
-    
+
+        if ($complexity) {
+            $projectsQuery->where('complexity', $complexity);
+        }
+
+        if ($status) {
+            $projectsQuery->where('status', $status);
+        }
+        
         $projects = $projectsQuery->get();
-    
+        
         $tags = Tag::all();
         $schoolcolleges = SchoolCollege::all();
     
@@ -136,6 +146,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+
         // Validate request data
         $request->validate([
             'name' => 'required|string|max:255',

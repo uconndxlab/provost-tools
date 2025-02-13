@@ -47,20 +47,6 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="school_college" name="school_college">
-                                            <option value="">N/A</option>
-                                            @foreach ($schoolcolleges as $schoolCollege)
-                                                <option value="{{ $schoolCollege->id }}" {{ $project->school_college_id == $schoolCollege->id ? 'selected' : '' }}>
-                                                    {{ $schoolCollege->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <label for="school_college">School/College</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
                                     {{-- complexity --}}
                                     <div class="form-floating">
                                         <select class="form-select" id="complexity" name="complexity" required>

@@ -464,3 +464,14 @@ trix-toolbar .trix-button-group--file-tools {
     font-weight: 600;
 }
 
+
+.htmx-request{
+    opacity:0;
+    transition: opacity 500ms ease-in;
+}
+.htmx-request{
+    opacity:1;
+}
+.htmx-request{
+    opacity:1;
+}

@@ -6,35 +6,30 @@
     <div class="container my-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold">Projects</h2>
-            <a href="{{ route('decision_maker.projects.create') }}" class="btn btn-success">+ Add Project</a>
+            <a href="{{ route('decision_maker.projects.create') }}" class="btn btn-success text-white">+ Add Project</a>
         </div>
 
         <div class="card shadow-sm p-4">
             <form action="{{ route('decision_maker.projects.index') }}" method="GET" class="mb-3 d-flex">
 
                 {{-- filter by complexity --}}
-                <select name="complexity" class="form-select me-2">
+                <select hx-target="#projects" hx-swap="outerHTML" hx-select="#projects" hx-indicator="body"
+                    hx-trigger="change" hx-get="{{ route('decision_maker.projects.index') }}" name="complexity"
+                    class="form-select me-2">
                     <option value="">All Complexities</option>
-                    <option value="Low" {{ request('complexity') == 'Low' ? 'selected' : '' }}>Low</option>
-                    <option value="Medium" {{ request('complexity') == 'Medium' ? 'selected' : '' }}>Medium</option>
-                    <option value="High" {{ request('complexity') == 'High' ? 'selected' : '' }}>High</option>
+                    <option value="low" {{ request('complexity') == 'low' ? 'selected' : '' }}>Low</option>
+                    <option value="medium" {{ request('complexity') == 'medium' ? 'selected' : '' }}>Medium</option>
+                    <option value="high" {{ request('complexity') == 'high' ? 'selected' : '' }}>High</option>
                 </select>
 
-                <select name="status" class="form-select me-2">
+                <select hx-target="#projects" hx-swap="outerHTML" hx-select="#projects" hx-indicator="body"
+                    hx-trigger="change" hx-get="{{ route('decision_maker.projects.index') }}" name="status"
+                    class="form-select me-2">
                     <option value="">All Statuses</option>
-                    <option value="Completed" {{ request('status') == 'Completed' ? 'selected' : '' }}>Completed</option>
-                    <option value="In Progress" {{ request('status') == 'In Progress' ? 'selected' : '' }}>In Progress
+                    <option value="planning" {{ request('status') == 'planning' ? 'selected' : '' }}>Planning</option>
+                    <option value="in_progress" {{ request('status') == 'in_progress' ? 'selected' : '' }}>In Progress
                     </option>
-                    <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
-                </select>
-                <select name="school_college" class="form-select me-2">
-                    <option value="">All Schools/Colleges</option>
-                    @foreach ($schoolcolleges as $schoolCollege)
-                        <option value="{{ $schoolCollege->id }}"
-                            {{ request('school_college') == $schoolCollege->id ? 'selected' : '' }}>
-                            {{ $schoolCollege->name }}
-                        </option>
-                    @endforeach
+                    <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>Completed</option>
                 </select>
                 <button type="submit" class="btn btn-primary">Filter</button>
             </form>
@@ -42,7 +37,6 @@
 
         {{-- ability to sort by scores, budget, etc --}}
         <div class="d-flex justify-content-between align-items-center mt-4">
-            <h4 class="fw-bold">Projects</h4>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -77,29 +71,41 @@
             </div>
         </div>
 
-        <div class="row mt-4">
+        <div id="projects" class="row mt-4">
             @foreach ($projects as $project)
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm h-100">
-
                         <div class="card-header">
-                            <h5 class="fw-bold">{{ $project->name }}</h5>
-                            <p class="mb-0">{{ optional($project->schoolCollege)->name }}</p>
+                            
+                            {{-- dates, small and tidy --}}
+                            <div class="d-flex justify-content-between mb-2" style="font-size: 1rem; font-weight: 800;">
+                                <small>{{ \Carbon\Carbon::parse($project->start_date)->format('d M Y') }}</small>
+                                <small><span
+                                    class="badge bg-info">${{ number_format($project->budget, 2) }}</span></small>
+                                @if ($project->end_date)
+                                    <small>{{ \Carbon\Carbon::parse($project->end_date)->format('d M Y') }}</small>
+                                @else
+                                    <small>(Ongoing)</small>
+                                @endif
+                            </div>
+                            <h6 class="fw-bold"> 
+                                {{ $project->name }}
+
+
+                            </h6>
+                            <span
+                                class="badge bg-{{ $project->status == 'Completed' ? 'success' : ($project->status == 'In Progress' ? 'primary' : 'warning') }}">
+                                {{ $project->status }}
+                            </span>
+
+                            <span
+                                class="badge bg-{{ $project->complexity == 'low' ? 'success' : ($project->complexity == 'medium' ? 'warning' : 'danger') }}">
+                                {{ $project->complexity }} complexity
+                            </span>
+
                         </div>
 
                         <div class="card-body">
-
-                            <p>
-                                <span
-                                    class="badge bg-{{ $project->status == 'Completed' ? 'success' : ($project->status == 'In Progress' ? 'primary' : 'warning') }}">
-                                    {{ $project->status }}
-                                </span>
-                                <span class="badge bg-info">${{ number_format($project->budget, 2) }}</span>
-                            </p>
-                            <p class="mb-1">
-                                <span>Start: {{ \Carbon\Carbon::parse($project->start_date)->format('M d, Y') }}</span> |
-                                <span>End: {{ \Carbon\Carbon::parse($project->end_date)->format('M d, Y') }}</span>
-                            </p>
                             <div class="d-flex justify-content-around mt-3">
                                 @foreach ($tags as $tag)
                                     @php
@@ -133,15 +139,31 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        function updateProgressCircles() {
             document.querySelectorAll(".progress-circle").forEach(circle => {
                 let progress = circle.getAttribute("data-progress");
-                let strokeColor = progress >= 75 ? '#28a745' : progress >= 50 ? '#ffc107' : '#dc3545';
-                circle.innerHTML = `<svg width="50" height="50" viewBox="0 0 100 100">
+
+                circle.innerHTML = `
+            <svg width="120" height="120" viewBox="0 0 100 100">
+                <!-- Background Circle -->
                 <circle cx="50" cy="50" r="45" stroke="#e9ecef" stroke-width="10" fill="none"></circle>
-                <circle class="progress-bar" cx="50" cy="50" r="45" stroke="${strokeColor}" 
-                    stroke-width="10" fill="none" stroke-dasharray="0, 283" stroke-linecap="round" transform="rotate(-90 50 50)"></circle>
-                <text x="50" y="55" font-size="20" text-anchor="middle" fill="#000">${Math.round(progress)}%</text>
+
+                <!-- Gradient Definition (Red to Green) -->
+                <defs>
+                    <linearGradient id="progressGradient" gradientUnits="userSpaceOnUse" x1="50" y1="5" x2="50" y2="95">
+                        <stop offset="0%" style="stop-color:#00FF00; stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#00AA00; stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Progress Circle -->
+                <circle class="progress-bar" cx="50" cy="50" r="45" stroke="url(#progressGradient)" 
+                    stroke-width="10" fill="none" stroke-dasharray="0, 283" stroke-linecap="round" 
+                    transform="rotate(-90 50 50)">
+                </circle>
+
+                <!-- Percentage Text -->
+                <text x="50" y="55" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">${Math.round(progress)}%</text>
             </svg>`;
 
                 let progressBar = circle.querySelector('.progress-bar');
@@ -152,8 +174,12 @@
                     if (currentProgress >= progress) {
                         clearInterval(interval);
                     }
-                }, 10);
+                }, 8);
             });
-        });
+        }
+
+        document.addEventListener("DOMContentLoaded", updateProgressCircles);
+        document.addEventListener("htmx:afterSwap", updateProgressCircles);
     </script>
+
 @endsection
