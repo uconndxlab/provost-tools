@@ -46,7 +46,7 @@ Route::post('/admin/projects', [ProjectController::class, 'store'])->name('decis
 
 
 
-Route::middleware(['cas.auth'])->group(function() {
+Route::middleware(['cas.auth'])->group(function () {
     Route::get('tools', [HomeController::class, 'home'])->name('tools');
     Route::get('/faculty/salary', [FacultySalaryTablesController::class, 'index'])->name('faculty_salary_tables.index');
     Route::get('/budgetHearingQuestionnaire', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.create');
@@ -55,9 +55,9 @@ Route::middleware(['cas.auth'])->group(function() {
     Route::get('/budgetHearingQuestionnaire/regional', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.createForRegional');
     Route::get('/budgetHearingQuestionnaire/schoolCollege', [BudgetHearingQuestionnaireController::class, 'create'])->name('budgetHearingQuestionnaire.createForCollege');
     Route::get('/budgetHearingQuestionnaire/{budgetHearingQuestionnaire}', [BudgetHearingQuestionnaireController::class, 'show'])->name('budgetHearingQuestionnaire.show');
-    
-    
-    Route::middleware(['admin'])->group(function() {
+
+
+    Route::middleware(['admin'])->group(function () {
         Route::get('/admin', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::get('/admin/users', [UserController::class, 'adminIndex'])->name('admin.users.index');
         Route::get('/admin/faculty/salary', [FacultySalaryTablesController::class, 'adminIndex'])->name('admin.faculty_salary_tables.index');
@@ -66,14 +66,16 @@ Route::middleware(['cas.auth'])->group(function() {
 
         Route::post('/admin/addBudgetHearingPermission', [SchoolCollegeController::class, 'addPermissionForUser'])->name('admin.update_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
         Route::post('/admin/removeBudgetHearingPermission', [SchoolCollegeController::class, 'removePermissionForUser'])->name('admin.remove_budget_questionnaire_permissions')->defaults('permission', 'create_budget_questionnaire');
-        
+
         Route::get('/admin/animation-showcase-submissions', [AnimationShowcaseSubmissionController::class, 'index'])->name('admin.animationShowcaseSubmissions.index');
         Route::get('/admin/animation-showcase-submissions/{submission}', [AnimationShowcaseSubmissionController::class, 'show'])->name('admin.animationShowcaseSubmissions.show');
-    
-    
-        
+
+        Route::get('/admin/projects', [ProjectController::class, 'index'])->name('decision_maker.projects.index');
+        Route::get('/admin/projects/{project}', [ProjectController::class, 'show'])->name('decision_maker.projects.show');
+        Route::get('/admin/project/create', [ProjectController::class, 'create'])->name('decision_maker.projects.create');
+        Route::get('/admin/project/{project}/edit', [ProjectController::class, 'edit'])->name('decision_maker.projects.edit');
+        Route::put('/admin/projects/{project}', [ProjectController::class, 'update'])->name('decision_maker.projects.update');
+        Route::delete('/admin/projects/{project}', [ProjectController::class, 'destroy'])->name('decision_maker.projects.destroy');
+        Route::post('/admin/projects', [ProjectController::class, 'store'])->name('decision_maker.projects.store');
     });
-
-
 });
-
