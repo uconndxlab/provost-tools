@@ -76,19 +76,18 @@
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm h-100">
                         <div class="card-header">
-                            
+
                             {{-- dates, small and tidy --}}
                             <div class="d-flex justify-content-between mb-2" style="font-size: 1rem; font-weight: 800;">
                                 <small>{{ \Carbon\Carbon::parse($project->start_date)->format('d M Y') }}</small>
-                                <small><span
-                                    class="badge bg-info">${{ number_format($project->budget, 2) }}</span></small>
+                                <small><span class="badge bg-info">${{ number_format($project->budget, 2) }}</span></small>
                                 @if ($project->end_date)
                                     <small>{{ \Carbon\Carbon::parse($project->end_date)->format('d M Y') }}</small>
                                 @else
                                     <small>(Ongoing)</small>
                                 @endif
                             </div>
-                            <h6 class="fw-bold"> 
+                            <h6 class="fw-bold">
                                 {{ $project->name }}
 
 
@@ -108,22 +107,29 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-around mt-3">
                                 @foreach ($tags as $tag)
-                                    @php
-                                        $weightedScore = 0;
-                                        $maxScore = 0;
-                                        foreach ($project->institutionalPriorities as $priority) {
-                                            if ($priority->tags->contains('id', $tag->id)) {
-                                                $weightedScore += $priority->pivot->score * $priority->weight;
-                                                $maxScore += $priority->weight * 5;
-                                            }
+                                @php
+                                    $weightedScore = 0;
+                                    $totalWeight = 0;
+                            
+                                    foreach ($project->institutionalPriorities as $priority) {
+                                        if ($priority->tags->contains('id', $tag->id)) {
+                                            $totalWeight += $priority->weight; // Sum up weights
+                            
+                                            $weightedScore += $project->getWeightedScoreByPriority($priority->id);
                                         }
-                                        $progress = $maxScore > 0 ? ($weightedScore / $maxScore) * 100 : 0;
-                                    @endphp
-                                    <div class="text-center">
-                                        <div class="progress-circle" data-progress="{{ $progress }}"></div>
-                                        <small>{{ $tag->name }}</small>
-                                    </div>
-                                @endforeach
+                                    }
+                            
+                                    // Normalize weighted score to percentage
+                                    $progress = ($totalWeight > 0) ? ($weightedScore / ($totalWeight * 100)) * 100 : 0;
+                                @endphp
+                            
+                                <div class="text-center">
+                                    <div class="progress-circle" data-progress="{{ $progress }}"></div>
+                                    <small>{{ $tag->name }}</small>
+                                </div>
+                            @endforeach
+                            
+
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between">

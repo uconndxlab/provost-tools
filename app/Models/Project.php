@@ -27,38 +27,20 @@ class Project extends Model
         return $priority ? $priority->pivot->score : null;
     }
 
-    // get the scores for the project, grouped by priority's tag
-    // public function getScoresByTag($tagId)
-    // {
-    //     $filteredPriorities = $this->institutionalPriorities->filter(function ($priority) use ($tagId) {
-    //         return $priority->tags->contains('id', $tagId);
-    //     });
-
-    //     $totalScore = $filteredPriorities->sum(function ($priority) {
-    //         return $priority->pivot->score * $priority->weight;
-    //     });
-
-    //     $maxScore = $filteredPriorities->max(function ($priority) {
-    //         return $priority->pivot->score * $priority->weight;
-    //     });
-
-    //     $averageScore = round($filteredPriorities->avg(function ($priority) {
-    //         return $priority->pivot->score * $priority->weight;
-    //     }), 2);
-
-
-    //     // possiblemaxscore is the total sum of the weights assigned to the priorities
-    //     $possibleMaxScore = $filteredPriorities->sum(function ($priority) {
-    //         return $priority->weight * 5; // assuming the max rating is 5
-    //     });
-
-    //     return [
-    //         'total_score' => $totalScore,
-    //         'max_score' => $maxScore,
-    //         'average_score' => $averageScore,
-    //         'possible_max_score' => $possibleMaxScore
-    //     ];
-    // }
+    public function getWeightedScoreByPriority($priorityId)
+    {
+        $priority = $this->institutionalPriorities->find($priorityId);
+    
+        if ($priority) {
+            $rawScore = $priority->pivot->score; // Score is 1-5
+            $normalizedScore = ($rawScore - 1) / 4; // Convert to 0-1 scale
+    
+            return $normalizedScore * $priority->weight * 100; // Scale by weight
+        }
+    
+        return 0;
+    }
+    
 
     public function getPrioritiesByTag($tagId)
     {
