@@ -1,3 +1,53 @@
+//innovation.provost.uconn.edu
+@font-face {
+    font-family: "UConn";
+    src: url("/public/fonts/uconn.eot");
+    src: url("/resources/fontsuconn.eot?#iefix") format("embedded-opentype"), url("/public/fonts/uconn.svg#uconnregular") format("svg"), url("/public/fonts/uconn.woff") format("woff"), url("/public/fonts/uconn.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/public/fonts/ProximaNova-Bold-webfont.eot");
+    src: url("/public/fonts/ProximaNova-Bold-webfont.eot?#iefix") format("embedded-opentype"), url("/public/fonts/ProximaNova-Bold-webfont.svg#proxima_nova_ltsemibold") format("svg"), url("/public/fonts/ProximaNova-Bold-webfont.woff") format("woff"), url("/public/fonts/ProximaNova-Bold-webfont.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/public/fonts/ProximaNova-BoldIt-webfont.eot");
+    src: url("/public/fonts/ProximaNova-BoldIt-webfont.eot?#iefix") format("embedded-opentype"), url("/public/fonts/ProximaNova-BoldIt-webfont.svg#proxima_novabold_italic") format("svg"), url("/public/fonts/ProximaNova-BoldIt-webfont.woff") format("woff"), url("/public/fonts/ProximaNova-BoldIt-webfont.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/public/fonts/ProximaNova-Sbold-webfont.eot");
+    src: url("/public/fonts/ProximaNova-Sbold-webfont.eot?#iefix") format("embedded-opentype"), url("/public/fonts/ProximaNova-Sbold-webfont.svg#proxima_nova_ltsemibold") format("svg"), url("/public/fonts/ProximaNova-Sbold-webfont.woff") format("woff"), url("/public/fonts/ProximaNova-Sbold-webfont.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/public/fonts/ProximaNova-Reg-webfont.eot");
+    src: url("/public/fonts/ProximaNova-Reg-webfont.eot?#iefix") format("embedded-opentype"), url("/public/fonts/ProximaNova-Reg-webfont.svg#proxima_nova_rgregular") format("svg"), url("/public/fonts/ProximaNova-Reg-webfont.woff") format("woff"), url("/public/fonts/ProximaNova-Reg-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/public/fonts/ProximaNova-RegIt-webfont.eot");
+    src: url("/public/fonts/ProximaNova-RegIt-webfont.eot?#iefix") format("embedded-opentype"), url("/public/fonts/ProximaNova-RegIt-webfont.svg#proxima_novaregular_italic") format("svg"), url("/public/fonts/ProximaNova-RegIt-webfont.woff") format("woff"), url("/public/fonts/ProximaNova-RegIt-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic
+}
+
+
 /**
  * Include all Overrides Here
  */
