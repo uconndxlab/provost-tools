@@ -91,7 +91,7 @@ class FacultySalaryTables extends Component
             'Law' => ['cnm22002', 'esn20002', 'jun16105', 'acd02004', 'mkl13001', 'jer02009'],
             'Liberal Arts and Sciences' => ['kal04009', 'mir04001', 'meg13017', 'ofh05001', 'ebt18003', 'bow02001', 'bap02005'],
             'Nursing' => ['clc02011', 'vsv23001', 'ank04010', 'anm06014', 'nsr21001'],
-            'OVPR' => ['jrs06005'],
+            'OVPR' => [],
             'Pharmacy' => ['pmh03001', 'scm13009', 'nmr16101', 'kaw07013'],
             'Provost Academic Affairs' => [],
             'Social Work' => ['lac23013', 'stm96003', 'jim22010', 'sch04003'],
@@ -113,12 +113,14 @@ class FacultySalaryTables extends Component
         if (!empty($schools_for_this_user && !Auth::user()->can_admin)) {
             
             $faculty_salary_tables->whereIn('academic_school_college', $schools_for_this_user);
+
+            $schools = $schools->filter(function($school) use ($schools_for_this_user) {
+                return in_array($school, $schools_for_this_user);
+            });
+    
         }
 
-        $schools = $schools->filter(function($school) use ($schools_for_this_user) {
-            return in_array($school, $schools_for_this_user);
-        });
-
+ 
 
         $departments = $departments->distinct()
             ->orderBy('academic_department')
