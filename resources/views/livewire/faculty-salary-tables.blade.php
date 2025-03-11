@@ -69,7 +69,6 @@
                 <col width="100"> <!-- Faculty Base Appointment Term -->
                 <col width="100"> <!-- Appointment Term -->
                 <col width="100"> <!-- admin_supplement_ucadm -->
-                <col width="100"> <!-- Gender -->
                 <col width="100"> <!-- Years of Service -->
                 <col width="100"> <!-- Assistant Professor Year -->
                 <col width="100"> <!-- Associate Professor Year -->
@@ -224,7 +223,7 @@
 
 
                     <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('gender')">
+                        <a href="#" class="me-2 d-none" wire:click.prevent="sortBy('gender')">
                             Gender
                             @if ( $sort === 'gender' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
@@ -345,7 +344,7 @@
                         ${{ Number::format($facultySalaryTable->full_time_annual_salary) }}
                     </td>
 
-                    <td>
+                    <td class="d-none">
                         {{ $facultySalaryTable->gender }}
                     </td>
                     <td class="text-end">
