@@ -222,7 +222,7 @@
 
 
 
-                    <th>
+                    <th class="d-none">
                         <a href="#" class="me-2 d-none" wire:click.prevent="sortBy('gender')">
                             Gender
                             @if ( $sort === 'gender' )
