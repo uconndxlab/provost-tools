@@ -22,7 +22,7 @@ class FacultySalaryTables extends Component
     #[Url(except: '')]
     public $department;
 
-    public $sort = 'academic_school_college';
+    public $sort = 'full_name';
     public $sortDirection = 'asc';
 
     public function updated($property)
@@ -37,7 +37,7 @@ class FacultySalaryTables extends Component
     {
         if ($this->sort === $field) {
             if ( $this->sortDirection === 'desc' ) {
-                $this->sort = 'academic_school_college';
+                $this->sort = 'full_name';
                 $this->sortDirection = 'asc';
             } else {
                 $this->sortDirection = 'desc';
@@ -91,7 +91,7 @@ class FacultySalaryTables extends Component
             'Law' => ['cnm22002', 'esn20002', 'jun16105', 'acd02004', 'mkl13001', 'jer02009'],
             'Liberal Arts and Sciences' => ['kal04009', 'mir04001', 'meg13017', 'ofh05001', 'ebt18003', 'bow02001', 'bap02005'],
             'Nursing' => ['clc02011', 'vsv23001', 'ank04010', 'anm06014', 'nsr21001'],
-            'OVPR' => [],
+            'OVPR' => ['jds05004'],
             'Pharmacy' => ['pmh03001', 'scm13009', 'nmr16101', 'kaw07013'],
             'Provost Academic Affairs' => [],
             'Social Work' => ['lac23013', 'stm96003', 'jim22010', 'sch04003'],
@@ -127,8 +127,11 @@ class FacultySalaryTables extends Component
             ->get()
             ->pluck('academic_department');
 
-        $faculty_salary_tables = $faculty_salary_tables->orderBy($this->sort, $this->sortDirection)
+            $faculty_salary_tables = $faculty_salary_tables
+            ->orderBy('academic_school_college') // Always sort by this first
+            ->orderBy($this->sort, $this->sortDirection) // Then sort by the selected field and direction
             ->paginate(100);
+        
         return view('livewire.faculty-salary-tables', compact('faculty_salary_tables', 'schools', 'departments'));
     }
 }
