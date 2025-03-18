@@ -22,7 +22,7 @@ class FacultySalaryTables extends Component
     #[Url(except: '')]
     public $department;
 
-    public $sort = 'academic_school_college';
+    public $sort = 'full_name';
     public $sortDirection = 'asc';
 
     public function updated($property)
@@ -37,7 +37,7 @@ class FacultySalaryTables extends Component
     {
         if ($this->sort === $field) {
             if ( $this->sortDirection === 'desc' ) {
-                $this->sort = 'academic_school_college';
+                $this->sort = 'full_name';
                 $this->sortDirection = 'asc';
             } else {
                 $this->sortDirection = 'desc';
@@ -80,10 +80,29 @@ class FacultySalaryTables extends Component
             });
         }
 
+        $netid = Auth::user()->netid;
+        $school_college_admin_list = [
+            'Agriculture,Health,Natural Rc' => ['alr03008', 'amh22027', 'keg95003', 'inc18002', 'ksv02002'],
+            'Business' => ['mil02007', 'grr07002', 'nom02003', 'cml05005', 'jmc04008', 'dab13012'],
+            'Education' => ['jai05001', 'bas08012', 'eam14013', 'doa13001', 'nsb02004'],
+            'Engineering' => ['dbh24003', 'kea04003', 'geb09004', 'ddb10003', 'dmt02003'],
+            'Fine Arts' => ['alf02016', 'ckb01001', 'jan24002'],
+            'Global Affairs' => [],
+            'Law' => ['cnm22002', 'esn20002', 'jun16105', 'acd02004', 'mkl13001', 'jer02009'],
+            'Liberal Arts and Sciences' => ['kal04009', 'mir04001', 'meg13017', 'ofh05001', 'ebt18003', 'bow02001', 'bap02005'],
+            'Nursing' => ['clc02011', 'vsv23001', 'ank04010', 'anm06014', 'nsr21001'],
+            'OVPR' => ['jds05004'],
+            'Pharmacy' => ['pmh03001', 'scm13009', 'nmr16101', 'kaw07013'],
+            'Provost Academic Affairs' => [],
+            'Social Work' => ['lac23013', 'stm96003', 'jim22010', 'sch04003'],
+        ];
+        $schools_for_this_user = array_keys(array_filter($school_college_admin_list, function($admins) use ($netid) {
+            return in_array($netid, $admins);
+        }));
         /**
          * This is where a user is limited to see what is in their department or school.
          */
-        if ( !Auth::user()->can_admin ) {
+        if ( !Auth::user()->can_admin && empty($schools_for_this_user) ) {
             $fst = Auth::user()->facultySalaryTables->first();
             $allowed_dept = $fst->academic_department ?? null;
             $allowed_school = $fst->academic_school_college ?? null;
@@ -91,13 +110,28 @@ class FacultySalaryTables extends Component
                 ->where('academic_school_college', $allowed_school);
         }
 
+        if (!empty($schools_for_this_user && !Auth::user()->can_admin)) {
+            
+            $faculty_salary_tables->whereIn('academic_school_college', $schools_for_this_user);
+
+            $schools = $schools->filter(function($school) use ($schools_for_this_user) {
+                return in_array($school, $schools_for_this_user);
+            });
+    
+        }
+
+ 
+
         $departments = $departments->distinct()
             ->orderBy('academic_department')
             ->get()
             ->pluck('academic_department');
 
-        $faculty_salary_tables = $faculty_salary_tables->orderBy($this->sort, $this->sortDirection)
+            $faculty_salary_tables = $faculty_salary_tables
+            ->orderBy('academic_school_college') // Always sort by this first
+            ->orderBy($this->sort, $this->sortDirection) // Then sort by the selected field and direction
             ->paginate(100);
+        
         return view('livewire.faculty-salary-tables', compact('faculty_salary_tables', 'schools', 'departments'));
     }
 }

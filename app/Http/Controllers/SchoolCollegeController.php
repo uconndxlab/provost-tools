@@ -95,7 +95,7 @@ class SchoolCollegeController extends Controller
             return redirect()->route('admin.home')->with('message', "Permission $permission removed for user {$user->id} ({$user->netid}) to school {$school->name}");
         } else {
             // Attach the permission, unless a pivot already exists, in which update it
-            $school->users()->syncWithoutDetaching([$user->id => ['can_submit_budget_hearing_questionnaire' => true]]);
+            $school->users()->syncWithoutDetaching([$user->id => [$permission => true]]);
         }
         
     

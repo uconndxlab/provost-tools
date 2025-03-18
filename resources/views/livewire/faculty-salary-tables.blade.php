@@ -6,10 +6,10 @@
         <div class="col-lg-6 d-flex align-items-center justify-content-end">
             <div class="dropdown mx-2">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="schoolDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ $school ? $school : 'Filter by School/College' }}
+                    {{ $school ? $school : 'Filter by School/College/Unit' }}
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="schoolDropdown">
-                    <li><a class="dropdown-item" x-on:click="$wire.set('school', '')">All Schools/Colleges</a></li>
+                    <li><a class="dropdown-item" x-on:click="$wire.set('school', '')">All Schools/Colleges/Units</a></li>
                     @foreach($schools as $school)
                     <li>
                         <a x-on:click="$wire.set('school', '{{ $school }}')" class="dropdown-item">{{ $school }}</a>
@@ -61,7 +61,6 @@
 
                 <col width="200"> <!-- Role -->
                 <col width="200"> <!-- Rank -->
-                <col width="200"> <!-- Affiliated Dept -->
                 <col width="100"> <!-- Base -->
                 <col width="100"> <!-- Addt'l 1 Mon -->
                 <col width="100"> <!-- Addt'l 2 Mon -->
@@ -70,7 +69,6 @@
                 <col width="100"> <!-- Faculty Base Appointment Term -->
                 <col width="100"> <!-- Appointment Term -->
                 <col width="100"> <!-- admin_supplement_ucadm -->
-                <col width="100"> <!-- Gender -->
                 <col width="100"> <!-- Years of Service -->
                 <col width="100"> <!-- Assistant Professor Year -->
                 <col width="100"> <!-- Associate Professor Year -->
@@ -139,7 +137,7 @@
                         </a>
                     </th>
 
-                    <th class="text-end">
+                    <th class="text-end d-none">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('affiliated_department_name_administrative_roles')">
                             Affiliated Department
                             @if ( $sort === 'affiliated_department_name_administrative_roles' )
@@ -224,8 +222,8 @@
 
 
 
-                    <th>
-                        <a href="#" class="me-2" wire:click.prevent="sortBy('gender')">
+                    <th class="d-none">
+                        <a href="#" class="me-2 d-none" wire:click.prevent="sortBy('gender')">
                             Gender
                             @if ( $sort === 'gender' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
@@ -266,7 +264,7 @@
                     </th>
                     <th class="text-end">
                         <a href="#" class="me-2" wire:click.prevent="sortBy('years_in_rank')">
-                            Years in Rank
+                            Years in Current Rank
                             @if ( $sort === 'years_in_rank' )
                             <i @class(['bi-arrow-up' => $sortDirection === 'asc', 'bi-arrow-down' => $sortDirection === 'desc'])></i>
                             @endif
@@ -308,7 +306,7 @@
                         {{ $facultySalaryTable->faculty_role }}
                     </td>
 
-                    <td class="text-end">
+                    <td class="text-end d-none">
                         {{ $facultySalaryTable->affiliated_department_name_administrative_roles }}
                     </td>
 
@@ -346,7 +344,7 @@
                         ${{ Number::format($facultySalaryTable->full_time_annual_salary) }}
                     </td>
 
-                    <td>
+                    <td class="d-none">
                         {{ $facultySalaryTable->gender }}
                     </td>
                     <td class="text-end">

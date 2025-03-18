@@ -22,8 +22,8 @@ class FacultySalarySeeder extends Seeder
      */
     public function run(): void
     {
-        $payroll_csv = array_map('str_getcsv', file('database/seeders/payroll_ids.csv'));
-        $faculty_csv = array_map('str_getcsv', file('database/seeders/faculty_salaries_fy_2025.csv'));
+        $payroll_csv = array_map('str_getcsv', file('database/seeders/export.csv'));
+        $faculty_csv = array_map('str_getcsv', file('database/seeders/FacultySalaryTables_V2.csv'));
 
         foreach ($payroll_csv as $row) {
             if ( $row[0] === 'payroll_id' || !$row[0] ) {
@@ -36,6 +36,8 @@ class FacultySalarySeeder extends Seeder
                 'email' => $row[1] . '@uconn.edu',
             ], uniqueBy: ['netid'], update: ['emplid']);
         }
+
+        FacultySalaryTable::truncate();
 
         foreach ($faculty_csv as $row) {
             if ( $row[0] === 'academic_school_college' || !$row[0] ) {
