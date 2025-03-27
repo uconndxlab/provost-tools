@@ -90,15 +90,26 @@ class FacultySalaryTables extends Component
             'Global Affairs' => [],
             'Law' => ['cnm22002', 'esn20002', 'jun16105', 'acd02004', 'mkl13001', 'jer02009'],
             'Liberal Arts and Sciences' => ['kal04009', 'mir04001', 'meg13017', 'ofh05001', 'ebt18003', 'bow02001', 'bap02005'],
-            'Nursing' => ['clc02011', 'vsv23001', 'ank04010', 'anm06014', 'nsr21001'],
+            'Nursing' => ['clc02011', 'vsv23001', 'ank04010', 'anm06014', 'nsr21001', 'jrs06005'],
             'OVPR' => ['jds05004'],
             'Pharmacy' => ['pmh03001', 'scm13009', 'nmr16101', 'kaw07013'],
             'Provost Academic Affairs' => [],
-            'Social Work' => ['lac23013', 'stm96003', 'jim22010', 'sch04003'],
+            'Social Work' => ['lac23013', 'stm96003', 'jim22010', 'sch04003',],
         ];
         $schools_for_this_user = array_keys(array_filter($school_college_admin_list, function($admins) use ($netid) {
             return in_array($netid, $admins);
         }));
+
+
+        $department_special_access_list = [
+            'Werth Institute' => ['dan12005'],
+            'Materials Science Institute' => ['sls02012'],
+            'System Genomics Institute' => ['rjo02003'],
+            'CT Ntl Estuarine Research Rsrv' => ['crt09001'],
+            'Sea Grant' => ['syd02001'],
+            'InCHIP' => ['tml14004', 'jrs06005'],
+        ];
+
         /**
          * This is where a user is limited to see what is in their department or school.
          */
@@ -118,6 +129,16 @@ class FacultySalaryTables extends Component
                 return in_array($school, $schools_for_this_user);
             });
     
+        }
+
+        if ( !empty($department_special_access_list) && !Auth::user()->can_admin ) {
+            $faculty_salary_tables->orWhere(function($query) use ($department_special_access_list) {
+                foreach ($department_special_access_list as $department => $admins) {
+                    if (in_array(Auth::user()->netid, $admins)) {
+                        $query->orWhere('academic_department', $department);
+                    }
+                }
+            });
         }
 
  
