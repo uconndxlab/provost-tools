@@ -39,7 +39,7 @@
                     <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
-                                <span class="badge bg-info text-primary">Available April 1- Jun 1</span>
+                                <span class="badge bg-success">Available Now</span>
 
                             </div>
                             <div class="card-body">
@@ -50,6 +50,10 @@
 
                                 <p>Salary data for faculty within the AAUP, in accordance with the annual Provost Fund
                                     Guidance.</p>
+
+                                <a href="{{ route('faculty_salary_tables.index') }}" class="tool-link">
+                                    View Salary Tables &raquo;
+                                </a>
 
                             </div>
 
