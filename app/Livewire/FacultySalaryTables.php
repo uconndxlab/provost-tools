@@ -88,7 +88,7 @@ class FacultySalaryTables extends Component
             'Engineering' => ['dbh24003', 'kea04003', 'geb09004', 'ddb10003', 'dmt02003'],
             'Fine Arts' => ['alf02016', 'ckb01001', 'jan24002'],
             'Global Affairs' => [],
-            'Law' => ['cnm22002', 'esn20002', 'jun16105', 'acd02004', 'mkl13001', 'jer02009'],
+            'Law' => ['cnm22002', 'esn20002', 'jas10002', 'acd02004', 'mkl13001', 'jer02009'],
             'Liberal Arts and Sciences' => ['kal04009', 'mir04001', 'meg13017', 'ofh05001', 'ebt18003', 'bow02001', 'bap02005'],
             'Nursing' => ['clc02011', 'vsv23001', 'ank04010', 'anm06014', 'nsr21001', 'jrs06005'],
             'OVPR' => ['jds05004'],
