@@ -16,26 +16,7 @@
             <div class="container">
 
                 <div id="tools" class="row mt-5">
-                    <div class="col-sm-6 col-lg-3 mb-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <span class="badge bg-success">Available Now</span>
-                            </div>
-                            <div class="card-body">
-                                <i class="material-icons">content_paste</i>
 
-                                <h3><a href="{{ route('budgetHearingQuestionnaire.create') }}">Annual Budget Hearing Questionnaire</a></h3>
-
-                                <p>Streamlined submission tool that creates an outline for annual budget hearing meetings.
-                                </p>
-
-                                <a href="{{ route('budgetHearingQuestionnaire.create') }}" class="tool-link">
-                                    Start Questionnaire &raquo;
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
                     <div class="col-sm-6 col-lg-3 mb-4">
                         <div class="card">
                             <div class="card-header">
@@ -55,6 +36,23 @@
                                     View Salary Tables &raquo;
                                 </a>
 
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-3 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <span class="badge bg-black">Submissions Closed</span>
+                            </div>
+                            <div class="card-body">
+                                <i class="material-icons">content_paste</i>
+
+                                <h3>Annual Budget Hearing Questionnaire</h3>
+
+                                <p>Streamlined submission tool that creates an outline for annual budget hearing meetings.
+                                </p>
                             </div>
 
                         </div>
@@ -80,7 +78,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <span class="badge bg-inprogress">In Development</span>
+                                <span class="badge bg-testing">In Testing</span>
                             </div>
                             <div class="card-body">
                                 <i class="material-icons">trending_up</i>
