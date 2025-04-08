@@ -82,7 +82,7 @@ class FacultySalaryTables extends Component
 
         $netid = Auth::user()->netid;
         $school_college_admin_list = [
-            'Agriculture,Health,Natural Rc' => ['alr03008', 'amh22027', 'keg95003', 'inc18002', 'ksv02002'],
+            'Agriculture,Health,Natural Rcs' => ['alr03008', 'amh22027', 'keg95003', 'inc18002', 'ksv02002'],
             'Business' => ['mil02007', 'grr07002', 'nom02003', 'cml05005', 'jmc04008', 'dab13012'],
             'Education' => ['jai05001', 'bas08012', 'eam14013', 'doa13001', 'nsb02004'],
             'Engineering' => ['dbh24003', 'kea04003', 'geb09004', 'ddb10003', 'dmt02003'],
