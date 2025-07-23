@@ -11,7 +11,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "spatie/laravel-tail": "^4.5",
-        "subfission/cas": "^5.1"
+        "uconndxlab/laravel-cas": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -65,5 +65,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+	{
+            "type": "vcs",
+            "url": "https://github.com/uconndxlab/laravel-cas.git"
+        }
+    ]
 }

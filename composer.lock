@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82c9181894f3e37f7f7e17af57b6635d",
+    "content-hash": "d96a861df0aa36479770d41601391a61",
     "packages": [
         {
             "name": "apereo/phpcas",
@@ -3754,78 +3754,6 @@
             "time": "2024-12-23T10:27:18+00:00"
         },
         {
-            "name": "subfission/cas",
-            "version": "v5.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/subfission/cas.git",
-                "reference": "6180e042c9772af49ce62abb162cd798760c7fa8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/subfission/cas/zipball/6180e042c9772af49ce62abb162cd798760c7fa8",
-                "reference": "6180e042c9772af49ce62abb162cd798760c7fa8",
-                "shasum": ""
-            },
-            "require": {
-                "apereo/phpcas": "^1.6",
-                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
-                "monolog/monolog": "^2.0|^3.0",
-                "php": ">=7.2.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^6.25"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "aliases": {
-                        "Cas": "Subfission\\Cas\\Facades\\Cas"
-                    },
-                    "providers": [
-                        "Subfission\\Cas\\CasServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Subfission/Cas/functions.php"
-                ],
-                "psr-4": {
-                    "Subfission\\Cas\\": "src/Subfission/Cas/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "subfission",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Adds CAS support to Laravel 5.x - 11.x",
-            "keywords": [
-                "SSO",
-                "cas",
-                "laravel",
-                "laravel 10",
-                "laravel 11",
-                "laravel 6",
-                "laravel 7",
-                "laravel 8",
-                "laravel 9",
-                "phpCAS"
-            ],
-            "support": {
-                "issues": "https://github.com/subfission/cas/issues",
-                "source": "https://github.com/subfission/cas/tree/v5.1.0"
-            },
-            "abandoned": true,
-            "time": "2024-09-13T06:00:10+00:00"
-        },
-        {
             "name": "symfony/clock",
             "version": "v7.3.0",
             "source": {
@@ -6114,6 +6042,71 @@
                 "source": "https://github.com/tijsverkoyen/CssToInlineStyles/tree/v2.3.0"
             },
             "time": "2024-12-21T16:25:41+00:00"
+        },
+        {
+            "name": "uconndxlab/laravel-cas",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/uconndxlab/laravel-cas.git",
+                "reference": "2ece573ed0456352b37182ce3b7399d470cb970e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/uconndxlab/laravel-cas/zipball/2ece573ed0456352b37182ce3b7399d470cb970e",
+                "reference": "2ece573ed0456352b37182ce3b7399d470cb970e",
+                "shasum": ""
+            },
+            "require": {
+                "apereo/phpcas": "^1.6",
+                "illuminate/support": "^11.0|^12.0",
+                "monolog/monolog": "^3.0",
+                "php": ">=8.2.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.9.1",
+                "pestphp/pest": "^1.21|^2.0|^3.0",
+                "phpunit/phpunit": "^8.0|^9.0|^10.0|^11.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Subfission\\Cas\\CasServiceProvider"
+                    ],
+                    "aliases": {
+                        "Cas": "Subfission\\Cas\\Facades\\Cas"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Subfission\\Cas\\": "src/Subfission/Cas/"
+                },
+                "files": [
+                    "src/Subfission/Cas/functions.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Subfission\\Cas\\Tests\\": "tests"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "subfission",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel package for CAS authentication",
+            "support": {
+                "source": "https://github.com/uconndxlab/laravel-cas/tree/v1.0.1",
+                "issues": "https://github.com/uconndxlab/laravel-cas/issues"
+            },
+            "time": "2025-06-12T19:23:56+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
